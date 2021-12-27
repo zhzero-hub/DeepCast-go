@@ -1,0 +1,35 @@
+// go.proto
+// [python quickstart](https://grpc.io/docs/quickstart/python.html#run-a-grpc-application)
+
+// python -m grpc_tools.protoc --python_out=../python/grpc --grpc_python_out=../python/grpc -I. go.proto
+// protoc --proto_path=./pb/ --go_out=plugins=grpc:./grpc go.proto
+
+syntax = "proto3";
+
+package pb;
+option go_package = "../grpc";
+import "common.proto";
+
+service ServerApi {
+    rpc GoSayHello(GoSayHelloRequest) returns (GoSayHelloResponse) {}
+    rpc NotifyAction(NotifyActionRequest) returns (NotifyActionResponse) {}   // 同步接口，给出action，响应reward
+}
+
+message GoSayHelloRequest {
+    string msg = 1;
+}
+
+message GoSayHelloResponse {
+    string msg = 1;
+}
+
+message NotifyActionRequest {
+    Base Base = 1;
+    Action Action = 2;
+    State State = 3;
+}
+
+message NotifyActionResponse {
+    Base Base = 1;
+    Feedback Feedback = 2;
+}
