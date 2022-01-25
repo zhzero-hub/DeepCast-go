@@ -1,5 +1,7 @@
 package train
 
+const channels = 50
+
 const (
 	BitRate1440 = 4.3
 	BitRate1080 = 2.85
@@ -34,23 +36,31 @@ type Location struct {
 }
 
 type BandWidthInfo struct {
-	InBandWidthLimit float64
+	InBandWidthLimit  float64
 	OutBandWidthLimit float64
-	InBandWidthUsed float64
-	OutBandWidthUsed float64
+	InBandWidthUsed   float64
+	OutBandWidthUsed  float64
 }
 
 type DeviceCommon struct {
-	Id        string
-	Name      string
-	CpuCore   int32
-	Location  Location
-	BandWidthInfo BandWidthInfo
+	Id             int32
+	Name           string
+	CpuCore        int32
+	Location       Location
+	BandWidthInfo  BandWidthInfo
+	LatencyToUpper int64 // ms
 }
 
 type Viewer struct {
-	ID        string
-	Name      string
-	Location  Location
+	Id       string
+	Location Location
 	Latency  float64
+	LiveInfo []LiveInfo
+}
+
+type LiveInfo struct {
+	ChannelId string
+	LiverName string
+	StartTime int64
+	EndTime   int64
 }
