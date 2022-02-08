@@ -9,30 +9,41 @@ message Base {
     map<string, string> Extra = 3;
 }
 
+message InboundBandwidthUsage {
+    repeated double inbound_bandwidth_usage = 1;
+}
+
+message OutboundBandwidthUsage {
+    repeated double outbound_bandwidth_usage = 1;
+}
+
+message ComputationResourceUsage {
+    repeated double computation_resource_usage = 1;
+}
+
+message Location {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message UserInfo {
+    Location location = 1;
+    int64 channel = 2;
+    int64 version = 3;
+}
+
+message QoEPreference {
+    int32 alpha1 = 1;
+    int32 alpha2 = 2;
+    int32 alpha3 = 3;
+}
+
 message State {
-    message InboundBandwidthUsage {
-        repeated double inbound_bandwidth_usage = 1;
-    }
-    message OutboundBandwidthUsage {
-        repeated double outbound_bandwidth_usage = 1;
-    }
-    message ComputationResourceUsage {
-        repeated double Computation_resource_usage = 1;
-    }
-    message UserInfo {
-      message Location {
-          double latitude = 1;
-          double longitude = 2;
-      }
-      int64 channel = 1;
-      int64 version = 2;
-    }
-    message QoEPreference {
-        int32 alpha1 = 1;
-        int32 alpha2 = 2;
-        int32 alpha3 = 3;
-    }
-    Base Base = 1;
+    InboundBandwidthUsage inbound_bandwidth_usage = 1;
+    OutboundBandwidthUsage outbound_bandwidth_usage = 2;
+    ComputationResourceUsage computation_resource_usage = 3;
+    QoEPreference qoe_preference = 4;
+    Base Base = 5;
 }
 
 message Action {

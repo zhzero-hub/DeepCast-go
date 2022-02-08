@@ -43,19 +43,20 @@ type BandWidthInfo struct {
 }
 
 type DeviceCommon struct {
-	Id             int32
-	Name           string
-	CpuCore        int32
-	Location       Location
-	BandWidthInfo  BandWidthInfo
-	LatencyToUpper int64 // ms
+	Id              int32
+	Name            string
+	CpuCore         int32
+	Location        Location
+	BandWidthInfo   BandWidthInfo
+	LatencyToUpper  float64 // ms
+	ComputationUsed float64
 }
 
 type Viewer struct {
 	Id       string
 	Location Location
 	Latency  float64
-	LiveInfo []LiveInfo
+	LiveInfo []*LiveInfo
 }
 
 type LiveInfo struct {

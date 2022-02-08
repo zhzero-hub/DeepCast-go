@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xf5\x02\n\x05State\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x1a\x38\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\x1a:\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\x1a>\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x43omputation_resource_usage\x18\x01 \x03(\x01\x1a]\n\x08UserInfo\x12\x0f\n\x07\x63hannel\x18\x01 \x01(\x03\x12\x0f\n\x07version\x18\x02 \x01(\x03\x1a/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\x1a?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"U\n\x06\x41\x63tion\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06Reward\x18\x02 \x01(\x01\x12\x13\n\x0bPossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x41\x63tion\x18\x04 \x01(\x03\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06Reward\x18\x02 \x01(\x01\x12\x10\n\x08\x41\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"\x86\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x16\n\x04\x42\x61se\x18\x05 \x01(\x0b\x32\x08.pb.Base\"U\n\x06\x41\x63tion\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06Reward\x18\x02 \x01(\x01\x12\x13\n\x0bPossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x41\x63tion\x18\x04 \x01(\x03\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06Reward\x18\x02 \x01(\x01\x12\x10\n\x08\x41\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -109,16 +109,16 @@ _BASE = _descriptor.Descriptor(
 )
 
 
-_STATE_INBOUNDBANDWIDTHUSAGE = _descriptor.Descriptor(
+_INBOUNDBANDWIDTHUSAGE = _descriptor.Descriptor(
   name='InboundBandwidthUsage',
-  full_name='pb.State.InboundBandwidthUsage',
+  full_name='pb.InboundBandwidthUsage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='inbound_bandwidth_usage', full_name='pb.State.InboundBandwidthUsage.inbound_bandwidth_usage', index=0,
+      name='inbound_bandwidth_usage', full_name='pb.InboundBandwidthUsage.inbound_bandwidth_usage', index=0,
       number=1, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -136,20 +136,21 @@ _STATE_INBOUNDBANDWIDTHUSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=177,
-  serialized_end=233,
+  serialized_start=143,
+  serialized_end=199,
 )
 
-_STATE_OUTBOUNDBANDWIDTHUSAGE = _descriptor.Descriptor(
+
+_OUTBOUNDBANDWIDTHUSAGE = _descriptor.Descriptor(
   name='OutboundBandwidthUsage',
-  full_name='pb.State.OutboundBandwidthUsage',
+  full_name='pb.OutboundBandwidthUsage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='outbound_bandwidth_usage', full_name='pb.State.OutboundBandwidthUsage.outbound_bandwidth_usage', index=0,
+      name='outbound_bandwidth_usage', full_name='pb.OutboundBandwidthUsage.outbound_bandwidth_usage', index=0,
       number=1, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -167,20 +168,21 @@ _STATE_OUTBOUNDBANDWIDTHUSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=235,
-  serialized_end=293,
+  serialized_start=201,
+  serialized_end=259,
 )
 
-_STATE_COMPUTATIONRESOURCEUSAGE = _descriptor.Descriptor(
+
+_COMPUTATIONRESOURCEUSAGE = _descriptor.Descriptor(
   name='ComputationResourceUsage',
-  full_name='pb.State.ComputationResourceUsage',
+  full_name='pb.ComputationResourceUsage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='Computation_resource_usage', full_name='pb.State.ComputationResourceUsage.Computation_resource_usage', index=0,
+      name='computation_resource_usage', full_name='pb.ComputationResourceUsage.computation_resource_usage', index=0,
       number=1, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -198,27 +200,28 @@ _STATE_COMPUTATIONRESOURCEUSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=295,
-  serialized_end=357,
+  serialized_start=261,
+  serialized_end=323,
 )
 
-_STATE_USERINFO_LOCATION = _descriptor.Descriptor(
+
+_LOCATION = _descriptor.Descriptor(
   name='Location',
-  full_name='pb.State.UserInfo.Location',
+  full_name='pb.Location',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='latitude', full_name='pb.State.UserInfo.Location.latitude', index=0,
+      name='latitude', full_name='pb.Location.latitude', index=0,
       number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='longitude', full_name='pb.State.UserInfo.Location.longitude', index=1,
+      name='longitude', full_name='pb.Location.longitude', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -236,28 +239,36 @@ _STATE_USERINFO_LOCATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=405,
-  serialized_end=452,
+  serialized_start=325,
+  serialized_end=372,
 )
 
-_STATE_USERINFO = _descriptor.Descriptor(
+
+_USERINFO = _descriptor.Descriptor(
   name='UserInfo',
-  full_name='pb.State.UserInfo',
+  full_name='pb.UserInfo',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='channel', full_name='pb.State.UserInfo.channel', index=0,
-      number=1, type=3, cpp_type=2, label=1,
+      name='location', full_name='pb.UserInfo.location', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='channel', full_name='pb.UserInfo.channel', index=1,
+      number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='version', full_name='pb.State.UserInfo.version', index=1,
-      number=2, type=3, cpp_type=2, label=1,
+      name='version', full_name='pb.UserInfo.version', index=2,
+      number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -265,7 +276,7 @@ _STATE_USERINFO = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_STATE_USERINFO_LOCATION, ],
+  nested_types=[],
   enum_types=[
   ],
   serialized_options=None,
@@ -274,34 +285,35 @@ _STATE_USERINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=359,
-  serialized_end=452,
+  serialized_start=374,
+  serialized_end=450,
 )
 
-_STATE_QOEPREFERENCE = _descriptor.Descriptor(
+
+_QOEPREFERENCE = _descriptor.Descriptor(
   name='QoEPreference',
-  full_name='pb.State.QoEPreference',
+  full_name='pb.QoEPreference',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='alpha1', full_name='pb.State.QoEPreference.alpha1', index=0,
+      name='alpha1', full_name='pb.QoEPreference.alpha1', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='alpha2', full_name='pb.State.QoEPreference.alpha2', index=1,
+      name='alpha2', full_name='pb.QoEPreference.alpha2', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='alpha3', full_name='pb.State.QoEPreference.alpha3', index=2,
+      name='alpha3', full_name='pb.QoEPreference.alpha3', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -319,9 +331,10 @@ _STATE_QOEPREFERENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=454,
-  serialized_end=517,
+  serialized_start=452,
+  serialized_end=515,
 )
+
 
 _STATE = _descriptor.Descriptor(
   name='State',
@@ -332,8 +345,36 @@ _STATE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='Base', full_name='pb.State.Base', index=0,
+      name='inbound_bandwidth_usage', full_name='pb.State.inbound_bandwidth_usage', index=0,
       number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='outbound_bandwidth_usage', full_name='pb.State.outbound_bandwidth_usage', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='computation_resource_usage', full_name='pb.State.computation_resource_usage', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='qoe_preference', full_name='pb.State.qoe_preference', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.State.Base', index=4,
+      number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -341,7 +382,7 @@ _STATE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_STATE_INBOUNDBANDWIDTHUSAGE, _STATE_OUTBOUNDBANDWIDTHUSAGE, _STATE_COMPUTATIONRESOURCEUSAGE, _STATE_USERINFO, _STATE_QOEPREFERENCE, ],
+  nested_types=[],
   enum_types=[
   ],
   serialized_options=None,
@@ -350,8 +391,8 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=144,
-  serialized_end=517,
+  serialized_start=518,
+  serialized_end=780,
 )
 
 
@@ -403,8 +444,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=519,
-  serialized_end=604,
+  serialized_start=782,
+  serialized_end=867,
 )
 
 
@@ -449,22 +490,27 @@ _FEEDBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=606,
-  serialized_end=674,
+  serialized_start=869,
+  serialized_end=937,
 )
 
 _BASE_EXTRAENTRY.containing_type = _BASE
 _BASE.fields_by_name['Extra'].message_type = _BASE_EXTRAENTRY
-_STATE_INBOUNDBANDWIDTHUSAGE.containing_type = _STATE
-_STATE_OUTBOUNDBANDWIDTHUSAGE.containing_type = _STATE
-_STATE_COMPUTATIONRESOURCEUSAGE.containing_type = _STATE
-_STATE_USERINFO_LOCATION.containing_type = _STATE_USERINFO
-_STATE_USERINFO.containing_type = _STATE
-_STATE_QOEPREFERENCE.containing_type = _STATE
+_USERINFO.fields_by_name['location'].message_type = _LOCATION
+_STATE.fields_by_name['inbound_bandwidth_usage'].message_type = _INBOUNDBANDWIDTHUSAGE
+_STATE.fields_by_name['outbound_bandwidth_usage'].message_type = _OUTBOUNDBANDWIDTHUSAGE
+_STATE.fields_by_name['computation_resource_usage'].message_type = _COMPUTATIONRESOURCEUSAGE
+_STATE.fields_by_name['qoe_preference'].message_type = _QOEPREFERENCE
 _STATE.fields_by_name['Base'].message_type = _BASE
 _ACTION.fields_by_name['Base'].message_type = _BASE
 _FEEDBACK.fields_by_name['Base'].message_type = _BASE
 DESCRIPTOR.message_types_by_name['Base'] = _BASE
+DESCRIPTOR.message_types_by_name['InboundBandwidthUsage'] = _INBOUNDBANDWIDTHUSAGE
+DESCRIPTOR.message_types_by_name['OutboundBandwidthUsage'] = _OUTBOUNDBANDWIDTHUSAGE
+DESCRIPTOR.message_types_by_name['ComputationResourceUsage'] = _COMPUTATIONRESOURCEUSAGE
+DESCRIPTOR.message_types_by_name['Location'] = _LOCATION
+DESCRIPTOR.message_types_by_name['UserInfo'] = _USERINFO
+DESCRIPTOR.message_types_by_name['QoEPreference'] = _QOEPREFERENCE
 DESCRIPTOR.message_types_by_name['State'] = _STATE
 DESCRIPTOR.message_types_by_name['Action'] = _ACTION
 DESCRIPTOR.message_types_by_name['Feedback'] = _FEEDBACK
@@ -485,60 +531,54 @@ Base = _reflection.GeneratedProtocolMessageType('Base', (_message.Message,), {
 _sym_db.RegisterMessage(Base)
 _sym_db.RegisterMessage(Base.ExtraEntry)
 
+InboundBandwidthUsage = _reflection.GeneratedProtocolMessageType('InboundBandwidthUsage', (_message.Message,), {
+  'DESCRIPTOR' : _INBOUNDBANDWIDTHUSAGE,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.InboundBandwidthUsage)
+  })
+_sym_db.RegisterMessage(InboundBandwidthUsage)
+
+OutboundBandwidthUsage = _reflection.GeneratedProtocolMessageType('OutboundBandwidthUsage', (_message.Message,), {
+  'DESCRIPTOR' : _OUTBOUNDBANDWIDTHUSAGE,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.OutboundBandwidthUsage)
+  })
+_sym_db.RegisterMessage(OutboundBandwidthUsage)
+
+ComputationResourceUsage = _reflection.GeneratedProtocolMessageType('ComputationResourceUsage', (_message.Message,), {
+  'DESCRIPTOR' : _COMPUTATIONRESOURCEUSAGE,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.ComputationResourceUsage)
+  })
+_sym_db.RegisterMessage(ComputationResourceUsage)
+
+Location = _reflection.GeneratedProtocolMessageType('Location', (_message.Message,), {
+  'DESCRIPTOR' : _LOCATION,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.Location)
+  })
+_sym_db.RegisterMessage(Location)
+
+UserInfo = _reflection.GeneratedProtocolMessageType('UserInfo', (_message.Message,), {
+  'DESCRIPTOR' : _USERINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.UserInfo)
+  })
+_sym_db.RegisterMessage(UserInfo)
+
+QoEPreference = _reflection.GeneratedProtocolMessageType('QoEPreference', (_message.Message,), {
+  'DESCRIPTOR' : _QOEPREFERENCE,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.QoEPreference)
+  })
+_sym_db.RegisterMessage(QoEPreference)
+
 State = _reflection.GeneratedProtocolMessageType('State', (_message.Message,), {
-
-  'InboundBandwidthUsage' : _reflection.GeneratedProtocolMessageType('InboundBandwidthUsage', (_message.Message,), {
-    'DESCRIPTOR' : _STATE_INBOUNDBANDWIDTHUSAGE,
-    '__module__' : 'common_pb2'
-    # @@protoc_insertion_point(class_scope:pb.State.InboundBandwidthUsage)
-    })
-  ,
-
-  'OutboundBandwidthUsage' : _reflection.GeneratedProtocolMessageType('OutboundBandwidthUsage', (_message.Message,), {
-    'DESCRIPTOR' : _STATE_OUTBOUNDBANDWIDTHUSAGE,
-    '__module__' : 'common_pb2'
-    # @@protoc_insertion_point(class_scope:pb.State.OutboundBandwidthUsage)
-    })
-  ,
-
-  'ComputationResourceUsage' : _reflection.GeneratedProtocolMessageType('ComputationResourceUsage', (_message.Message,), {
-    'DESCRIPTOR' : _STATE_COMPUTATIONRESOURCEUSAGE,
-    '__module__' : 'common_pb2'
-    # @@protoc_insertion_point(class_scope:pb.State.ComputationResourceUsage)
-    })
-  ,
-
-  'UserInfo' : _reflection.GeneratedProtocolMessageType('UserInfo', (_message.Message,), {
-
-    'Location' : _reflection.GeneratedProtocolMessageType('Location', (_message.Message,), {
-      'DESCRIPTOR' : _STATE_USERINFO_LOCATION,
-      '__module__' : 'common_pb2'
-      # @@protoc_insertion_point(class_scope:pb.State.UserInfo.Location)
-      })
-    ,
-    'DESCRIPTOR' : _STATE_USERINFO,
-    '__module__' : 'common_pb2'
-    # @@protoc_insertion_point(class_scope:pb.State.UserInfo)
-    })
-  ,
-
-  'QoEPreference' : _reflection.GeneratedProtocolMessageType('QoEPreference', (_message.Message,), {
-    'DESCRIPTOR' : _STATE_QOEPREFERENCE,
-    '__module__' : 'common_pb2'
-    # @@protoc_insertion_point(class_scope:pb.State.QoEPreference)
-    })
-  ,
   'DESCRIPTOR' : _STATE,
   '__module__' : 'common_pb2'
   # @@protoc_insertion_point(class_scope:pb.State)
   })
 _sym_db.RegisterMessage(State)
-_sym_db.RegisterMessage(State.InboundBandwidthUsage)
-_sym_db.RegisterMessage(State.OutboundBandwidthUsage)
-_sym_db.RegisterMessage(State.ComputationResourceUsage)
-_sym_db.RegisterMessage(State.UserInfo)
-_sym_db.RegisterMessage(State.UserInfo.Location)
-_sym_db.RegisterMessage(State.QoEPreference)
 
 Action = _reflection.GeneratedProtocolMessageType('Action', (_message.Message,), {
   'DESCRIPTOR' : _ACTION,

@@ -20,7 +20,7 @@ type UserViewingInfo struct {
 
 func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 	pwd, _ := os.Getwd()
-	if csvData, err := ReadFromFile(pwd+"/../data/", "user_viewing_dataset.csv", "csv"); err != nil {
+	if csvData, err := ReadFromFile(pwd+"/data/", "user_viewing_dataset.csv", "csv"); err != nil {
 		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
 		return nil, err
 	} else {
@@ -29,22 +29,22 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 		for k := range *topLivers {
 			topLiverNames = append(topLiverNames, k)
 		}
-		//topLiverIndex := 0
+		topLiverIndex := 0
 		viewerInfoMap := make(map[string]*Viewer, 0)
 		for _, data := range csvData {
 			csvRow := data
 			var liverName, channelId string
-			//if _, ok := (*topLivers)[csvRow[2]]; ok {
-			//	liverName = csvRow[2]
-			//	channelId = csvRow[1]
-			//} else {
-			//	liverName = topLiverNames[topLiverIndex]
-			//	channelId = (*topLivers)[liverName]
-			//	topLiverIndex++
-			//	if topLiverIndex == len(topLiverNames) {
-			//		topLiverIndex = 0
-			//	}
-			//}
+			if _, ok := (*topLivers)[csvRow[2]]; ok {
+				liverName = csvRow[2]
+				channelId = csvRow[1]
+			} else {
+				liverName = topLiverNames[topLiverIndex]
+				channelId = (*topLivers)[liverName]
+				topLiverIndex++
+				if topLiverIndex == len(topLiverNames) {
+					topLiverIndex = 0
+				}
+			}
 			startTimeInt, _ := strconv.ParseInt(csvRow[3], 10, 64)
 			endTimeInt, _ := strconv.ParseInt(csvRow[4], 10, 64)
 			userViewingInfo := UserViewingInfo{
@@ -55,10 +55,10 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 				EndTime:   endTimeInt,
 			}
 			if viewer, ok := viewerInfoMap[userViewingInfo.UserId]; !ok {
-				liveInfo := make([]LiveInfo, 0)
+				liveInfo := make([]*LiveInfo, 0)
 				viewerInfoMap[userViewingInfo.UserId] = &Viewer{
 					Id: userViewingInfo.UserId,
-					LiveInfo: append(liveInfo, LiveInfo{
+					LiveInfo: append(liveInfo, &LiveInfo{
 						ChannelId: userViewingInfo.ChannelId,
 						LiverName: userViewingInfo.LiverName,
 						StartTime: userViewingInfo.StartTime,
@@ -67,7 +67,7 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 				}
 			} else {
 				liveInfo := viewer.LiveInfo
-				liveInfo = append(liveInfo, LiveInfo{
+				liveInfo = append(liveInfo, &LiveInfo{
 					ChannelId: userViewingInfo.ChannelId,
 					LiverName: userViewingInfo.LiverName,
 					StartTime: userViewingInfo.StartTime,
@@ -81,7 +81,7 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 
 func LoadUserLocationDataset(ctx context.Context) error {
 	pwd, _ := os.Getwd()
-	if csvData, err := ReadFromFile(pwd+"/../data/", "user_location_dataset.csv", "csv"); err != nil {
+	if csvData, err := ReadFromFile(pwd+"/data/", "user_location_dataset.csv", "csv"); err != nil {
 		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
 		return err
 	} else {
@@ -180,9 +180,13 @@ func ReadFromFile(filePath string, fileName string, fileType string) ([][]string
 }
 
 func InitEdgeSystemInfo(ctx context.Context) *System {
+	var system System
 	edgeMap := make(map[string]*Edge, 0)
+	inboundBandPointer := make([]*float64, 0)
+	outboundBandPointer := make([]*float64, 0)
+	computationPointer := make([]*float64, 0)
 	for index := 0; index < EdgeNumber; index++ {
-		edgeMap["Edge"+strconv.Itoa(index)] = &Edge{
+		edge := Edge{
 			DeviceCommon{
 				Id:      int32(index),
 				Name:    "Edge" + strconv.Itoa(index),
@@ -193,12 +197,37 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 					InBandWidthUsed:   0,
 					OutBandWidthUsed:  0,
 				},
+				LatencyToUpper:  0,
+				ComputationUsed: 0,
 			},
 		}
+		edgeMap["Edge"+strconv.Itoa(index)] = &edge
+		inboundBandPointer = append(inboundBandPointer, &edge.BandWidthInfo.InBandWidthUsed)
+		outboundBandPointer = append(outboundBandPointer, &edge.BandWidthInfo.OutBandWidthUsed)
+		computationPointer = append(computationPointer, &edge.ComputationUsed)
 	}
-	system := System{
-		Edge: edgeMap,
-		Cdn:  make(map[string]*CDN, 0),
+	cdn := CDN{
+		DeviceCommon{
+			Id:      int32(0),
+			Name:    "Cdn" + strconv.Itoa(0),
+			CpuCore: CdnCpuCore,
+			BandWidthInfo: BandWidthInfo{
+				InBandWidthLimit:  CdnInboundBandwidth,
+				OutBandWidthLimit: CdnOutboundBandwidth,
+				InBandWidthUsed:   0,
+				OutBandWidthUsed:  0,
+			},
+			LatencyToUpper:  0,
+			ComputationUsed: 0,
+		},
 	}
+	outboundBandPointer = append(outboundBandPointer, &cdn.BandWidthInfo.OutBandWidthUsed)
+
+	system.Cdn = make(map[string]*CDN, 0)
+	system.Cdn["Cdn0"] = &cdn
+	system.Edge = edgeMap
+	system.InboundMap = inboundBandPointer
+	system.OutboundMap = outboundBandPointer
+	system.ComputationMap = computationPointer
 	return &system
 }

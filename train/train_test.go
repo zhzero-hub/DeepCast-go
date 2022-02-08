@@ -5,5 +5,5 @@ import (
 )
 
 func TestInitDataset(t *testing.T) {
-	InitDataset(ctx)
+	Init()
 }
