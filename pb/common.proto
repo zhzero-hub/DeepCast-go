@@ -39,22 +39,22 @@ message QoEPreference {
 }
 
 message State {
-    InboundBandwidthUsage inbound_bandwidth_usage = 1;
-    OutboundBandwidthUsage outbound_bandwidth_usage = 2;
-    ComputationResourceUsage computation_resource_usage = 3;
-    QoEPreference qoe_preference = 4;
-    Base Base = 5;
+    Base base = 1;
+    InboundBandwidthUsage inbound_bandwidth_usage = 2;
+    OutboundBandwidthUsage outbound_bandwidth_usage = 3;
+    ComputationResourceUsage computation_resource_usage = 4;
+    QoEPreference qoe_preference = 5;
 }
 
 message Action {
-    Base Base = 1;
-    double Reward = 2;
-    repeated double Possibility = 3;
-    int64 Action = 4;
+    Base base = 1;
+    string viewer_id = 2;
+    repeated double possibility = 3;
+    int64 action = 4;
 }
 
 message Feedback {
-    Base Base = 1;
-    double Reward = 2;
-    double Accuracy = 3;
+    Base base = 1;
+    double reward = 2;
+    double accuracy = 3;
 }

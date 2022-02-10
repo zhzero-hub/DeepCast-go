@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"\x86\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x16\n\x04\x42\x61se\x18\x05 \x01(\x0b\x32\x08.pb.Base\"U\n\x06\x41\x63tion\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06Reward\x18\x02 \x01(\x01\x12\x13\n\x0bPossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x41\x63tion\x18\x04 \x01(\x03\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06Reward\x18\x02 \x01(\x01\x12\x10\n\x08\x41\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"\x86\x02\n\x05State\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12:\n\x17inbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x03 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x04 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x05 \x01(\x0b\x32\x11.pb.QoEPreference\"X\n\x06\x41\x63tion\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x11\n\tviewer_id\x18\x02 \x01(\t\x12\x13\n\x0bpossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x04 \x01(\x03\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06reward\x18\x02 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -345,35 +345,35 @@ _STATE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='inbound_bandwidth_usage', full_name='pb.State.inbound_bandwidth_usage', index=0,
+      name='base', full_name='pb.State.base', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='outbound_bandwidth_usage', full_name='pb.State.outbound_bandwidth_usage', index=1,
+      name='inbound_bandwidth_usage', full_name='pb.State.inbound_bandwidth_usage', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='computation_resource_usage', full_name='pb.State.computation_resource_usage', index=2,
+      name='outbound_bandwidth_usage', full_name='pb.State.outbound_bandwidth_usage', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='qoe_preference', full_name='pb.State.qoe_preference', index=3,
+      name='computation_resource_usage', full_name='pb.State.computation_resource_usage', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Base', full_name='pb.State.Base', index=4,
+      name='qoe_preference', full_name='pb.State.qoe_preference', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -405,28 +405,28 @@ _ACTION = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='Base', full_name='pb.Action.Base', index=0,
+      name='base', full_name='pb.Action.base', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Reward', full_name='pb.Action.Reward', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
+      name='viewer_id', full_name='pb.Action.viewer_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Possibility', full_name='pb.Action.Possibility', index=2,
+      name='possibility', full_name='pb.Action.possibility', index=2,
       number=3, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Action', full_name='pb.Action.Action', index=3,
+      name='action', full_name='pb.Action.action', index=3,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -445,7 +445,7 @@ _ACTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=782,
-  serialized_end=867,
+  serialized_end=870,
 )
 
 
@@ -458,21 +458,21 @@ _FEEDBACK = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='Base', full_name='pb.Feedback.Base', index=0,
+      name='base', full_name='pb.Feedback.base', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Reward', full_name='pb.Feedback.Reward', index=1,
+      name='reward', full_name='pb.Feedback.reward', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='Accuracy', full_name='pb.Feedback.Accuracy', index=2,
+      name='accuracy', full_name='pb.Feedback.accuracy', index=2,
       number=3, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -490,20 +490,20 @@ _FEEDBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=869,
-  serialized_end=937,
+  serialized_start=872,
+  serialized_end=940,
 )
 
 _BASE_EXTRAENTRY.containing_type = _BASE
 _BASE.fields_by_name['Extra'].message_type = _BASE_EXTRAENTRY
 _USERINFO.fields_by_name['location'].message_type = _LOCATION
+_STATE.fields_by_name['base'].message_type = _BASE
 _STATE.fields_by_name['inbound_bandwidth_usage'].message_type = _INBOUNDBANDWIDTHUSAGE
 _STATE.fields_by_name['outbound_bandwidth_usage'].message_type = _OUTBOUNDBANDWIDTHUSAGE
 _STATE.fields_by_name['computation_resource_usage'].message_type = _COMPUTATIONRESOURCEUSAGE
 _STATE.fields_by_name['qoe_preference'].message_type = _QOEPREFERENCE
-_STATE.fields_by_name['Base'].message_type = _BASE
-_ACTION.fields_by_name['Base'].message_type = _BASE
-_FEEDBACK.fields_by_name['Base'].message_type = _BASE
+_ACTION.fields_by_name['base'].message_type = _BASE
+_FEEDBACK.fields_by_name['base'].message_type = _BASE
 DESCRIPTOR.message_types_by_name['Base'] = _BASE
 DESCRIPTOR.message_types_by_name['InboundBandwidthUsage'] = _INBOUNDBANDWIDTHUSAGE
 DESCRIPTOR.message_types_by_name['OutboundBandwidthUsage'] = _OUTBOUNDBANDWIDTHUSAGE

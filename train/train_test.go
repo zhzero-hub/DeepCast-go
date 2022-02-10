@@ -1,9 +1,12 @@
 package train
 
 import (
+	"context"
 	"testing"
 )
 
-func TestInitDataset(t *testing.T) {
-	Init()
+func TestInit(t *testing.T) {
+	ctx := context.Background()
+	Init(&ctx)
+	ChooseEdgeLocationWithKMeans(&ctx)
 }

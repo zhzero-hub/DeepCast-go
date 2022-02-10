@@ -12,7 +12,7 @@ var ctx = context.Background()
 
 func TestReadFromFile(t *testing.T) {
 	pwd, _ := os.Getwd()
-	csvData, _ := ReadFromFile(pwd+"/../data/", "user_viewing_dataset.csv", "csv")
+	csvData, _ := ReadFromFile(pwd+"/../data/", "curr_netusage_2016_01.csv", "csv")
 	countMap := make(map[string]int)
 	for _, data := range csvData {
 		if count, ok := countMap[data[0]]; ok {

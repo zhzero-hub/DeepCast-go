@@ -2,6 +2,8 @@ package train
 
 const channels = 50
 
+const LatencyInGeo = 5 * 10e-6 // s 每1000m增加5us时延
+
 const (
 	BitRate1440 = 4.3
 	BitRate1080 = 2.85
@@ -48,15 +50,16 @@ type DeviceCommon struct {
 	CpuCore         int32
 	Location        Location
 	BandWidthInfo   BandWidthInfo
-	LatencyToUpper  float64 // ms
+	LatencyToUpper  float64 // s
 	ComputationUsed float64
 }
 
 type Viewer struct {
-	Id       string
-	Location Location
-	Latency  float64
-	LiveInfo []*LiveInfo
+	Id             string
+	Location       Location
+	Latency        float64
+	LiveInfo       []*LiveInfo
+	DownThroughput int64 // bps
 }
 
 type LiveInfo struct {

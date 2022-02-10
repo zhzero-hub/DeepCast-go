@@ -8,8 +8,8 @@ const (
 	CdnCpuCore                    = 36
 	CdnInboundBandwidth           = 20000 * 1024 * 1024 // Mbps -> bps
 	CdnOutboundBandwidth          = 40000 * 1024 * 1024 // Mbps -> bps
-	CdnToEdgeLatencyUpperLimit    = 0.1                 // s
-	CdnToEdgeLatencyLowerLimit    = 0.02                // s
+	EdgeToCdnLatencyUpperLimit    = 0.1                 // s
+	EdgeToCdnLatencyLowerLimit    = 0.02                // s
 	ViewerToCdnLatencyUpperLimit  = 0.7
 	ViewerToCdnLatencyLowerLimit  = 0.1
 	ViewerToEdgeLatencyUpperLimit = 0.1

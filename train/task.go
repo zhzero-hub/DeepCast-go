@@ -1,9 +1,11 @@
 package train
 
 import (
+	rpc "DeepCast/grpc"
 	"container/heap"
 	"context"
 	"log"
+	"strconv"
 )
 
 type ViewerWithWatchChannel struct {
@@ -50,6 +52,7 @@ type TaskManager struct {
 	time       int64
 	task       map[int64][]*Task
 	viewerList ViewerHeap
+	solved     map[string]*DeviceCommon
 	maxTime    int64
 }
 
@@ -114,4 +117,17 @@ func (t *TaskManager) TimeGrowth() {
 
 func (t *TaskManager) GetTask() []*Task {
 	return t.task[t.time]
+}
+
+func (t *TaskManager) TakeAction(action *rpc.Action) {
+	system := (*t.ctx).Value("system").(*System)
+	viewerId := action.GetViewerId()
+	if edge, ok := system.Edge["Edge"+strconv.FormatInt(action.GetAction(), 10)]; ok {
+		t.solved[viewerId] = &edge.DeviceCommon
+	} else if cdn, ok := system.Cdn["Cdn"+strconv.FormatInt(action.GetAction(), 10)]; ok {
+		t.solved[viewerId] = &cdn.DeviceCommon
+	} else {
+		log.Fatalf("不存在的action: %v\n", action)
+	}
+	t.viewerList.Pop()
 }

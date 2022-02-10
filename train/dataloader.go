@@ -5,6 +5,7 @@ import (
 	"encoding/csv"
 	"io"
 	"log"
+	"math/rand"
 	"os"
 	"sort"
 	"strconv"
@@ -116,6 +117,40 @@ func LoadUserLocationDataset(ctx context.Context) error {
 	}
 }
 
+func LoadUserBandWidthDataset(ctx context.Context) error {
+	pwd, _ := os.Getwd()
+	if csvData, err := ReadFromFile(pwd+"/data/", "user_bandwidth_dataset.csv", "csv"); err != nil {
+		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
+		return err
+	} else {
+		userMap := ctx.Value("viewer").(*map[string]*Viewer)
+		userBandwidthInfo := make([]int64, 0)
+		// userBandwidthMap := make(map[string]*[]int64, 0)
+		for index := 0; index < len(csvData); index++ {
+			bandWidth, _ := strconv.ParseInt(csvData[index][3], 10, 64)
+			if bandWidth > 0 {
+				userBandwidthInfo = append(userBandwidthInfo, bandWidth*8) // B/s -> bps
+				//if userBandwidth, ok := userBandwidthMap[csvData[index][0]]; ok {
+				//	*userBandwidth = append(*userBandwidth, bandWidth*8)
+				//} else {
+				//	b := make([]int64, 0)
+				//	b = append(b, bandWidth*8)
+				//	userBandwidthMap[csvData[index][0]] = &b
+				//}
+			}
+		}
+		index := 0
+		for _, viewer := range *userMap {
+			viewer.DownThroughput = userBandwidthInfo[index]
+			index++
+			if index == len(userBandwidthInfo) {
+				index = 0
+			}
+		}
+		return nil
+	}
+}
+
 func GetTopLivers(ctx context.Context, data [][]string) *map[string]string {
 	liverMap := make(map[string]int64, 0)
 	channelMap := make(map[string]string, 0)
@@ -197,7 +232,7 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 					InBandWidthUsed:   0,
 					OutBandWidthUsed:  0,
 				},
-				LatencyToUpper:  0,
+				LatencyToUpper:  rand.Float64()*(EdgeToCdnLatencyUpperLimit-EdgeToCdnLatencyLowerLimit) + EdgeToCdnLatencyLowerLimit,
 				ComputationUsed: 0,
 			},
 		}
@@ -209,7 +244,7 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 	cdn := CDN{
 		DeviceCommon{
 			Id:      int32(0),
-			Name:    "Cdn" + strconv.Itoa(0),
+			Name:    "Cdn" + strconv.Itoa(EdgeNumber),
 			CpuCore: CdnCpuCore,
 			BandWidthInfo: BandWidthInfo{
 				InBandWidthLimit:  CdnInboundBandwidth,
@@ -224,7 +259,7 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 	outboundBandPointer = append(outboundBandPointer, &cdn.BandWidthInfo.OutBandWidthUsed)
 
 	system.Cdn = make(map[string]*CDN, 0)
-	system.Cdn["Cdn0"] = &cdn
+	system.Cdn["Cdn"+strconv.Itoa(EdgeNumber)] = &cdn
 	system.Edge = edgeMap
 	system.InboundMap = inboundBandPointer
 	system.OutboundMap = outboundBandPointer

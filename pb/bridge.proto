@@ -1,0 +1,42 @@
+// bridge.proto
+// [python quickstart](https://grpc.io/docs/quickstart/python.html#run-a-grpc-application)
+
+syntax = "proto3";
+
+package pb;
+option go_package = "../grpc";
+import "common.proto";
+
+service TrainApi {
+  rpc SayHello(SayHelloRequest) returns (SayHelloResponse) {}
+  rpc TrainStep(TrainStepRequest) returns (TrainStepResponse) {}
+  rpc ResetEnv(ResetEnvRequest) returns (ResetEnvResponse) {}
+}
+
+message SayHelloRequest {
+  string msg = 1;
+}
+
+message SayHelloResponse {
+  string msg = 1;
+}
+
+message TrainStepRequest {
+  Base Base = 1;
+  Action Action = 2;
+}
+
+message TrainStepResponse {
+  Base Base = 1;
+  State State = 2;
+  Feedback Feedback = 3;
+}
+
+message ResetEnvRequest {
+  Base Base = 1;
+}
+
+message ResetEnvResponse {
+  Base Base = 1;
+  State State = 2;
+}

@@ -2,6 +2,7 @@ package server
 
 import (
 	grpc2 "DeepCast/grpc"
+	"DeepCast/train"
 	"context"
 	"google.golang.org/grpc"
 	"log"
@@ -16,18 +17,21 @@ const (
 )
 
 type GoServer struct {
-	grpc2.ServerApiServer
+	grpc2.TrainApiServer
 }
 
-func (*GoServer) GoSayHello(ctx context.Context, request *grpc2.GoSayHelloRequest) (*grpc2.GoSayHelloResponse, error) {
-	return &grpc2.GoSayHelloResponse{
-		Msg: "hello " + request.Msg,
+func (*GoServer) SayHello(ctx context.Context, request *grpc2.SayHelloRequest) (*grpc2.SayHelloResponse, error) {
+	return &grpc2.SayHelloResponse{
+		Msg: "Hello " + request.Msg,
 	}, nil
 }
 
-func (*GoServer) NotifyAction(ctx context.Context, request *grpc2.NotifyActionRequest) (*grpc2.NotifyActionResponse, error) {
-	log.Printf("receive notify action request: %v", request)
-	return &grpc2.NotifyActionResponse{}, nil
+func (*GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepRequest) (*grpc2.TrainStepResponse, error) {
+	action := request.Action
+	log.Printf("receive train step request: %v\n", request)
+	log.Printf("action: %v\n", action)
+	train.TakeAction(action)
+	return &grpc2.TrainStepResponse{}, nil
 }
 
 func StartGoServer() {
@@ -42,11 +46,10 @@ func StartGoServer() {
 	// grpcServer := grpc.NewServer(grpc.MaxRecvMsgSize(1024*1024*4), grpc.MaxSendMsgSize(math.MaxInt32))
 	grpcServer := grpc.NewServer()
 	// 在gRPC服务器注册我们的服务
-	grpc2.RegisterServerApiServer(grpcServer, &GoServer{})
+	grpc2.RegisterTrainApiServer(grpcServer, &GoServer{})
 
 	//用服务器 Serve() 方法以及我们的端口信息区实现阻塞等待，直到进程被杀死或者 Stop() 被调用
-	err = grpcServer.Serve(listener)
-	if err != nil {
+	if err = grpcServer.Serve(listener); err != nil {
 		log.Fatalf("grpcServer.Serve err: %v", err)
 	}
 }
