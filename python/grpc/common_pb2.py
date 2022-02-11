@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"\x86\x02\n\x05State\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12:\n\x17inbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x03 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x04 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x05 \x01(\x0b\x32\x11.pb.QoEPreference\"X\n\x06\x41\x63tion\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x11\n\tviewer_id\x18\x02 \x01(\t\x12\x13\n\x0bpossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x04 \x01(\x03\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06reward\x18\x02 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"\x86\x02\n\x05State\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12:\n\x17inbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x03 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x04 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x05 \x01(\x0b\x32\x11.pb.QoEPreference\"i\n\x06\x41\x63tion\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x11\n\tviewer_id\x18\x02 \x01(\t\x12\x0f\n\x07live_id\x18\x03 \x01(\t\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06reward\x18\x02 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -419,15 +419,22 @@ _ACTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='possibility', full_name='pb.Action.possibility', index=2,
-      number=3, type=1, cpp_type=5, label=3,
+      name='live_id', full_name='pb.Action.live_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='possibility', full_name='pb.Action.possibility', index=3,
+      number=4, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='action', full_name='pb.Action.action', index=3,
-      number=4, type=3, cpp_type=2, label=1,
+      name='action', full_name='pb.Action.action', index=4,
+      number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -445,7 +452,7 @@ _ACTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=782,
-  serialized_end=870,
+  serialized_end=887,
 )
 
 
@@ -490,8 +497,8 @@ _FEEDBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=872,
-  serialized_end=940,
+  serialized_start=889,
+  serialized_end=957,
 )
 
 _BASE_EXTRAENTRY.containing_type = _BASE

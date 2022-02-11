@@ -17,6 +17,7 @@ const (
 
 type Edge struct {
 	DeviceCommon
+	rates map[string]*[]int64 // channelId -> versions
 }
 
 type CDN struct {

@@ -124,10 +124,10 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 		return err
 	} else {
 		userMap := ctx.Value("viewer").(*map[string]*Viewer)
-		userBandwidthInfo := make([]int64, 0)
+		userBandwidthInfo := make([]float64, 0)
 		// userBandwidthMap := make(map[string]*[]int64, 0)
 		for index := 0; index < len(csvData); index++ {
-			bandWidth, _ := strconv.ParseInt(csvData[index][3], 10, 64)
+			bandWidth, _ := strconv.ParseFloat(csvData[index][3], 64)
 			if bandWidth > 0 {
 				userBandwidthInfo = append(userBandwidthInfo, bandWidth*8) // B/s -> bps
 				//if userBandwidth, ok := userBandwidthMap[csvData[index][0]]; ok {
@@ -143,9 +143,9 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 		for _, viewer := range *userMap {
 			viewer.DownThroughput = userBandwidthInfo[index]
 			index++
-			if index == len(userBandwidthInfo) {
-				index = 0
-			}
+			//if index == len(userBandwidthInfo) {
+			//	index = 0
+			//}
 		}
 		return nil
 	}

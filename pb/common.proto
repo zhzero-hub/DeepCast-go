@@ -49,8 +49,9 @@ message State {
 message Action {
     Base base = 1;
     string viewer_id = 2;
-    repeated double possibility = 3;
-    int64 action = 4;
+    string live_id = 3;
+    repeated double possibility = 4;
+    int64 action = 5;
 }
 
 message Feedback {

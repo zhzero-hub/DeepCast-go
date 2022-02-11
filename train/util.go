@@ -40,18 +40,41 @@ func ChooseEdgeLocationWithKMeans(ctx *context.Context) {
 	}
 }
 
+func (e *Edge) TranscodingLatencyCal(viewer *Viewer) float64 {
+	if versions, ok := e.rates[viewer.AssignInfo.ChannelId]; ok {
+		availableVersion := int64(1440)
+		for _, version := range *versions {
+			if version == viewer.AssignInfo.Version {
+				availableVersion = version
+				break
+			} else if availableVersion > viewer.AssignInfo.Version && version > availableVersion {
+				availableVersion = version
+			}
+		}
+		if availableVersion == viewer.AssignInfo.Version {
+			return 0
+		} else if availableVersion > viewer.AssignInfo.Version {
+			e.ComputationUsed += TransCodingCpuMap[viewer.AssignInfo.Version]
+			e.BandWidthInfo.OutBandWidthUsed += BitRateMap[viewer.AssignInfo.Version]
+			e.rates
+			return TransCodingTimeMap[viewer.AssignInfo.Version]
+		}
+	}
+}
+
 func (l *Location) DistanceCal(other *Location) float64 {
 	return math.Sqrt(math.Pow(l.Lat-other.Lat, 2) + math.Pow(l.Long-other.Long, 2))
 }
 
-func (v *Viewer) LatencyCal(device DeviceCommon) {
-	if strings.Contains(device.Name, "Edge") {
+func (v *Viewer) LatencyCal(device *DeviceCommon) float64 {
+	if strings.Contains(device.Name, "Cdn") {
 		v.Latency = rand.Float64()*(ViewerToCdnLatencyUpperLimit-ViewerToCdnLatencyLowerLimit) + ViewerToCdnLatencyLowerLimit
-	} else if strings.Contains(device.Name, "edge") {
+	} else if strings.Contains(device.Name, "Edge") {
 		if latency := v.Location.DistanceCal(&device.Location) * LatencyInGeo; latency > ViewerToEdgeLatencyUpperLimit {
 			v.Latency = ViewerToEdgeLatencyUpperLimit
 		} else {
 			v.Latency = latency
 		}
 	}
+	return v.Latency
 }

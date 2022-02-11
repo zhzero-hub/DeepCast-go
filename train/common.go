@@ -4,32 +4,32 @@ const channels = 50
 
 const LatencyInGeo = 5 * 10e-6 // s 每1000m增加5us时延
 
-const (
-	BitRate1440 = 4.3
-	BitRate1080 = 2.85
-	BitRate720  = 1.85
-	BitRate480  = 1.2
-	BitRate360  = 0.75
-	BitRate240  = 0.3
-)
+var BitRateMap = map[int64]float64{
+	1440: 4.3,
+	1080: 2.85,
+	720:  1.85,
+	480:  1.2,
+	360:  0.75,
+	240:  0.3,
+}
 
-const (
-	TransCodingCpu1440 = 0
-	TransCodingCpu1080 = 3.3
-	TransCodingCpu720  = 1.42
-	TransCodingCpu480  = 0.82
-	TransCodingCpu360  = 0.51
-	TransCodingCpu240  = 0.41
-)
+var TransCodingCpuMap = map[int64]float64{
+	1440: 0,
+	1080: 3.3,
+	720:  1.42,
+	480:  0.82,
+	360:  0.51,
+	240:  0.41,
+}
 
-const (
-	TransCodingTime1440 = 0
-	TransCodingTime1080 = 0.27
-	TransCodingTime720  = 0.19
-	TransCodingTime480  = 0.16
-	TransCodingTime360  = 0.13
-	TransCodingTime240  = 0.11
-)
+var TransCodingTimeMap = map[int64]float64{
+	1440: 0,
+	1080: 0.27,
+	720:  0.19,
+	480:  0.16,
+	360:  0.13,
+	240:  0.11,
+}
 
 type Location struct {
 	Name string
@@ -54,12 +54,19 @@ type DeviceCommon struct {
 	ComputationUsed float64
 }
 
+type AssignInfo struct {
+	ChannelId string
+	Version   int64
+	DeviceId  string
+}
+
 type Viewer struct {
 	Id             string
 	Location       Location
 	Latency        float64
 	LiveInfo       []*LiveInfo
-	DownThroughput int64 // bps
+	DownThroughput float64 // bps
+	AssignInfo     AssignInfo
 }
 
 type LiveInfo struct {

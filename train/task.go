@@ -115,19 +115,35 @@ func (t *TaskManager) TimeGrowth() {
 	}
 }
 
-func (t *TaskManager) GetTask() []*Task {
-	return t.task[t.time]
+func (t *TaskManager) GetTask() *Task {
+	return &Task{
+		watchInfo: t.viewerList.Top(),
+	}
 }
 
 func (t *TaskManager) TakeAction(action *rpc.Action) {
 	system := (*t.ctx).Value("system").(*System)
 	viewerId := action.GetViewerId()
+	viewerMap := (*t.ctx).Value("viewer").(*map[string]*Viewer)
+	viewer := (*viewerMap)[viewerId]
 	if edge, ok := system.Edge["Edge"+strconv.FormatInt(action.GetAction(), 10)]; ok {
 		t.solved[viewerId] = &edge.DeviceCommon
+		edge.BandWidthInfo.OutBandWidthUsed += viewer.DownThroughput
 	} else if cdn, ok := system.Cdn["Cdn"+strconv.FormatInt(action.GetAction(), 10)]; ok {
 		t.solved[viewerId] = &cdn.DeviceCommon
 	} else {
 		log.Fatalf("不存在的action: %v\n", action)
 	}
 	t.viewerList.Pop()
+}
+
+func GetReward(viewer *Viewer, device *DeviceCommon) float64 {
+	var reward float64
+
+}
+
+func GetStreamingDelay(viewer *Viewer, device *DeviceCommon) float64 {
+	var streamingDelay float64
+	streamingDelay += viewer.LatencyCal(device)
+	if device.
 }
