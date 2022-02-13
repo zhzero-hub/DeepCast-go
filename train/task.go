@@ -5,7 +5,9 @@ import (
 	"container/heap"
 	"context"
 	"log"
+	"math"
 	"strconv"
+	"strings"
 )
 
 type ViewerWithWatchChannel struct {
@@ -121,29 +123,96 @@ func (t *TaskManager) GetTask() *Task {
 	}
 }
 
-func (t *TaskManager) TakeAction(action *rpc.Action) {
+func (t *TaskManager) TakeAction(ctx *context.Context, action *rpc.Action) {
+	// 从Base.Extra拿了什么: version, deviceId
 	system := (*t.ctx).Value("system").(*System)
 	viewerId := action.GetViewerId()
 	viewerMap := (*t.ctx).Value("viewer").(*map[string]*Viewer)
 	viewer := (*viewerMap)[viewerId]
+	version, _ := strconv.ParseInt(action.Base.Extra["version"], 10, 64)
+	viewer.AssignInfo = AssignInfo{
+		DeviceId: action.Base.Extra["deviceId"],
+		Version:  version,
+	}
 	if edge, ok := system.Edge["Edge"+strconv.FormatInt(action.GetAction(), 10)]; ok {
-		t.solved[viewerId] = &edge.DeviceCommon
-		edge.BandWidthInfo.OutBandWidthUsed += viewer.DownThroughput
+		if outBandUsage := edge.BandWidthInfo.OutBandWidthUsed + viewer.DownThroughput; outBandUsage < edge.BandWidthInfo.OutBandWidthLimit {
+			edge.BandWidthInfo.OutBandWidthUsed = outBandUsage
+			viewer.AssignInfo.DeviceId = edge.Name
+			t.solved[viewerId] = &edge.DeviceCommon
+		} else if edge.BandWidthInfo.OutBandWidthUsed+BitRateMap[240] > edge.BandWidthInfo.OutBandWidthLimit {
+			// TODO: 无论如何都不够了，需要redirect
+		} else {
+			// 尽可能给
+			var realRate int64
+			for index, rate := range BitRateMap {
+				if edge.BandWidthInfo.OutBandWidthUsed+rate < edge.BandWidthInfo.OutBandWidthLimit {
+					if realRate < index {
+						realRate = index
+					}
+				}
+			}
+			edge.BandWidthInfo.OutBandWidthUsed += BitRateMap[realRate]
+			viewer.AssignInfo.DeviceId = edge.Name
+			viewer.AssignInfo.Version = realRate
+			t.solved[viewerId] = &edge.DeviceCommon
+		}
 	} else if cdn, ok := system.Cdn["Cdn"+strconv.FormatInt(action.GetAction(), 10)]; ok {
+		viewer.AssignInfo.DeviceId = cdn.Name
 		t.solved[viewerId] = &cdn.DeviceCommon
 	} else {
 		log.Fatalf("不存在的action: %v\n", action)
 	}
 	t.viewerList.Pop()
+
+	reward := GetReward(ctx, viewer, action)
 }
 
-func GetReward(viewer *Viewer, device *DeviceCommon) float64 {
-	var reward float64
+func GetReward(ctx *context.Context, viewer *Viewer, action *rpc.Action) float64 {
+	var rewarda, rewardb float64
+	rewarda += float64(action.GetQoePreference().Alpha1) * GetStreamingDelay(ctx, viewer, viewer.AssignInfo.DeviceId)
+	rewarda += float64(action.GetQoePreference().Alpha2) * GetChannelSwitchingDelay(ctx, viewer)
+	rewarda += float64(action.GetQoePreference().Alpha3) * GetMismatchLevel(ctx, viewer, action)
+	rewarda *= Alpha
 
+	rewardb += GetComputationCost(ctx, viewer)
+	rewardb *= Beta
+	return rewarda + rewardb
 }
 
-func GetStreamingDelay(viewer *Viewer, device *DeviceCommon) float64 {
+func GetStreamingDelay(ctx *context.Context, viewer *Viewer, deviceId string) float64 {
 	var streamingDelay float64
-	streamingDelay += viewer.LatencyCal(device)
-	if device.
+	system := (*ctx).Value("system").(*System)
+	if edge, ok := system.Edge["Edge"+deviceId]; ok {
+		streamingDelay += edge.ViewerLatencyCal(viewer)
+		streamingDelay += edge.TranscodingLatencyCal(viewer)
+		streamingDelay += edge.LatencyToUpper
+	} else if cdn, ok := system.Cdn[deviceId]; ok {
+		streamingDelay += cdn.ViewerLatencyCal(viewer)
+	} else {
+		log.Fatalf("不存在的edge: %v\n", deviceId)
+	}
+	return streamingDelay
+}
+
+func GetChannelSwitchingDelay(ctx *context.Context, viewer *Viewer) float64 {
+	return viewer.Latency
+}
+
+func GetMismatchLevel(ctx *context.Context, viewer *Viewer, action *rpc.Action) float64 {
+	var mismatchLevel float64
+	version, _ := strconv.ParseInt(action.Base.Extra["version"], 10, 64)
+	mismatchLevel += math.Log(float64(version)) - math.Log(float64(viewer.AssignInfo.Version))
+	return mismatchLevel
+}
+
+func GetComputationCost(ctx *context.Context, viewer *Viewer) float64 {
+	if strings.Contains(viewer.AssignInfo.DeviceId, "Edge") {
+		return TransCodingCpuMap[viewer.AssignInfo.Version] * Price
+	} else {
+		return 0
+	}
+}
+
+func GetBandwidthCost(ctx *context.Context) float64 {
+
 }

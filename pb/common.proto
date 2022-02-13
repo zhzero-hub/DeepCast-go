@@ -52,6 +52,7 @@ message Action {
     string live_id = 3;
     repeated double possibility = 4;
     int64 action = 5;
+    QoEPreference qoe_preference = 6;
 }
 
 message Feedback {

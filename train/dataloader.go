@@ -235,6 +235,7 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 				LatencyToUpper:  rand.Float64()*(EdgeToCdnLatencyUpperLimit-EdgeToCdnLatencyLowerLimit) + EdgeToCdnLatencyLowerLimit,
 				ComputationUsed: 0,
 			},
+			make(map[string]*[]int64, 0),
 		}
 		edgeMap["Edge"+strconv.Itoa(index)] = &edge
 		inboundBandPointer = append(inboundBandPointer, &edge.BandWidthInfo.InBandWidthUsed)
