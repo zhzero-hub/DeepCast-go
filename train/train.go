@@ -1,7 +1,6 @@
 package train
 
 import (
-	rpc "DeepCast/grpc"
 	"context"
 	"log"
 	"os"
@@ -62,48 +61,40 @@ func Init(ctx *context.Context) {
 	ChooseEdgeLocationWithKMeans(ctx)
 }
 
-func StartTrain(ctx *context.Context) {
-	system := (*ctx).Value("system").(*System)
-	taskManager := (*ctx).Value("taskManager").(*TaskManager)
-	for {
-		if tasks := taskManager.GetTask(); tasks == nil {
-			taskManager.TimeGrowth()
-		} else {
-			//for _, task := range tasks {
-			log.Println(tasks)
-			inboundUsed := make([]float64, 0)
-			outboundUsed := make([]float64, 0)
-			computeUsed := make([]float64, 0)
-			for _, inbound := range system.InboundMap {
-				inboundUsed = append(inboundUsed, *inbound)
-			}
-			for _, outbound := range system.OutboundMap {
-				outboundUsed = append(outboundUsed, *outbound)
-			}
-			for _, compute := range system.ComputationMap {
-				computeUsed = append(inboundUsed, *compute)
-			}
-			SendState(ctx, &rpc.State{
-				InboundBandwidthUsage: &rpc.InboundBandwidthUsage{
-					InboundBandwidthUsage: inboundUsed,
-				},
-				OutboundBandwidthUsage: &rpc.OutboundBandwidthUsage{
-					OutboundBandwidthUsage: outboundUsed,
-				},
-				ComputationResourceUsage: &rpc.ComputationResourceUsage{
-					ComputationResourceUsage: computeUsed,
-				},
-			})
-			//}
-			taskManager.TimeGrowth()
-		}
-	}
-}
-
-func SendState(ctx *context.Context, state *rpc.State) {
-
-}
-
-func TakeAction(action *rpc.Action) {
-
-}
+//func StartTrain(ctx *context.Context) {
+//	system := (*ctx).Value("system").(*System)
+//	taskManager := (*ctx).Value("taskManager").(*TaskManager)
+//	for {
+//		if tasks := taskManager.GetTask(); tasks == nil {
+//			taskManager.TimeGrowth()
+//		} else {
+//			//for _, task := range tasks {
+//			log.Println(tasks)
+//			inboundUsed := make([]float64, 0)
+//			outboundUsed := make([]float64, 0)
+//			computeUsed := make([]float64, 0)
+//			for _, inbound := range system.InboundMap {
+//				inboundUsed = append(inboundUsed, *inbound)
+//			}
+//			for _, outbound := range system.OutboundMap {
+//				outboundUsed = append(outboundUsed, *outbound)
+//			}
+//			for _, compute := range system.ComputationMap {
+//				computeUsed = append(inboundUsed, *compute)
+//			}
+//			SendState(ctx, &rpc.State{
+//				InboundBandwidthUsage: &rpc.InboundBandwidthUsage{
+//					InboundBandwidthUsage: inboundUsed,
+//				},
+//				OutboundBandwidthUsage: &rpc.OutboundBandwidthUsage{
+//					OutboundBandwidthUsage: outboundUsed,
+//				},
+//				ComputationResourceUsage: &rpc.ComputationResourceUsage{
+//					ComputationResourceUsage: computeUsed,
+//				},
+//			})
+//			//}
+//			taskManager.TimeGrowth()
+//		}
+//	}
+//}

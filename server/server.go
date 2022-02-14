@@ -28,10 +28,14 @@ func (*GoServer) SayHello(ctx context.Context, request *grpc2.SayHelloRequest) (
 
 func (*GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepRequest) (*grpc2.TrainStepResponse, error) {
 	action := request.Action
-	log.Printf("receive train step request: %v\n", request)
 	log.Printf("action: %v\n", action)
-	train.TakeAction(action)
-	return &grpc2.TrainStepResponse{}, nil
+	taskManager := ctx.Value("taskManager").(*train.TaskManager)
+	reward := taskManager.TakeAction(&ctx, request)
+	return &grpc2.TrainStepResponse{
+		Feedback: &grpc2.Feedback{
+			Reward: reward,
+		},
+	}, nil
 }
 
 func StartGoServer() {

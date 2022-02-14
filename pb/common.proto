@@ -32,31 +32,41 @@ message UserInfo {
     int64 version = 3;
 }
 
+message V2Number {
+    map<string, int64> number = 1;
+}
+
+message H2V {
+    map<string, V2Number> h2v = 1;
+}
+
+message ViewerConnection {
+    map<string, H2V> viewer_connection_table = 1; // e->h->v->number
+}
+
 message QoEPreference {
-    int32 alpha1 = 1;
-    int32 alpha2 = 2;
-    int32 alpha3 = 3;
+    float alpha1 = 1;
+    float alpha2 = 2;
+    float alpha3 = 3;
 }
 
 message State {
-    Base base = 1;
-    InboundBandwidthUsage inbound_bandwidth_usage = 2;
-    OutboundBandwidthUsage outbound_bandwidth_usage = 3;
-    ComputationResourceUsage computation_resource_usage = 4;
-    QoEPreference qoe_preference = 5;
+    InboundBandwidthUsage inbound_bandwidth_usage = 1;
+    OutboundBandwidthUsage outbound_bandwidth_usage = 2;
+    ComputationResourceUsage computation_resource_usage = 3;
+    QoEPreference qoe_preference = 4;
+    ViewerConnection viewer_connection = 5;
 }
 
 message Action {
-    Base base = 1;
-    string viewer_id = 2;
-    string live_id = 3;
-    repeated double possibility = 4;
-    int64 action = 5;
-    QoEPreference qoe_preference = 6;
+    string viewer_id = 1;
+    string live_id = 2;
+    repeated double possibility = 3;
+    int64 action = 4;
+    QoEPreference qoe_preference = 5;
 }
 
 message Feedback {
-    Base base = 1;
-    double reward = 2;
-    double accuracy = 3;
+    double reward = 1;
+    double accuracy = 2;
 }

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x05\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x05\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x05\"\x86\x02\n\x05State\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12:\n\x17inbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x03 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x04 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x05 \x01(\x0b\x32\x11.pb.QoEPreference\"\x94\x01\n\x06\x41\x63tion\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x11\n\tviewer_id\x18\x02 \x01(\t\x12\x0f\n\x07live_id\x18\x03 \x01(\t\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12)\n\x0eqoe_preference\x18\x06 \x01(\x0b\x32\x11.pb.QoEPreference\"D\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x16\n\x04\x62\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x0e\n\x06reward\x18\x02 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x03 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"L\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x0f\n\x07\x63hannel\x18\x02 \x01(\x03\x12\x0f\n\x07version\x18\x03 \x01(\x03\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\x9f\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12/\n\x11viewer_connection\x18\x05 \x01(\x0b\x32\x14.pb.ViewerConnection\"|\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x0f\n\x07live_id\x18\x02 \x01(\t\x12\x13\n\x0bpossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x04 \x01(\x03\x12)\n\x0eqoe_preference\x18\x05 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -290,6 +290,216 @@ _USERINFO = _descriptor.Descriptor(
 )
 
 
+_V2NUMBER_NUMBERENTRY = _descriptor.Descriptor(
+  name='NumberEntry',
+  full_name='pb.V2Number.NumberEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='pb.V2Number.NumberEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='pb.V2Number.NumberEntry.value', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=506,
+  serialized_end=551,
+)
+
+_V2NUMBER = _descriptor.Descriptor(
+  name='V2Number',
+  full_name='pb.V2Number',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='number', full_name='pb.V2Number.number', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_V2NUMBER_NUMBERENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=452,
+  serialized_end=551,
+)
+
+
+_H2V_H2VENTRY = _descriptor.Descriptor(
+  name='H2vEntry',
+  full_name='pb.H2V.H2vEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='pb.H2V.H2vEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='pb.H2V.H2vEntry.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=591,
+  serialized_end=647,
+)
+
+_H2V = _descriptor.Descriptor(
+  name='H2V',
+  full_name='pb.H2V',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='h2v', full_name='pb.H2V.h2v', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_H2V_H2VENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=553,
+  serialized_end=647,
+)
+
+
+_VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY = _descriptor.Descriptor(
+  name='ViewerConnectionTableEntry',
+  full_name='pb.ViewerConnection.ViewerConnectionTableEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='pb.ViewerConnection.ViewerConnectionTableEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='pb.ViewerConnection.ViewerConnectionTableEntry.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=b'8\001',
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=752,
+  serialized_end=821,
+)
+
+_VIEWERCONNECTION = _descriptor.Descriptor(
+  name='ViewerConnection',
+  full_name='pb.ViewerConnection',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='viewer_connection_table', full_name='pb.ViewerConnection.viewer_connection_table', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[_VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY, ],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=650,
+  serialized_end=821,
+)
+
+
 _QOEPREFERENCE = _descriptor.Descriptor(
   name='QoEPreference',
   full_name='pb.QoEPreference',
@@ -300,22 +510,22 @@ _QOEPREFERENCE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='alpha1', full_name='pb.QoEPreference.alpha1', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='alpha2', full_name='pb.QoEPreference.alpha2', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='alpha3', full_name='pb.QoEPreference.alpha3', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -331,8 +541,8 @@ _QOEPREFERENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=452,
-  serialized_end=515,
+  serialized_start=823,
+  serialized_end=886,
 )
 
 
@@ -345,35 +555,35 @@ _STATE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='base', full_name='pb.State.base', index=0,
+      name='inbound_bandwidth_usage', full_name='pb.State.inbound_bandwidth_usage', index=0,
       number=1, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='inbound_bandwidth_usage', full_name='pb.State.inbound_bandwidth_usage', index=1,
+      name='outbound_bandwidth_usage', full_name='pb.State.outbound_bandwidth_usage', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='outbound_bandwidth_usage', full_name='pb.State.outbound_bandwidth_usage', index=2,
+      name='computation_resource_usage', full_name='pb.State.computation_resource_usage', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='computation_resource_usage', full_name='pb.State.computation_resource_usage', index=3,
+      name='qoe_preference', full_name='pb.State.qoe_preference', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='qoe_preference', full_name='pb.State.qoe_preference', index=4,
+      name='viewer_connection', full_name='pb.State.viewer_connection', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -391,8 +601,8 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=518,
-  serialized_end=780,
+  serialized_start=889,
+  serialized_end=1176,
 )
 
 
@@ -405,43 +615,36 @@ _ACTION = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='base', full_name='pb.Action.base', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='viewer_id', full_name='pb.Action.viewer_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='viewer_id', full_name='pb.Action.viewer_id', index=1,
+      name='live_id', full_name='pb.Action.live_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='live_id', full_name='pb.Action.live_id', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='possibility', full_name='pb.Action.possibility', index=3,
-      number=4, type=1, cpp_type=5, label=3,
+      name='possibility', full_name='pb.Action.possibility', index=2,
+      number=3, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='action', full_name='pb.Action.action', index=4,
-      number=5, type=3, cpp_type=2, label=1,
+      name='action', full_name='pb.Action.action', index=3,
+      number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='qoe_preference', full_name='pb.Action.qoe_preference', index=5,
-      number=6, type=11, cpp_type=10, label=1,
+      name='qoe_preference', full_name='pb.Action.qoe_preference', index=4,
+      number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -458,8 +661,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=783,
-  serialized_end=931,
+  serialized_start=1178,
+  serialized_end=1302,
 )
 
 
@@ -472,22 +675,15 @@ _FEEDBACK = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='base', full_name='pb.Feedback.base', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='reward', full_name='pb.Feedback.reward', index=1,
-      number=2, type=1, cpp_type=5, label=1,
+      name='reward', full_name='pb.Feedback.reward', index=0,
+      number=1, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='accuracy', full_name='pb.Feedback.accuracy', index=2,
-      number=3, type=1, cpp_type=5, label=1,
+      name='accuracy', full_name='pb.Feedback.accuracy', index=1,
+      number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -504,27 +700,36 @@ _FEEDBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=933,
-  serialized_end=1001,
+  serialized_start=1304,
+  serialized_end=1348,
 )
 
 _BASE_EXTRAENTRY.containing_type = _BASE
 _BASE.fields_by_name['Extra'].message_type = _BASE_EXTRAENTRY
 _USERINFO.fields_by_name['location'].message_type = _LOCATION
-_STATE.fields_by_name['base'].message_type = _BASE
+_V2NUMBER_NUMBERENTRY.containing_type = _V2NUMBER
+_V2NUMBER.fields_by_name['number'].message_type = _V2NUMBER_NUMBERENTRY
+_H2V_H2VENTRY.fields_by_name['value'].message_type = _V2NUMBER
+_H2V_H2VENTRY.containing_type = _H2V
+_H2V.fields_by_name['h2v'].message_type = _H2V_H2VENTRY
+_VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY.fields_by_name['value'].message_type = _H2V
+_VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY.containing_type = _VIEWERCONNECTION
+_VIEWERCONNECTION.fields_by_name['viewer_connection_table'].message_type = _VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY
 _STATE.fields_by_name['inbound_bandwidth_usage'].message_type = _INBOUNDBANDWIDTHUSAGE
 _STATE.fields_by_name['outbound_bandwidth_usage'].message_type = _OUTBOUNDBANDWIDTHUSAGE
 _STATE.fields_by_name['computation_resource_usage'].message_type = _COMPUTATIONRESOURCEUSAGE
 _STATE.fields_by_name['qoe_preference'].message_type = _QOEPREFERENCE
-_ACTION.fields_by_name['base'].message_type = _BASE
+_STATE.fields_by_name['viewer_connection'].message_type = _VIEWERCONNECTION
 _ACTION.fields_by_name['qoe_preference'].message_type = _QOEPREFERENCE
-_FEEDBACK.fields_by_name['base'].message_type = _BASE
 DESCRIPTOR.message_types_by_name['Base'] = _BASE
 DESCRIPTOR.message_types_by_name['InboundBandwidthUsage'] = _INBOUNDBANDWIDTHUSAGE
 DESCRIPTOR.message_types_by_name['OutboundBandwidthUsage'] = _OUTBOUNDBANDWIDTHUSAGE
 DESCRIPTOR.message_types_by_name['ComputationResourceUsage'] = _COMPUTATIONRESOURCEUSAGE
 DESCRIPTOR.message_types_by_name['Location'] = _LOCATION
 DESCRIPTOR.message_types_by_name['UserInfo'] = _USERINFO
+DESCRIPTOR.message_types_by_name['V2Number'] = _V2NUMBER
+DESCRIPTOR.message_types_by_name['H2V'] = _H2V
+DESCRIPTOR.message_types_by_name['ViewerConnection'] = _VIEWERCONNECTION
 DESCRIPTOR.message_types_by_name['QoEPreference'] = _QOEPREFERENCE
 DESCRIPTOR.message_types_by_name['State'] = _STATE
 DESCRIPTOR.message_types_by_name['Action'] = _ACTION
@@ -581,6 +786,51 @@ UserInfo = _reflection.GeneratedProtocolMessageType('UserInfo', (_message.Messag
   })
 _sym_db.RegisterMessage(UserInfo)
 
+V2Number = _reflection.GeneratedProtocolMessageType('V2Number', (_message.Message,), {
+
+  'NumberEntry' : _reflection.GeneratedProtocolMessageType('NumberEntry', (_message.Message,), {
+    'DESCRIPTOR' : _V2NUMBER_NUMBERENTRY,
+    '__module__' : 'common_pb2'
+    # @@protoc_insertion_point(class_scope:pb.V2Number.NumberEntry)
+    })
+  ,
+  'DESCRIPTOR' : _V2NUMBER,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.V2Number)
+  })
+_sym_db.RegisterMessage(V2Number)
+_sym_db.RegisterMessage(V2Number.NumberEntry)
+
+H2V = _reflection.GeneratedProtocolMessageType('H2V', (_message.Message,), {
+
+  'H2vEntry' : _reflection.GeneratedProtocolMessageType('H2vEntry', (_message.Message,), {
+    'DESCRIPTOR' : _H2V_H2VENTRY,
+    '__module__' : 'common_pb2'
+    # @@protoc_insertion_point(class_scope:pb.H2V.H2vEntry)
+    })
+  ,
+  'DESCRIPTOR' : _H2V,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.H2V)
+  })
+_sym_db.RegisterMessage(H2V)
+_sym_db.RegisterMessage(H2V.H2vEntry)
+
+ViewerConnection = _reflection.GeneratedProtocolMessageType('ViewerConnection', (_message.Message,), {
+
+  'ViewerConnectionTableEntry' : _reflection.GeneratedProtocolMessageType('ViewerConnectionTableEntry', (_message.Message,), {
+    'DESCRIPTOR' : _VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY,
+    '__module__' : 'common_pb2'
+    # @@protoc_insertion_point(class_scope:pb.ViewerConnection.ViewerConnectionTableEntry)
+    })
+  ,
+  'DESCRIPTOR' : _VIEWERCONNECTION,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.ViewerConnection)
+  })
+_sym_db.RegisterMessage(ViewerConnection)
+_sym_db.RegisterMessage(ViewerConnection.ViewerConnectionTableEntry)
+
 QoEPreference = _reflection.GeneratedProtocolMessageType('QoEPreference', (_message.Message,), {
   'DESCRIPTOR' : _QOEPREFERENCE,
   '__module__' : 'common_pb2'
@@ -612,4 +862,7 @@ _sym_db.RegisterMessage(Feedback)
 
 DESCRIPTOR._options = None
 _BASE_EXTRAENTRY._options = None
+_V2NUMBER_NUMBERENTRY._options = None
+_H2V_H2VENTRY._options = None
+_VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY._options = None
 # @@protoc_insertion_point(module_scope)
