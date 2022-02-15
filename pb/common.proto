@@ -28,7 +28,7 @@ message Location {
 
 message UserInfo {
     Location location = 1;
-    int64 channel = 2;
+    string channel_id = 2;
     int64 version = 3;
 }
 
@@ -55,7 +55,8 @@ message State {
     OutboundBandwidthUsage outbound_bandwidth_usage = 2;
     ComputationResourceUsage computation_resource_usage = 3;
     QoEPreference qoe_preference = 4;
-    ViewerConnection viewer_connection = 5;
+    UserInfo user_info = 5;
+    ViewerConnection viewer_connection = 6;
 }
 
 message Action {

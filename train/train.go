@@ -37,7 +37,7 @@ func LoadDatasetInTimeOrder(ctx *context.Context) {
 			taskManager.AddTask(viewer, liveInfo)
 		}
 	}
-	log.Printf("%v", taskManager)
+	// log.Printf("%v", taskManager)
 }
 
 func InitSignalInterrupt(ctx *context.Context) {
@@ -48,7 +48,7 @@ func InitSignalInterrupt(ctx *context.Context) {
 		case <-c:
 			log.Println("signal received, stopping")
 			(*ctx).Done()
-			return
+			os.Exit(0)
 		}
 	}()
 }

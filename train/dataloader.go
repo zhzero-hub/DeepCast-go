@@ -125,11 +125,21 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 	} else {
 		userMap := ctx.Value("viewer").(*map[string]*Viewer)
 		userBandwidthInfo := make([]float64, 0)
+		bitRateInfo := make([]int64, 0)
+		bitRateMap := make(map[int64]*int64)
 		// userBandwidthMap := make(map[string]*[]int64, 0)
 		for index := 0; index < len(csvData); index++ {
 			bandWidth, _ := strconv.ParseFloat(csvData[index][3], 64)
+			bitRate, _ := strconv.ParseInt(csvData[index][11], 10, 64)
 			if bandWidth > 0 {
 				userBandwidthInfo = append(userBandwidthInfo, bandWidth*8) // B/s -> bps
+				bitRateInfo = append(bitRateInfo, bitRate*8)
+				if number, ok := bitRateMap[bitRate*8]; !ok {
+					n := int64(1)
+					bitRateMap[bitRate*8] = &n
+				} else {
+					*number++
+				}
 				//if userBandwidth, ok := userBandwidthMap[csvData[index][0]]; ok {
 				//	*userBandwidth = append(*userBandwidth, bandWidth*8)
 				//} else {
@@ -142,10 +152,8 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 		index := 0
 		for _, viewer := range *userMap {
 			viewer.DownThroughput = userBandwidthInfo[index]
+			viewer.VersionBit = bitRateInfo[index]
 			index++
-			//if index == len(userBandwidthInfo) {
-			//	index = 0
-			//}
 		}
 		return nil
 	}
@@ -235,7 +243,7 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 				LatencyToUpper:  rand.Float64()*(EdgeToCdnLatencyUpperLimit-EdgeToCdnLatencyLowerLimit) + EdgeToCdnLatencyLowerLimit,
 				ComputationUsed: 0,
 			},
-			make(map[string]*[]int64, 0),
+			make(map[string]*[]VersionInfo, 0),
 		}
 		edgeMap["Edge"+strconv.Itoa(index)] = &edge
 		inboundBandPointer = append(inboundBandPointer, &edge.BandWidthInfo.InBandWidthUsed)

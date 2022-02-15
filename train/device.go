@@ -15,9 +15,14 @@ const (
 	ViewerToEdgeLatencyUpperLimit = 0.1
 )
 
+type VersionInfo struct {
+	version int64
+	number  int64
+}
+
 type Edge struct {
 	DeviceCommon
-	rates map[string]*[]int64 // channelId -> versions
+	rates map[string]*[]VersionInfo // channelId -> version and number
 }
 
 type CDN struct {

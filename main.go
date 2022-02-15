@@ -9,6 +9,5 @@ import (
 func main() {
 	ctx := context.Background()
 	train.Init(&ctx)
-	server.StartGoServer()
-	train.StartTrain(&ctx)
+	server.StartGoServer(&ctx)
 }

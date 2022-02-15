@@ -43,8 +43,9 @@ func ChooseEdgeLocationWithKMeans(ctx *context.Context) {
 func (e *Edge) TranscodingLatencyCal(viewer *Viewer) float64 {
 	if _, ok := e.rates[viewer.AssignInfo.ChannelId]; !ok {
 		// 没有这个channelId, 把这个channel的1440 version拿进来
-		v := make([]int64, 0)
-		v = append(v, 1440)
+		// TODO: 没人看了应该要拿出去
+		v := make([]VersionInfo, 0)
+		v = append(v, VersionInfo{version: 1440, number: 1})
 		e.rates[viewer.AssignInfo.ChannelId] = &v
 		e.BandWidthInfo.InBandWidthUsed += BitRateMap[1440]
 		if e.BandWidthInfo.InBandWidthUsed > e.BandWidthInfo.InBandWidthLimit {
@@ -53,12 +54,13 @@ func (e *Edge) TranscodingLatencyCal(viewer *Viewer) float64 {
 		}
 	}
 	availableVersion := int64(1440)
-	for _, version := range *e.rates[viewer.AssignInfo.ChannelId] {
-		if version == viewer.AssignInfo.Version {
-			availableVersion = version
+	for _, info := range *e.rates[viewer.AssignInfo.ChannelId] {
+		if info.version == viewer.AssignInfo.Version { // 有这个channelId对应的version
+			availableVersion = info.version
+			info.number++
 			break
-		} else if availableVersion > viewer.AssignInfo.Version && version > availableVersion {
-			availableVersion = version
+			//} else if availableVersion > viewer.AssignInfo.Version && info.version > availableVersion { // 没有，
+			//	availableVersion = info.version
 		}
 	}
 	if availableVersion == viewer.AssignInfo.Version {
@@ -66,7 +68,7 @@ func (e *Edge) TranscodingLatencyCal(viewer *Viewer) float64 {
 	} else if availableVersion > viewer.AssignInfo.Version {
 		e.ComputationUsed += TransCodingCpuMap[viewer.AssignInfo.Version]
 		e.BandWidthInfo.OutBandWidthUsed += BitRateMap[viewer.AssignInfo.Version]
-		*e.rates[viewer.AssignInfo.ChannelId] = append(*e.rates[viewer.AssignInfo.ChannelId], availableVersion)
+		*e.rates[viewer.AssignInfo.ChannelId] = append(*e.rates[viewer.AssignInfo.ChannelId], VersionInfo{version: availableVersion, number: 1})
 		return TransCodingTimeMap[viewer.AssignInfo.Version]
 	} else {
 		log.Fatalf("默认edge能够拿到所有channel的1440 version\n")
@@ -89,4 +91,28 @@ func (device *DeviceCommon) ViewerLatencyCal(v *Viewer) float64 {
 		}
 	}
 	return v.Latency
+}
+
+func (s *System) RemoveViewer(viewer *Viewer) {
+	// 要做的事: device对应的资源要补回去 channel对应的version如果没人看了要删掉
+	channelId := viewer.AssignInfo.ChannelId
+	version := viewer.AssignInfo.Version
+	deviceId := viewer.AssignInfo.DeviceId
+	if strings.Contains(deviceId, "Edge") {
+		edge := s.Edge[deviceId]
+		for index, info := range *edge.rates[channelId] {
+			if info.version == version {
+				if info.number == int64(1) { // 这是最后一个人
+					edge.ComputationUsed -= TransCodingCpuMap[version]
+					edge.BandWidthInfo.OutBandWidthUsed -= BitRateMap[version]
+					seq := append((*edge.rates[channelId])[:index], (*edge.rates[channelId])[index+1:]...)
+					edge.rates[channelId] = &seq
+				} else {
+					info.number--
+				}
+				break
+			}
+		}
+
+	}
 }

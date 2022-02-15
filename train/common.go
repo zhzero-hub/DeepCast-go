@@ -5,8 +5,8 @@ const channels = 50
 const LatencyInGeo = 5 * 10e-6 // s 每1000m增加5us时延
 
 const (
-	Alpha                = 0.1
-	Beta                 = 0.1
+	Alpha                = 0.5
+	Beta                 = 0.5
 	EdgeComputationPrice = 1.591
 	EdgeBandwidthPrice   = 0.02 * 0.2
 	CdnBandwidthPrice    = 0.02
@@ -74,6 +74,7 @@ type Viewer struct {
 	Latency        float64
 	LiveInfo       []*LiveInfo
 	DownThroughput float64 // bps
+	VersionBit     int64   // bps
 	AssignInfo     AssignInfo
 }
 

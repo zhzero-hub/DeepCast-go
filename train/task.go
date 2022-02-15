@@ -63,7 +63,7 @@ func InitTaskManager(ctx *context.Context) {
 	heap.Init(&viewerWithWatchChannel)
 	taskManager := TaskManager{
 		ctx:        ctx,
-		time:       0,
+		time:       -1,
 		task:       make(map[int64][]*Task),
 		viewerList: viewerWithWatchChannel,
 	}
@@ -72,9 +72,6 @@ func InitTaskManager(ctx *context.Context) {
 
 func (t *TaskManager) AddTask(viewer *Viewer, liveInfo *LiveInfo) {
 	startTime := liveInfo.StartTime
-	if startTime == 5984 {
-		log.Printf("%v", liveInfo)
-	}
 	if _, ok := t.task[startTime]; !ok {
 		task := make([]*Task, 0)
 		task = append(task, &Task{
@@ -101,7 +98,10 @@ func (t *TaskManager) RefreshTasks() {
 		return
 	} else {
 		for top := t.viewerList.Top(); top.EndTime <= t.time; top = t.viewerList.Top() {
-			t.viewerList.Pop()
+			watchInfo := t.viewerList.Pop().(*ViewerWithWatchChannel)
+			system := (*t.ctx).Value("system").(*System)
+			t.solved[watchInfo.Viewer] = nil
+			system.RemoveViewer(watchInfo.Viewer)
 			if len(t.viewerList) == 0 {
 				return
 			}
@@ -118,6 +118,11 @@ func (t *TaskManager) TimeGrowth() {
 }
 
 func (t *TaskManager) GetTask() *Task {
+	for ; len(t.viewerList) == 0; t.TimeGrowth() {
+		if t.time > t.maxTime {
+			return nil
+		}
+	}
 	return &Task{
 		watchInfo: t.viewerList.Top(),
 	}
@@ -220,9 +225,32 @@ func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
 			Alpha2: qoePreference[1],
 			Alpha3: qoePreference[2],
 		},
+		UserInfo: &rpc.UserInfo{
+			Location: &rpc.Location{
+				Latitude:  task.watchInfo.Location.Lat,
+				Longitude: task.watchInfo.Location.Long,
+			},
+			ChannelId: task.watchInfo.ChannelId,
+			Version:   GetVersion(task.watchInfo.VersionBit),
+		},
 		ViewerConnection: &viewerConnectionMap,
 	}
 	return &state
+}
+
+func GetVersion(version int64) int64 {
+	switch version {
+	case 768000:
+		return 480
+	case 1250000:
+		return 720
+	case 2250000:
+		return 1080
+	case 3750000:
+		return 1440
+	default:
+		return 1440
+	}
 }
 
 func GetReward(ctx *context.Context, viewer *Viewer, req *rpc.TrainStepRequest) float64 {
@@ -311,5 +339,17 @@ func GetConnMap(solved map[*Viewer]*DeviceCommon) *map[string]*map[string]*map[i
 }
 
 func GetQoePreference(task *Task) []float32 {
-	return make([]float32, 3)
+	viewer := task.watchInfo.Viewer
+	liveInfo := task.watchInfo.LiveInfo
+	n := len(viewer.LiveInfo)
+	t := (liveInfo.EndTime - liveInfo.StartTime) * 10
+	if n <= 2 && t >= 30 {
+		return []float32{2, 1.5, 2}
+	} else if n >= 5 && t <= 10 {
+		return []float32{0.5, 6, 2}
+	} else if n > 4 && t >= 30 {
+		return []float32{0.5, 1.5, 8}
+	} else {
+		return []float32{1, 3, 4}
+	}
 }

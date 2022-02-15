@@ -10,8 +10,8 @@ import numpy
 # render()：如果要进行可视化则实现
 
 E = 100
-channel = 100
-version = 10
+channel = 1000000
+version = 4
 
 
 class DeepCastEnv(core.Env):
@@ -21,8 +21,8 @@ class DeepCastEnv(core.Env):
             "Inbound_bandwidth_usage": spaces.Box(low=-1.0, high=1.0, shape=(E,)),
             "Outbound_bandwidth_usage": spaces.Box(low=-1.0, high=1.0, shape=(E + 1,)),
             "Computation_resource_usage": spaces.Box(low=-1.0, high=1.0, shape=(E,)),
-            "Viewer_connection_table": spaces.Box(low=-1.0, high=1.0, shape=(E, E, E)),
-            "location": spaces.Discrete(10),
+            "Viewer_connection_table": spaces.Box(low=-1.0, high=1.0, shape=(E, channel, version)),
+            "location": spaces.Box(low=-360.0, high=360.0, shape=(1, 1)),
             "channel": spaces.Discrete(channel),
             "version": spaces.Discrete(version),
             "QoE_preference": spaces.Discrete(3)
@@ -43,6 +43,9 @@ class DeepCastEnv(core.Env):
         return 0
 
     # 根据需要设计相关辅助函数
+    def _reset(self):
+
+
     def _get_observation(self, action):
         return 0
 
