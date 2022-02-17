@@ -44,7 +44,7 @@ class DeepCastEnv(core.Env):
 
     # 根据需要设计相关辅助函数
     def _reset(self):
-
+        return 0
 
     def _get_observation(self, action):
         return 0

@@ -38,18 +38,18 @@ def reset_env(base):
     )
     resp = client.ResetEnv(req)
     state = []
-    inboundBandwidthUsed = []
-    outboundBandwidthUsed = []
-    computationResourceUsage = []
+    inbound_bandwidth_used = []
+    outbound_bandwidth_used = []
+    computation_resource_usage = []
     for inbound in resp.State.inbound_bandwidth_usage:
-        inboundBandwidthUsed.append(inbound)
-    state.append(inboundBandwidthUsed)
+        inbound_bandwidth_used.append(inbound)
+    state.append(inbound_bandwidth_used)
     for outbound in resp.State.outbound_bandwidth_usage:
-        outboundBandwidthUsed.append(outbound)
-    state.append(outboundBandwidthUsed)
+        outbound_bandwidth_used.append(outbound)
+    state.append(outbound_bandwidth_used)
     for compute in resp.State.computation_resource_usage:
-        computationResourceUsage.append(compute)
-    state.append(computationResourceUsage)
+        computation_resource_usage.append(compute)
+    state.append(computation_resource_usage)
 
     return state
 
