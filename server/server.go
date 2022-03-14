@@ -47,6 +47,7 @@ func (g *GoServer) ResetEnv(ctx context.Context, request *grpc2.ResetEnvRequest)
 }
 
 func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepRequest) (*grpc2.TrainStepResponse, error) {
+	log.Printf("Received train step")
 	action := request.Action
 	if request.Base == nil || action == nil {
 		log.Printf("request.Base or request.Action is nil\n")
@@ -63,6 +64,19 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 	taskManager := (*g.c).Value("taskManager").(*train.TaskManager)
 	reward := taskManager.TakeAction(g.c, request)
 	nextState := taskManager.NextState(g.c)
+	if nextState == nil {
+		return &grpc2.TrainStepResponse{
+			Base: &grpc2.Base{
+				RetCode: int64(1),
+				RetMsg:  "nextState is nil",
+				Extra:   map[string]string{},
+			},
+			State: nil,
+			Feedback: &grpc2.Feedback{
+				Reward: reward,
+			},
+		}, nil
+	}
 	return &grpc2.TrainStepResponse{
 		Base: &grpc2.Base{
 			RetCode: int64(0),

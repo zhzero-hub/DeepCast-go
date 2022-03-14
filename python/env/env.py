@@ -1,6 +1,6 @@
 from gym import spaces, core
 import numpy
-
+from rpc.train import *
 
 # core.Env 是 gym 的环境基类,自定义的环境就是根据自己的需要重写其中的方法；
 # 必须要重写的方法有:
@@ -9,8 +9,8 @@ import numpy
 # step()：环境动作,即环境对agent的反馈
 # render()：如果要进行可视化则实现
 
-E = 100
-channel = 1000000
+E = 10
+channel = 100
 version = 4
 
 
@@ -22,20 +22,17 @@ class DeepCastEnv(core.Env):
             "Outbound_bandwidth_usage": spaces.Box(low=-1.0, high=1.0, shape=(E + 1,)),
             "Computation_resource_usage": spaces.Box(low=-1.0, high=1.0, shape=(E,)),
             "Viewer_connection_table": spaces.Box(low=-1.0, high=1.0, shape=(E, channel, version)),
-            "location": spaces.Box(low=-360.0, high=360.0, shape=(1, 1)),
-            "channel": spaces.Discrete(channel),
-            "version": spaces.Discrete(version),
-            "QoE_preference": spaces.Discrete(3)
+            "User_info": spaces.Box(low=0.0, high=200, shape=(4,)),
+            "QoE_preference": spaces.Box(low=0, high=10, shape=(3,))
         })  # 状态空间
 
     def reset(self):
-        obs = self._get_observation(None)
+        obs = reset_env(None)
         return obs
 
     def step(self, action):
-        reward = self._get_reward()
-        done = self._get_done()
-        obs = self._get_observation(action)
+        obs, reward, accuracy, done = train_step(None, action['device_id'], action['viewer_id'], action['channel_id'],
+                                                 action['version'], action['qoe'])
         info = {}  # 用于记录训练过程中的环境信息,便于观察训练状态
         return obs, reward, done, info
 

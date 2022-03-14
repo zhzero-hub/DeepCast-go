@@ -66,7 +66,7 @@ func Init(ctx *context.Context) {
 //	taskManager := (*ctx).Value("taskManager").(*TaskManager)
 //	for {
 //		if tasks := taskManager.GetTask(); tasks == nil {
-//			taskManager.TimeGrowth()
+//			taskManager.growth()
 //		} else {
 //			//for _, task := range tasks {
 //			log.Println(tasks)

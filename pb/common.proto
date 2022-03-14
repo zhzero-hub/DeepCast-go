@@ -30,6 +30,7 @@ message UserInfo {
     Location location = 1;
     string channel_id = 2;
     int64 version = 3;
+    string user_id = 4;
 }
 
 message V2Number {
@@ -61,10 +62,11 @@ message State {
 
 message Action {
     string viewer_id = 1;
-    string live_id = 2;
-    repeated double possibility = 3;
-    int64 action = 4;
-    QoEPreference qoe_preference = 5;
+    string channel_id = 2;
+    int64 version = 3;
+    repeated double possibility = 4;
+    int64 action = 5;
+    QoEPreference qoe_preference = 6;
 }
 
 message Feedback {

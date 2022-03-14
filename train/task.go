@@ -61,11 +61,22 @@ type TaskManager struct {
 func InitTaskManager(ctx *context.Context) {
 	viewerWithWatchChannel := make(ViewerHeap, 0)
 	heap.Init(&viewerWithWatchChannel)
+	maxEndTime := int64(0)
+	viewers := (*ctx).Value("viewer").(*map[string]*Viewer)
+	for _, viewer := range *viewers {
+		for _, live := range viewer.LiveInfo {
+			if live.EndTime > maxEndTime {
+				maxEndTime = live.EndTime
+			}
+		}
+	}
 	taskManager := TaskManager{
 		ctx:        ctx,
 		time:       -1,
 		task:       make(map[int64][]*Task),
 		viewerList: viewerWithWatchChannel,
+		solved:     make(map[*Viewer]*DeviceCommon),
+		maxTime:    maxEndTime,
 	}
 	*ctx = context.WithValue(*ctx, "taskManager", &taskManager)
 }
@@ -124,7 +135,7 @@ func (t *TaskManager) GetTask() *Task {
 		}
 	}
 	return &Task{
-		watchInfo: t.viewerList.Top(),
+		watchInfo: t.viewerList.Pop().(*ViewerWithWatchChannel),
 	}
 }
 
@@ -178,6 +189,9 @@ func (t *TaskManager) TakeAction(ctx *context.Context, req *rpc.TrainStepRequest
 
 func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
 	task := t.GetTask()
+	if task == nil {
+		return nil
+	}
 	system := (*t.ctx).Value("system").(*System)
 	inboundUsed := make([]float64, 0)
 	outboundUsed := make([]float64, 0)
@@ -232,6 +246,7 @@ func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
 			},
 			ChannelId: task.watchInfo.ChannelId,
 			Version:   GetVersion(task.watchInfo.VersionBit),
+			UserId:    task.watchInfo.Viewer.Id,
 		},
 		ViewerConnection: &viewerConnectionMap,
 	}
@@ -264,13 +279,13 @@ func GetReward(ctx *context.Context, viewer *Viewer, req *rpc.TrainStepRequest) 
 	rewardb += GetComputationCost(ctx, viewer)
 	rewardb += GetBandwidthCost(ctx, viewer)
 	rewardb *= Beta
-	return rewarda + rewardb
+	return -1 * (rewarda + rewardb)
 }
 
 func GetStreamingDelay(ctx *context.Context, viewer *Viewer, deviceId string) float64 {
 	var streamingDelay float64
 	system := (*ctx).Value("system").(*System)
-	if edge, ok := system.Edge["Edge"+deviceId]; ok {
+	if edge, ok := system.Edge[deviceId]; ok {
 		streamingDelay += edge.ViewerLatencyCal(viewer)
 		streamingDelay += edge.TranscodingLatencyCal(viewer)
 		streamingDelay += edge.LatencyToUpper

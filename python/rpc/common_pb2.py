@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"O\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\xc0\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x1f\n\tuser_info\x18\x05 \x01(\x0b\x32\x0c.pb.UserInfo\x12/\n\x11viewer_connection\x18\x06 \x01(\x0b\x32\x14.pb.ViewerConnection\"|\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x0f\n\x07live_id\x18\x02 \x01(\t\x12\x13\n\x0bpossibility\x18\x03 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x04 \x01(\x03\x12)\n\x0eqoe_preference\x18\x05 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"`\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x0f\n\x07user_id\x18\x04 \x01(\t\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\xc0\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x1f\n\tuser_info\x18\x05 \x01(\x0b\x32\x0c.pb.UserInfo\x12/\n\x11viewer_connection\x18\x06 \x01(\x0b\x32\x14.pb.ViewerConnection\"\x90\x01\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12)\n\x0eqoe_preference\x18\x06 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -273,6 +273,13 @@ _USERINFO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='pb.UserInfo.user_id', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -286,7 +293,7 @@ _USERINFO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=374,
-  serialized_end=453,
+  serialized_end=470,
 )
 
 
@@ -324,8 +331,8 @@ _V2NUMBER_NUMBERENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=509,
-  serialized_end=554,
+  serialized_start=526,
+  serialized_end=571,
 )
 
 _V2NUMBER = _descriptor.Descriptor(
@@ -355,8 +362,8 @@ _V2NUMBER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=455,
-  serialized_end=554,
+  serialized_start=472,
+  serialized_end=571,
 )
 
 
@@ -394,8 +401,8 @@ _H2V_H2VENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=594,
-  serialized_end=650,
+  serialized_start=611,
+  serialized_end=667,
 )
 
 _H2V = _descriptor.Descriptor(
@@ -425,8 +432,8 @@ _H2V = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=556,
-  serialized_end=650,
+  serialized_start=573,
+  serialized_end=667,
 )
 
 
@@ -464,8 +471,8 @@ _VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=755,
-  serialized_end=824,
+  serialized_start=772,
+  serialized_end=841,
 )
 
 _VIEWERCONNECTION = _descriptor.Descriptor(
@@ -495,8 +502,8 @@ _VIEWERCONNECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=653,
-  serialized_end=824,
+  serialized_start=670,
+  serialized_end=841,
 )
 
 
@@ -541,8 +548,8 @@ _QOEPREFERENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=826,
-  serialized_end=889,
+  serialized_start=843,
+  serialized_end=906,
 )
 
 
@@ -608,8 +615,8 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=892,
-  serialized_end=1212,
+  serialized_start=909,
+  serialized_end=1229,
 )
 
 
@@ -629,29 +636,36 @@ _ACTION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='live_id', full_name='pb.Action.live_id', index=1,
+      name='channel_id', full_name='pb.Action.channel_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='possibility', full_name='pb.Action.possibility', index=2,
-      number=3, type=1, cpp_type=5, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='action', full_name='pb.Action.action', index=3,
-      number=4, type=3, cpp_type=2, label=1,
+      name='version', full_name='pb.Action.version', index=2,
+      number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='qoe_preference', full_name='pb.Action.qoe_preference', index=4,
-      number=5, type=11, cpp_type=10, label=1,
+      name='possibility', full_name='pb.Action.possibility', index=3,
+      number=4, type=1, cpp_type=5, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='action', full_name='pb.Action.action', index=4,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='qoe_preference', full_name='pb.Action.qoe_preference', index=5,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -668,8 +682,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1214,
-  serialized_end=1338,
+  serialized_start=1232,
+  serialized_end=1376,
 )
 
 
@@ -707,8 +721,8 @@ _FEEDBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1340,
-  serialized_end=1384,
+  serialized_start=1378,
+  serialized_end=1422,
 )
 
 _BASE_EXTRAENTRY.containing_type = _BASE

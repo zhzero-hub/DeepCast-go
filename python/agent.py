@@ -1,5 +1,7 @@
+from tensorflow.keras.layers import concatenate
 import tensorflow as tf
-from tensorflow.keras.layers import Input, Dense
+from tensorflow.keras.layers import InputLayer, Dense, Activation, Reshape
+from env.env import E, channel, version
 
 import gym
 import argparse
@@ -7,6 +9,7 @@ import numpy as np
 from threading import Thread, Lock
 from multiprocessing import cpu_count
 import env
+
 tf.keras.backend.set_floatx('float64')
 
 parser = argparse.ArgumentParser()
@@ -20,28 +23,80 @@ args = parser.parse_args()
 CUR_EPISODE = 0
 
 
+def get_input_model():
+    inbound_bandwidth_used_model = tf.keras.Sequential([
+        InputLayer(E, name='inbound_bandwidth_used'),
+        Activation('relu')
+    ])
+    outbound_bandwidth_used_model = tf.keras.Sequential([
+        InputLayer(E + 1, name='outbound_bandwidth_used'),
+        Activation('relu')
+    ])
+    computation_resource_usage_model = tf.keras.Sequential([
+        InputLayer(E, name='computation_resource_usage'),
+        Activation('relu')
+    ])
+    viewer_connection_table_model = tf.keras.Sequential([
+        InputLayer(E * channel * version, name='viewer_connection_table'),
+        Activation('relu')
+    ])
+    viewer_request_model = tf.keras.Sequential([
+        InputLayer(4, name='user_info'),
+        Activation('relu')
+    ])
+    qoe_model = tf.keras.Sequential([
+        InputLayer(3, name='qoe'),
+        Activation('relu')
+    ])
+    model = concatenate([inbound_bandwidth_used_model.output,
+                         outbound_bandwidth_used_model.output,
+                         computation_resource_usage_model.output,
+                         viewer_connection_table_model.output,
+                         viewer_request_model.output,
+                         qoe_model.output], name='model_concatenate')
+    # model = [inbound_bandwidth_used_model, outbound_bandwidth_used_model, computation_resource_usage_model,
+    #          viewer_connection_table_model, viewer_request_model, qoe_model]
+    model.input = [inbound_bandwidth_used_model.input,
+                   outbound_bandwidth_used_model.input,
+                   computation_resource_usage_model.input,
+                   viewer_connection_table_model.input,
+                   viewer_request_model.input,
+                   qoe_model.input]
+    return model
+
+
+def main():
+    env_name = 'env_deepcast-v0'
+    agent = Agent(env_name)
+    agent.train()
+
+
 class Actor:
     def __init__(self, state_dim, action_dim):
         self.state_dim = state_dim
-        self.action_dim = action_dim
+        self.action_dim = E
         self.model = self.create_model()
         self.opt = tf.keras.optimizers.Adam(args.actor_lr)
         self.entropy_beta = 0.01
 
     def create_model(self):
-        return tf.keras.Sequential([
-            Input((self.state_dim,)),
-            Dense(32, activation='relu'),
-            Dense(16, activation='relu'),
-            Dense(self.action_dim, activation='softmax')
-        ])
+        model = get_input_model()
+        z = Dense(1024, activation='relu')(model)
+        z = Dense(512, activation='relu')(z)
+        z = Dense(self.action_dim, activation='softmax', name='output')(z)
+        z = tf.keras.Model(inputs=model.input, outputs=z)
+        return z
 
     def compute_loss(self, actions, logits, advantages):
         ce_loss = tf.keras.losses.SparseCategoricalCrossentropy(
             from_logits=True)
         entropy_loss = tf.keras.losses.CategoricalCrossentropy(
             from_logits=True)
-        actions = tf.cast(actions, tf.int32)
+        # reshape_actions = []
+        # for action in actions:
+        #     reshape_actions = np.append(reshape_actions, action)
+        actions = tf.cast(actions[0], tf.int32)
+        # reshape_actions = tf.cast(reshape_actions, tf.int32)
         policy_loss = ce_loss(
             actions, logits, sample_weight=tf.stop_gradient(advantages))
         entropy = entropy_loss(logits, logits)
@@ -49,28 +104,34 @@ class Actor:
 
     def train(self, states, actions, advantages):
         with tf.GradientTape() as tape:
-            logits = self.model(states, training=True)
+            logits = []
+            for state in states:
+                logits.append(np.array(self.model(state, training=True)))
+            logits = np.reshape(logits, (len(states), E))
             loss = self.compute_loss(
                 actions, logits, advantages)
+        # for trainable_variable in self.model.trainable_variables:
+        #     tape.watch(trainable_variable)
+        # tape.watch(self.model.trainable_variables)
         grads = tape.gradient(loss, self.model.trainable_variables)
+        print(grads)
         self.opt.apply_gradients(zip(grads, self.model.trainable_variables))
         return loss
 
 
 class Critic:
     def __init__(self, state_dim):
-        self.state_dim = state_dim
+        self.state_dim = 1
         self.model = self.create_model()
         self.opt = tf.keras.optimizers.Adam(args.critic_lr)
 
     def create_model(self):
-        return tf.keras.Sequential([
-            Input((self.state_dim,)),
-            Dense(32, activation='relu'),
-            Dense(16, activation='relu'),
-            Dense(16, activation='relu'),
-            Dense(1, activation='linear')
-        ])
+        model = get_input_model()
+        z = Dense(1024, activation='relu')(model)
+        z = Dense(512, activation='relu')(z)
+        z = Dense(self.state_dim, activation='linear', name='output')(z)
+        z = tf.keras.Model(inputs=model.input, outputs=z)
+        return z
 
     def compute_loss(self, v_pred, td_targets):
         mse = tf.keras.losses.MeanSquaredError()
@@ -94,7 +155,7 @@ class Agent:
         self.state_dim = 0
         for name, space in env.observation_space.spaces.items():
             if len(space.shape) > 0:
-                tmp_state_dim = 0
+                tmp_state_dim = 1
                 for shape in space.shape:
                     tmp_state_dim *= shape
                 self.state_dim += tmp_state_dim
@@ -130,7 +191,7 @@ class WorkerAgent(Thread):
         self.state_dim = 0
         for name, space in env.observation_space.spaces.items():
             if len(space.shape) > 0:
-                tmp_state_dim = 0
+                tmp_state_dim = 1
                 for shape in space.shape:
                     tmp_state_dim *= shape
                 self.state_dim += tmp_state_dim
@@ -164,7 +225,7 @@ class WorkerAgent(Thread):
     def list_to_batch(self, list):
         batch = list[0]
         for elem in list[1:]:
-            batch = np.append(batch, elem, axis=0)
+            batch = np.append(batch, elem)
         return batch
 
     def train(self):
@@ -180,31 +241,47 @@ class WorkerAgent(Thread):
 
             while not done:
                 # self.env.render()
-                probs = self.actor.model.predict(
-                    np.reshape(state, [1, self.state_dim]))
-                action = np.random.choice(self.action_dim, p=probs[0])
+                x = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E)), dtype=np.float64),
+                     np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1)), dtype=np.float64),
+                     np.array(np.reshape(state['computation_resource_usage'], (1, E)), dtype=np.float64),
+                     np.array(np.reshape(state['viewer_connection_table'], (1, 4000)), dtype=np.float64),
+                     np.array(np.reshape(state['user_info'], (1, 4)), dtype=np.float64),
+                     np.array(np.reshape(state['qoe'], (1, 3)), dtype=np.float64)]
+                probs = self.actor.model.predict(x)
+                device_id = np.random.choice(E, p=probs[0])
 
+                action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
+                          'qoe': state['qoe'], 'version': state['version']}
                 next_state, reward, done, _ = self.env.step(action)
 
-                state = np.reshape(state, [1, self.state_dim])
+                # state = np.reshape(state, [1, self.state_dim])
                 action = np.reshape(action, [1, 1])
-                next_state = np.reshape(next_state, [1, self.state_dim])
+                # next_state = np.reshape(next_state, [1, self.state_dim])
                 reward = np.reshape(reward, [1, 1])
 
-                state_batch.append(state)
-                action_batch.append(action)
+                state_batch.append(x)
+                action_batch.append(device_id)
                 reward_batch.append(reward)
 
                 if len(state_batch) >= args.update_interval or done:
-                    states = self.list_to_batch(state_batch)
-                    actions = self.list_to_batch(action_batch)
+                    states = state_batch
+                    actions = np.reshape(self.list_to_batch(action_batch), (1, len(action_batch)))
                     rewards = self.list_to_batch(reward_batch)
 
-                    next_v_value = self.critic.model.predict(next_state)
+                    y = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E))),
+                         np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1))),
+                         np.array(np.reshape(state['computation_resource_usage'], (1, E))),
+                         np.array(np.reshape(state['viewer_connection_table'], (1, 4000))),
+                         np.array(np.reshape(state['user_info'], (1, 4))),
+                         np.array(np.reshape(state['qoe'], (1, 3)))]
+                    next_v_value = self.critic.model.predict(y)
                     td_targets = self.n_step_td_target(
                         rewards, next_v_value, done)
-                    advantages = td_targets - self.critic.model.predict(states)
-                    
+                    predict = []
+                    for state in states:
+                        predict = np.append(predict, self.critic.model.predict(state))
+                    advantages = td_targets - predict
+
                     with self.lock:
                         actor_loss = self.global_actor.train(
                             states, actions, advantages)
@@ -223,20 +300,10 @@ class WorkerAgent(Thread):
                     advatnage_batch = []
 
                 episode_reward += reward[0][0]
-                state = next_state[0]
+                state = next_state
 
             print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
             CUR_EPISODE += 1
 
     def run(self):
         self.train()
-
-
-def main():
-    env_name = 'env_deepcast-v0'
-    agent = Agent(env_name)
-    agent.train()
-
-
-if __name__ == "__main__":
-    main()
