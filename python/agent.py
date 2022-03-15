@@ -26,27 +26,27 @@ CUR_EPISODE = 0
 def get_input_model():
     inbound_bandwidth_used_model = tf.keras.Sequential([
         InputLayer(E, name='inbound_bandwidth_used'),
-        Activation('relu')
+        # Activation('relu')
     ])
     outbound_bandwidth_used_model = tf.keras.Sequential([
         InputLayer(E + 1, name='outbound_bandwidth_used'),
-        Activation('relu')
+        # Activation('relu')
     ])
     computation_resource_usage_model = tf.keras.Sequential([
         InputLayer(E, name='computation_resource_usage'),
-        Activation('relu')
+        # Activation('relu')
     ])
     viewer_connection_table_model = tf.keras.Sequential([
         InputLayer(E * channel * version, name='viewer_connection_table'),
-        Activation('relu')
+        # Activation('relu')
     ])
     viewer_request_model = tf.keras.Sequential([
         InputLayer(4, name='user_info'),
-        Activation('relu')
+        # Activation('relu')
     ])
     qoe_model = tf.keras.Sequential([
         InputLayer(3, name='qoe'),
-        Activation('relu')
+        # Activation('relu')
     ])
     model = concatenate([inbound_bandwidth_used_model.output,
                          outbound_bandwidth_used_model.output,
@@ -54,8 +54,6 @@ def get_input_model():
                          viewer_connection_table_model.output,
                          viewer_request_model.output,
                          qoe_model.output], name='model_concatenate')
-    # model = [inbound_bandwidth_used_model, outbound_bandwidth_used_model, computation_resource_usage_model,
-    #          viewer_connection_table_model, viewer_request_model, qoe_model]
     model.input = [inbound_bandwidth_used_model.input,
                    outbound_bandwidth_used_model.input,
                    computation_resource_usage_model.input,
@@ -74,31 +72,30 @@ def main():
 class Actor:
     def __init__(self, state_dim, action_dim):
         self.state_dim = state_dim
-        self.action_dim = E
+        self.action_dim = E + 1
         self.model = self.create_model()
         self.opt = tf.keras.optimizers.Adam(args.actor_lr)
         self.entropy_beta = 0.01
 
     def create_model(self):
         model = get_input_model()
-        z = Dense(1024, activation='relu')(model)
-        z = Dense(512, activation='relu')(z)
+        z = Dense(512, activation='relu')(model)
+        z = Dense(256, activation='relu')(z)
         z = Dense(self.action_dim, activation='softmax', name='output')(z)
         z = tf.keras.Model(inputs=model.input, outputs=z)
         return z
 
     def compute_loss(self, actions, logits, advantages):
-        ce_loss = tf.keras.losses.SparseCategoricalCrossentropy(
+        ce_loss = tf.keras.losses.CategoricalCrossentropy(
             from_logits=True)
         entropy_loss = tf.keras.losses.CategoricalCrossentropy(
             from_logits=True)
-        # reshape_actions = []
-        # for action in actions:
-        #     reshape_actions = np.append(reshape_actions, action)
         actions = tf.cast(actions[0], tf.int32)
-        # reshape_actions = tf.cast(reshape_actions, tf.int32)
-        policy_loss = ce_loss(
-            actions, logits, sample_weight=tf.stop_gradient(advantages))
+        actions = tf.one_hot(actions, depth=E + 1)
+        # actions = tf.cast(actions, tf.int32)
+        logits = tf.reshape(logits, shape=actions.shape)
+        advantages = tf.reshape(advantages, shape=(args.update_interval, 1))
+        policy_loss = ce_loss(actions, logits, sample_weight=tf.stop_gradient(advantages))
         entropy = entropy_loss(logits, logits)
         return policy_loss - self.entropy_beta * entropy
 
@@ -106,15 +103,11 @@ class Actor:
         with tf.GradientTape() as tape:
             logits = []
             for state in states:
-                logits.append(np.array(self.model(state, training=True)))
-            logits = np.reshape(logits, (len(states), E))
-            loss = self.compute_loss(
-                actions, logits, advantages)
-        # for trainable_variable in self.model.trainable_variables:
-        #     tape.watch(trainable_variable)
-        # tape.watch(self.model.trainable_variables)
-        grads = tape.gradient(loss, self.model.trainable_variables)
-        print(grads)
+                predict = self.model(state, training=True)
+                logits.append(predict)
+            loss = self.compute_loss(actions, logits, advantages)
+            grads = tape.gradient(loss, self.model.trainable_variables)
+        # print(grads)
         self.opt.apply_gradients(zip(grads, self.model.trainable_variables))
         return loss
 
@@ -127,8 +120,8 @@ class Critic:
 
     def create_model(self):
         model = get_input_model()
-        z = Dense(1024, activation='relu')(model)
-        z = Dense(512, activation='relu')(z)
+        z = Dense(512, activation='relu')(model)
+        z = Dense(256, activation='relu')(z)
         z = Dense(self.state_dim, activation='linear', name='output')(z)
         z = tf.keras.Model(inputs=model.input, outputs=z)
         return z
@@ -139,9 +132,14 @@ class Critic:
 
     def train(self, states, td_targets):
         with tf.GradientTape() as tape:
-            v_pred = self.model(states, training=True)
-            assert v_pred.shape == td_targets.shape
-            loss = self.compute_loss(v_pred, tf.stop_gradient(td_targets))
+            v_preds = []
+            for state in states:
+                v_pred = self.model(state, training=True)
+                v_preds.append(v_pred)
+            v_preds = tf.convert_to_tensor(v_preds)
+            td_targets = tf.reshape(td_targets, shape=v_preds.shape)
+            assert v_preds.shape == td_targets.shape
+            loss = self.compute_loss(v_preds, tf.stop_gradient(td_targets))
         grads = tape.gradient(loss, self.model.trainable_variables)
         self.opt.apply_gradients(zip(grads, self.model.trainable_variables))
         return loss
@@ -248,14 +246,14 @@ class WorkerAgent(Thread):
                      np.array(np.reshape(state['user_info'], (1, 4)), dtype=np.float64),
                      np.array(np.reshape(state['qoe'], (1, 3)), dtype=np.float64)]
                 probs = self.actor.model.predict(x)
-                device_id = np.random.choice(E, p=probs[0])
+                device_id = np.random.choice(E + 1, p=probs[0])
 
                 action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
                           'qoe': state['qoe'], 'version': state['version']}
                 next_state, reward, done, _ = self.env.step(action)
 
                 # state = np.reshape(state, [1, self.state_dim])
-                action = np.reshape(action, [1, 1])
+                device_id = np.reshape(device_id, [1, 1])
                 # next_state = np.reshape(next_state, [1, self.state_dim])
                 reward = np.reshape(reward, [1, 1])
 
@@ -277,10 +275,7 @@ class WorkerAgent(Thread):
                     next_v_value = self.critic.model.predict(y)
                     td_targets = self.n_step_td_target(
                         rewards, next_v_value, done)
-                    predict = []
-                    for state in states:
-                        predict = np.append(predict, self.critic.model.predict(state))
-                    advantages = td_targets - predict
+                    advantages = td_targets - self.critic.model(states)
 
                     with self.lock:
                         actor_loss = self.global_actor.train(
@@ -302,7 +297,7 @@ class WorkerAgent(Thread):
                 episode_reward += reward[0][0]
                 state = next_state
 
-            print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
+                print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
             CUR_EPISODE += 1
 
     def run(self):
