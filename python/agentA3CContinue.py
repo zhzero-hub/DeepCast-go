@@ -101,8 +101,13 @@ class Actor:
 
     def train(self, states, actions, advantages):
         with tf.GradientTape() as tape:
-            mu, std = self.model(states, training=True)
-            loss = self.compute_loss(mu, std, actions, advantages)
+            mus = []
+            stds = []
+            for state in states:
+                mu, std = self.model(state, training=True)
+                mus.append(mu)
+                stds.append(stds)
+            loss = self.compute_loss(tf.convert_to_tensor(mu), tf.convert_to_tensor(std), actions, advantages)
         grads = tape.gradient(loss, self.model.trainable_variables)
         self.opt.apply_gradients(zip(grads, self.model.trainable_variables))
         return loss
