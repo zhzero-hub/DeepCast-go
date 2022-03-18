@@ -12,7 +12,7 @@ import (
 
 const (
 	// Address 监听地址
-	Address string = "0.0.0.0:5001"
+	Address string = "127.0.0.1:5001"
 	// Network 网络通信协议
 	Network string = "tcp"
 )

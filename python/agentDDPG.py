@@ -16,7 +16,7 @@ parser.add_argument('--actor_lr', type=float, default=0.0005)
 parser.add_argument('--critic_lr', type=float, default=0.001)
 parser.add_argument('--batch_size', type=int, default=64)
 parser.add_argument('--tau', type=float, default=0.05)
-parser.add_argument('--train_start', type=int, default=20)
+parser.add_argument('--train_start', type=int, default=200)
 
 args = parser.parse_args()
 
@@ -300,14 +300,15 @@ class Agent:
                 action = np.clip(action + noise, -self.action_bound, self.action_bound)
 
                 device_id = np.random.choice(np.where(action == np.max(action))[0])
-                step_action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
-                               'qoe': state['qoe'], 'version': state['version']}
+                print('Action: device id {}'.format(device_id))
+                step_action = {'device_id': device_id, 'viewer_id': state['viewer_id'],
+                               'channel_id': state['channel_id'], 'qoe': state['qoe'], 'version': state['version']}
                 next_state, reward, done, _ = self.env.step(step_action)
                 self.buffer.put(state, action, (reward + 8) / 8, next_state, done)
                 bg_noise = noise
                 episode_reward += reward
                 state = next_state
-                print('Buffer size{}'.format(self.buffer.size()))
+                # print('Buffer size{}'.format(self.buffer.size()))
                 if self.buffer.size() >= args.batch_size and self.buffer.size() >= args.train_start:
                     self.replay()
             print('EP{} EpisodeReward={}'.format(ep, episode_reward))

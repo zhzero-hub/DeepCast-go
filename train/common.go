@@ -5,11 +5,12 @@ const channels = 50
 const LatencyInGeo = 5 * 10e-6 // s 每1000m增加5us时延
 
 const (
-	Alpha                = 0.5
-	Beta                 = 0.5
-	EdgeComputationPrice = 1.591
-	EdgeBandwidthPrice   = 0.02 * 0.2
-	CdnBandwidthPrice    = 0.02
+	Alpha                   = 0.5
+	Beta                    = 0.5
+	EdgeComputationPrice    = 1.591
+	EdgeBandwidthPrice      = 0.02 * 0.2
+	CdnBandwidthPrice       = 0.02
+	CdnToEdgeBandwidthPrice = 0
 )
 
 var BitRateMap = map[int64]float64{

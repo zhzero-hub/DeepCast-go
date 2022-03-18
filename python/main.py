@@ -5,7 +5,7 @@ sys.path.append('./rpc')
 sys.path.append('./env')
 
 # from agent import main
-from agent import main
+from agentA3CContinue import main
 
 
 if __name__ == '__main__':

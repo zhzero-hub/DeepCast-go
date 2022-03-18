@@ -1,16 +1,15 @@
-from tensorflow.keras.layers import concatenate
+# import wandb
 import tensorflow as tf
-from tensorflow.keras.layers import InputLayer, Dense, Activation, Reshape
+from tensorflow.keras.layers import Input, Dense, Lambda, InputLayer, concatenate
 from env.env import E, channel, version
 
 import gym
 import argparse
 import numpy as np
-from threading import Thread, Lock
+from threading import Thread
 from multiprocessing import cpu_count
-import env
-
 tf.keras.backend.set_floatx('float64')
+# wandb.init(name='A3C', project="deep-rl-tf2")
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--gamma', type=float, default=0.99)
@@ -63,58 +62,55 @@ def get_input_model():
     return model
 
 
-def main():
-    env_name = 'env_deepcast-v0'
-    agent = Agent(env_name)
-    agent.train()
-
-
 class Actor:
-    def __init__(self, state_dim, action_dim):
+    def __init__(self, state_dim, action_dim, action_bound, std_bound):
         self.state_dim = state_dim
         self.action_dim = E + 1
+        self.action_bound = action_bound
+        self.std_bound = std_bound
         self.model = self.create_model()
         self.opt = tf.keras.optimizers.Adam(args.actor_lr)
         self.entropy_beta = 0.01
 
     def create_model(self):
-        model = get_input_model()
-        z = Dense(512, activation='relu')(model)
-        z = Dense(256, activation='relu')(z)
-        z = Dense(self.action_dim, activation='softmax', name='output')(z)
-        z = tf.keras.Model(inputs=model.input, outputs=z)
-        return z
+        state_input = get_input_model()
+        dense_1 = Dense(32, activation='relu')(state_input)
+        dense_2 = Dense(32, activation='relu')(dense_1)
+        out_mu = Dense(self.action_dim, activation='tanh')(dense_2)
+        mu_output = Lambda(lambda x: x * self.action_bound)(out_mu)
+        std_output = Dense(self.action_dim, activation='softplus')(dense_2)
+        return tf.keras.models.Model(state_input.input, [mu_output, std_output])
 
-    def compute_loss(self, actions, logits, advantages):
-        ce_loss = tf.keras.losses.CategoricalCrossentropy(
-            from_logits=True)
-        entropy_loss = tf.keras.losses.CategoricalCrossentropy(
-            from_logits=True)
-        actions = tf.cast(actions[0], tf.int32)
-        actions = tf.one_hot(actions, depth=E + 1)
-        # actions = tf.cast(actions, tf.int32)
-        logits = tf.reshape(logits, shape=actions.shape)
-        advantages = tf.reshape(advantages, shape=(args.update_interval, 1))
-        policy_loss = ce_loss(actions, logits, sample_weight=tf.stop_gradient(advantages))
-        entropy = entropy_loss(logits, logits)
-        return policy_loss - self.entropy_beta * entropy
+    def get_action(self, state):
+        # state = np.reshape(state, [1, self.state_dim])
+        mu, std = self.model.predict(state)
+        mu, std = mu[0], std[0]
+        return np.random.normal(mu, std, size=self.action_dim)
+
+    def log_pdf(self, mu, std, action):
+        std = tf.clip_by_value(std, self.std_bound[0], self.std_bound[1])
+        var = std ** 2
+        log_policy_pdf = -0.5 * (action - mu) ** 2 / \
+            var - 0.5 * tf.math.log(var * 2 * np.pi)
+        return tf.reduce_sum(log_policy_pdf, 1, keepdims=True)
+
+    def compute_loss(self, mu, std, actions, advantages):
+        log_policy_pdf = self.log_pdf(mu, std, actions)
+        loss_policy = log_policy_pdf * advantages
+        return tf.reduce_sum(-loss_policy)
 
     def train(self, states, actions, advantages):
         with tf.GradientTape() as tape:
-            logits = []
-            for state in states:
-                predict = self.model(state, training=True)
-                logits.append(predict)
-            loss = self.compute_loss(actions, logits, advantages)
-            grads = tape.gradient(loss, self.model.trainable_variables)
-        # print(grads)
+            mu, std = self.model(states, training=True)
+            loss = self.compute_loss(mu, std, actions, advantages)
+        grads = tape.gradient(loss, self.model.trainable_variables)
         self.opt.apply_gradients(zip(grads, self.model.trainable_variables))
         return loss
 
 
 class Critic:
     def __init__(self, state_dim):
-        self.state_dim = 1
+        self.state_dim = state_dim
         self.model = self.create_model()
         self.opt = tf.keras.optimizers.Adam(args.critic_lr)
 
@@ -122,7 +118,8 @@ class Critic:
         model = get_input_model()
         z = Dense(512, activation='relu')(model)
         z = Dense(256, activation='relu')(z)
-        z = Dense(self.state_dim, activation='linear', name='output')(z)
+        z = Dense(32, activation='relu')(z)
+        z = Dense(1, activation='linear', name='output')(z)
         z = tf.keras.Model(inputs=model.input, outputs=z)
         return z
 
@@ -149,22 +146,15 @@ class Agent:
     def __init__(self, env_name):
         env = gym.make(env_name)
         self.env_name = env_name
-        # self.state_dim = env.observation_space.shape[0].
-        self.state_dim = 0
-        for name, space in env.observation_space.spaces.items():
-            if len(space.shape) > 0:
-                tmp_state_dim = 1
-                for shape in space.shape:
-                    tmp_state_dim *= shape
-                self.state_dim += tmp_state_dim
-            else:
-                self.state_dim += 1
-        self.action_dim = env.action_space.shape[0]
-        # self.action_dim = 100
+        self.state_dim = env.observation_space.shape
+        self.action_dim = env.action_space.shape
+        self.action_bound = 1
+        self.std_bound = [1e-2, 1.0]
 
-        self.global_actor = Actor(self.state_dim, self.action_dim)
+        self.global_actor = Actor(
+            self.state_dim, self.action_dim, self.action_bound, self.std_bound)
         self.global_critic = Critic(self.state_dim)
-        self.num_workers = cpu_count()
+        self.num_workers = 1
 
     def train(self, max_episodes=1000):
         workers = []
@@ -184,23 +174,17 @@ class Agent:
 class WorkerAgent(Thread):
     def __init__(self, env, global_actor, global_critic, max_episodes):
         Thread.__init__(self)
-        self.lock = Lock()
         self.env = env
-        self.state_dim = 0
-        for name, space in env.observation_space.spaces.items():
-            if len(space.shape) > 0:
-                tmp_state_dim = 1
-                for shape in space.shape:
-                    tmp_state_dim *= shape
-                self.state_dim += tmp_state_dim
-            else:
-                self.state_dim += 1
-        self.action_dim = env.action_space.shape[0]
+        self.state_dim = self.env.observation_space.shape
+        self.action_dim = E + 1
+        self.action_bound = 1
+        self.std_bound = [1e-2, 1.0]
 
         self.max_episodes = max_episodes
         self.global_actor = global_actor
         self.global_critic = global_critic
-        self.actor = Actor(self.state_dim, self.action_dim)
+        self.actor = Actor(self.state_dim, self.action_dim,
+                           self.action_bound, self.std_bound)
         self.critic = Critic(self.state_dim)
 
         self.actor.model.set_weights(self.global_actor.model.get_weights())
@@ -223,7 +207,7 @@ class WorkerAgent(Thread):
     def list_to_batch(self, list):
         batch = list[0]
         for elem in list[1:]:
-            batch = np.append(batch, elem)
+            batch = np.append(batch, elem, axis=0)
         return batch
 
     def train(self):
@@ -239,54 +223,59 @@ class WorkerAgent(Thread):
 
             while not done:
                 # self.env.render()
-                x = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E)), dtype=np.float64),
-                     np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1)), dtype=np.float64),
+                x = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E)), dtype=np.float64) / 1024 / 1024,
+                     np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1)), dtype=np.float64) / 1024 / 1024,
                      np.array(np.reshape(state['computation_resource_usage'], (1, E)), dtype=np.float64),
                      np.array(np.reshape(state['viewer_connection_table'], (1, 4000)), dtype=np.float64),
                      np.array(np.reshape(state['user_info'], (1, 4)), dtype=np.float64),
                      np.array(np.reshape(state['qoe'], (1, 3)), dtype=np.float64)]
-                probs = self.actor.model.predict(x)
-                device_id = np.random.choice(E + 1, p=probs[0])
+                device_id = self.actor.get_action(x)
+                device_id = np.clip(device_id, -self.action_bound, self.action_bound)
+                device_id = np.random.choice(np.where(device_id == np.max(device_id))[0])
 
                 action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
                           'qoe': state['qoe'], 'version': state['version']}
                 next_state, reward, done, _ = self.env.step(action)
 
                 # state = np.reshape(state, [1, self.state_dim])
-                device_id = np.reshape(device_id, [1, 1])
+                action = np.reshape(device_id, [1, 1])
                 # next_state = np.reshape(next_state, [1, self.state_dim])
                 reward = np.reshape(reward, [1, 1])
 
                 state_batch.append(x)
-                action_batch.append(device_id)
+                action_batch.append(action)
                 reward_batch.append(reward)
 
                 if len(state_batch) >= args.update_interval or done:
+                    # states = self.list_to_batch(state_batch)
                     states = state_batch
-                    actions = np.reshape(self.list_to_batch(action_batch), (1, len(action_batch)))
+                    actions = self.list_to_batch(action_batch)
                     rewards = self.list_to_batch(reward_batch)
 
-                    y = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E))),
-                         np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1))),
-                         np.array(np.reshape(state['computation_resource_usage'], (1, E))),
-                         np.array(np.reshape(state['viewer_connection_table'], (1, 4000))),
-                         np.array(np.reshape(state['user_info'], (1, 4))),
-                         np.array(np.reshape(state['qoe'], (1, 3)))]
+                    y = [np.array(np.reshape(next_state['inbound_bandwidth_used'], (1, E))) / 1024 / 1024,
+                         np.array(np.reshape(next_state['outbound_bandwidth_used'], (1, E + 1))) / 1024 / 1024,
+                         np.array(np.reshape(next_state['computation_resource_usage'], (1, E))),
+                         np.array(np.reshape(next_state['viewer_connection_table'], (1, 4000))),
+                         np.array(np.reshape(next_state['user_info'], (1, 4))),
+                         np.array(np.reshape(next_state['qoe'], (1, 3)))]
                     next_v_value = self.critic.model.predict(y)
                     td_targets = self.n_step_td_target(
-                        rewards, next_v_value, done)
-                    advantages = td_targets - self.critic.model(states)
+                        (rewards+8)/8, next_v_value, done)
+                    critic = []
+                    for state in states:
+                        critic.append(self.critic.model(state)[0][0])
+                    critic = tf.convert_to_tensor(critic)
+                    advantages = td_targets - critic
 
-                    with self.lock:
-                        actor_loss = self.global_actor.train(
-                            states, actions, advantages)
-                        critic_loss = self.global_critic.train(
-                            states, td_targets)
+                    actor_loss = self.global_actor.train(
+                        states, actions, advantages)
+                    critic_loss = self.global_critic.train(
+                        states, td_targets)
 
-                        self.actor.model.set_weights(
-                            self.global_actor.model.get_weights())
-                        self.critic.model.set_weights(
-                            self.global_critic.model.get_weights())
+                    self.actor.model.set_weights(
+                        self.global_actor.model.get_weights())
+                    self.critic.model.set_weights(
+                        self.global_critic.model.get_weights())
 
                     state_batch = []
                     action_batch = []
@@ -297,8 +286,15 @@ class WorkerAgent(Thread):
                 episode_reward += reward[0][0]
                 state = next_state
 
-                print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
+            print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
+            # wandb.log({'Reward': episode_reward})
             CUR_EPISODE += 1
 
     def run(self):
         self.train()
+
+
+def main():
+    env_name = 'env_deepcast-v0'
+    agent = Agent(env_name)
+    agent.train()

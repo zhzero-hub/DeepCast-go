@@ -67,7 +67,7 @@ func (e *Edge) TranscodingLatencyCal(viewer *Viewer) float64 {
 		return 0
 	} else if availableVersion > viewer.AssignInfo.Version {
 		e.ComputationUsed += TransCodingCpuMap[viewer.AssignInfo.Version]
-		e.BandWidthInfo.OutBandWidthUsed += BitRateMap[viewer.AssignInfo.Version]
+		// e.BandWidthInfo.OutBandWidthUsed += BitRateMap[viewer.AssignInfo.Version]
 		*e.rates[viewer.AssignInfo.ChannelId] = append(*e.rates[viewer.AssignInfo.ChannelId], VersionInfo{version: availableVersion, number: 1})
 		return TransCodingTimeMap[viewer.AssignInfo.Version]
 	} else {
@@ -77,7 +77,7 @@ func (e *Edge) TranscodingLatencyCal(viewer *Viewer) float64 {
 }
 
 func (l *Location) DistanceCal(other *Location) float64 {
-	return math.Sqrt(math.Pow(l.Lat-other.Lat, 2) + math.Pow(l.Long-other.Long, 2))
+	return math.Sqrt(math.Pow(l.Lat-other.Lat, 2)+math.Pow(l.Long-other.Long, 2)) * 1000
 }
 
 func (device *DeviceCommon) ViewerLatencyCal(v *Viewer) float64 {

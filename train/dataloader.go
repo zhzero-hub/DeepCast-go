@@ -132,7 +132,7 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 			bandWidth, _ := strconv.ParseFloat(csvData[index][3], 64)
 			bitRate, _ := strconv.ParseInt(csvData[index][11], 10, 64)
 			if bandWidth > 0 {
-				userBandwidthInfo = append(userBandwidthInfo, bandWidth*8) // B/s -> bps
+				userBandwidthInfo = append(userBandwidthInfo, bandWidth/8) // B/s -> bps
 				bitRateInfo = append(bitRateInfo, bitRate*8)
 				if number, ok := bitRateMap[bitRate*8]; !ok {
 					n := int64(1)
