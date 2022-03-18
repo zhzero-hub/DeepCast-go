@@ -74,8 +74,8 @@ class Actor:
 
     def create_model(self):
         state_input = get_input_model()
-        dense_1 = Dense(32, activation='relu')(state_input)
-        dense_2 = Dense(32, activation='relu')(dense_1)
+        dense_1 = Dense(1024, activation='relu')(state_input)
+        dense_2 = Dense(512, activation='relu')(dense_1)
         out_mu = Dense(self.action_dim, activation='tanh')(dense_2)
         mu_output = Lambda(lambda x: x * self.action_bound)(out_mu)
         std_output = Dense(self.action_dim, activation='softplus')(dense_2)
@@ -116,8 +116,8 @@ class Critic:
 
     def create_model(self):
         model = get_input_model()
-        z = Dense(512, activation='relu')(model)
-        z = Dense(256, activation='relu')(z)
+        z = Dense(1024, activation='relu')(model)
+        z = Dense(512, activation='relu')(z)
         z = Dense(32, activation='relu')(z)
         z = Dense(1, activation='linear', name='output')(z)
         z = tf.keras.Model(inputs=model.input, outputs=z)
@@ -156,7 +156,7 @@ class Agent:
         self.global_critic = Critic(self.state_dim)
         self.num_workers = 1
 
-    def train(self, max_episodes=1000):
+    def train(self, max_episodes=1):
         workers = []
 
         for i in range(self.num_workers):
@@ -233,6 +233,8 @@ class WorkerAgent(Thread):
                 device_id = np.clip(device_id, -self.action_bound, self.action_bound)
                 device_id = np.random.choice(np.where(device_id == np.max(device_id))[0])
 
+                print('Action: {}, Channel id: {}, Version: {}'.format(device_id, state['channel_id'], state['version']))
+
                 action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
                           'qoe': state['qoe'], 'version': state['version']}
                 next_state, reward, done, _ = self.env.step(action)
@@ -286,9 +288,11 @@ class WorkerAgent(Thread):
                 episode_reward += reward[0][0]
                 state = next_state
 
-            print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
-            # wandb.log({'Reward': episode_reward})
-            CUR_EPISODE += 1
+                print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
+                # wandb.log({'Reward': episode_reward})
+                CUR_EPISODE += 1
+        self.actor.model.save('model/actor_model.h5')
+        self.critic.model.save('model/critic_model.h5')
 
     def run(self):
         self.train()
