@@ -296,8 +296,9 @@ class WorkerAgent(Thread):
                 print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
                 # wandb.log({'Reward': episode_reward})
                 CUR_EPISODE += 1
-        self.actor.model.save('model/actor_model.h5')
-        self.critic.model.save('model/critic_model.h5')
+                self.actor.model.save_weights('model/actor_model.h5')
+                self.critic.model.save('model/critic_model.h5')
+
 
     def run(self):
         self.train()
