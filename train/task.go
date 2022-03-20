@@ -71,6 +71,7 @@ func InitTaskManager(ctx *context.Context) {
 			}
 		}
 	}
+	maxEndTime = 0
 	taskManager := TaskManager{
 		ctx:        ctx,
 		time:       -1,

@@ -9,6 +9,7 @@ import (
 	"net"
 	"os"
 	"strconv"
+	"time"
 )
 
 const (
@@ -28,6 +29,7 @@ func (g *GoServer) SayHello(ctx context.Context, request *grpc2.SayHelloRequest)
 	log.Printf("Received hello message: %v", request.Msg)
 	if request.Msg == "Over" {
 		go func() {
+			time.Sleep(2 * time.Second)
 			g.ch <- os.Interrupt
 		}()
 	}
@@ -79,7 +81,13 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 			Base: &grpc2.Base{
 				RetCode: int64(1),
 				RetMsg:  "nextState is nil",
-				Extra:   map[string]string{},
+				Extra: map[string]string{
+					"channelId": "",
+					"version":   "1440",
+					"E":         strconv.Itoa(train.EdgeNumber),
+					"channel":   strconv.Itoa(train.Channels),
+					"versions":  strconv.Itoa(len(train.BitRateMap)),
+				},
 			},
 			State: nil,
 			Feedback: &grpc2.Feedback{
