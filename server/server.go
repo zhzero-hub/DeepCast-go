@@ -89,7 +89,7 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 	}
 	return &grpc2.TrainStepResponse{
 		Base: &grpc2.Base{
-			RetCode: int64(1),
+			RetCode: int64(0),
 			RetMsg:  "Success",
 			Extra: map[string]string{
 				"channelId": nextState.UserInfo.ChannelId,
@@ -99,7 +99,7 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 				"versions":  strconv.Itoa(len(train.BitRateMap)),
 			},
 		},
-		State: nil,
+		State: nextState,
 		Feedback: &grpc2.Feedback{
 			Reward: reward,
 		},
