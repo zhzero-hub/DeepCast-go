@@ -2,9 +2,9 @@ package train
 
 const (
 	EdgeNumber                    = 10
-	EdgeCpuCore                   = 36                 // 4 * 8
-	EdgeInboundBandwidth          = 2000 * 1024 * 1024 // Mbps -> bps
-	EdgeOutboundBandwidth         = 400 * 1024 * 1024  // Mbps -> bps
+	EdgeCpuCore                   = 36                // 4 * 8
+	EdgeInboundBandwidth          = 400 * 1024 * 1024 // Mbps -> bps
+	EdgeOutboundBandwidth         = 400 * 1024 * 1024 // Mbps -> bps
 	CdnCpuCore                    = 36
 	CdnInboundBandwidth           = 20000 * 1024 * 1024 // Mbps -> bps
 	CdnOutboundBandwidth          = 40000 * 1024 * 1024 // Mbps -> bps

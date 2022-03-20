@@ -16,6 +16,10 @@ client = bridge_pb2_grpc.TrainApiStub(channel=channel)
 
 
 def convert_state(resp):
+    E = int(resp.Base.Extra['E'])
+    channels = int(resp.Base.Extra['channel'])
+    versions = int(resp.Base.Extra['versions'])
+
     state = {}
     inbound_bandwidth_used = []
     outbound_bandwidth_used = []
@@ -33,9 +37,16 @@ def convert_state(resp):
     state['computation_resource_usage'] = computation_resource_usage
     # state.append(computation_resource_usage)
     viewer_connection_table = []
-    for _ in range(4000):
+    for _ in range(E * channels * versions):
         viewer_connection_table.append(0)
-
+    for edge, h2v in resp.State.viewer_connection.viewer_connection_table.items():
+        _edge = int(edge)
+        for channel_id, v2number in h2v.h2v.items():
+            _channel = get_channel_id(channel_id)
+            for version, number in v2number.number.items():
+                _version = get_version_id(int(version))
+                index = _edge * channels * versions + _channel * versions + _version
+                viewer_connection_table[index] = number
     state['viewer_connection_table'] = viewer_connection_table
     # state.append(viewer_connection_table)
     user_info = [resp.State.user_info.location.latitude, resp.State.user_info.location.longitude,
@@ -52,11 +63,11 @@ def convert_state(resp):
     return state
 
 
-def say_hello():
+def say_hello(msg):
     response = client.SayHello(bridge_pb2.SayHelloRequest(
-        msg="python_"
+        msg=msg
     ))
-    print("received: " + response.msg)
+    # print("received: " + response.msg)
 
 
 def reset_env(base):
@@ -105,6 +116,10 @@ def train_step(base, device_id, viewer_id, channel_id, version, qoe):
         accuracy = resp.Feedback.accuracy
         reward = resp.Feedback.reward
         return None, reward, accuracy, True
+
+
+def close():
+    say_hello('Over')
 
 
 if __name__ == '__main__':

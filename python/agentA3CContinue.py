@@ -7,6 +7,8 @@ import gym
 import argparse
 import numpy as np
 from threading import Thread
+import sys
+from rpc.train import close
 from multiprocessing import cpu_count
 tf.keras.backend.set_floatx('float64')
 # wandb.init(name='A3C', project="deep-rl-tf2")
@@ -231,7 +233,7 @@ class WorkerAgent(Thread):
                 x = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E)), dtype=np.float64) / 1024 / 1024,
                      np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1)), dtype=np.float64) / 1024 / 1024,
                      np.array(np.reshape(state['computation_resource_usage'], (1, E)), dtype=np.float64),
-                     np.array(np.reshape(state['viewer_connection_table'], (1, 4000)), dtype=np.float64),
+                     np.array(np.reshape(state['viewer_connection_table'], (1, E * channel * version)), dtype=np.float64),
                      np.array(np.reshape(state['user_info'], (1, 4)), dtype=np.float64),
                      np.array(np.reshape(state['qoe'], (1, 3)), dtype=np.float64)]
                 device_id = self.actor.get_action(x)
@@ -253,7 +255,7 @@ class WorkerAgent(Thread):
                 action_batch.append(action)
                 reward_batch.append(reward)
 
-                if len(state_batch) >= args.update_interval or done:
+                if len(state_batch) >= args.update_interval and next_state is not None:
                     # states = self.list_to_batch(state_batch)
                     states = state_batch
                     actions = self.list_to_batch(action_batch)
@@ -262,7 +264,7 @@ class WorkerAgent(Thread):
                     y = [np.array(np.reshape(next_state['inbound_bandwidth_used'], (1, E))) / 1024 / 1024,
                          np.array(np.reshape(next_state['outbound_bandwidth_used'], (1, E + 1))) / 1024 / 1024,
                          np.array(np.reshape(next_state['computation_resource_usage'], (1, E))),
-                         np.array(np.reshape(next_state['viewer_connection_table'], (1, 4000))),
+                         np.array(np.reshape(next_state['viewer_connection_table'], (1, E * channel * version))),
                          np.array(np.reshape(next_state['user_info'], (1, 4))),
                          np.array(np.reshape(next_state['qoe'], (1, 3)))]
                     next_v_value = self.critic.model.predict(y)
@@ -296,8 +298,8 @@ class WorkerAgent(Thread):
                 print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
                 # wandb.log({'Reward': episode_reward})
                 CUR_EPISODE += 1
-                self.actor.model.save_weights('model/actor_model.h5')
-                self.critic.model.save('model/critic_model.h5')
+            self.actor.model.save_weights('model/actor_model.h5')
+            self.critic.model.save('model/critic_model.h5')
 
 
     def run(self):
@@ -305,6 +307,15 @@ class WorkerAgent(Thread):
 
 
 def main():
+    output = sys.stdout
+    outputfile = open('output/stdout', 'w')
+    sys.stdout = outputfile
+
     env_name = 'env_deepcast-v0'
     agent = Agent(env_name)
     agent.train()
+
+    close()
+    outputfile.close()
+    sys.stdout = output
+

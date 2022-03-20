@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
+	"os"
 	"strconv"
 )
 
@@ -19,13 +20,19 @@ const (
 
 type GoServer struct {
 	grpc2.TrainApiServer
-	c *context.Context
+	c  *context.Context
+	ch chan os.Signal
 }
 
 func (g *GoServer) SayHello(ctx context.Context, request *grpc2.SayHelloRequest) (*grpc2.SayHelloResponse, error) {
 	log.Printf("Received hello message: %v", request.Msg)
+	if request.Msg == "Over" {
+		go func() {
+			g.ch <- os.Interrupt
+		}()
+	}
 	return &grpc2.SayHelloResponse{
-		Msg: "Hello " + request.Msg,
+		Msg: request.Msg,
 	}, nil
 }
 
@@ -40,6 +47,9 @@ func (g *GoServer) ResetEnv(ctx context.Context, request *grpc2.ResetEnvRequest)
 			Extra: map[string]string{
 				"channelId": nextState.UserInfo.ChannelId,
 				"version":   strconv.FormatInt(nextState.UserInfo.Version, 10),
+				"E":         strconv.Itoa(train.EdgeNumber),
+				"channel":   strconv.Itoa(train.Channels),
+				"versions":  strconv.Itoa(len(train.BitRateMap)),
 			},
 		},
 		State: nextState,
@@ -79,21 +89,24 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 	}
 	return &grpc2.TrainStepResponse{
 		Base: &grpc2.Base{
-			RetCode: int64(0),
+			RetCode: int64(1),
 			RetMsg:  "Success",
 			Extra: map[string]string{
 				"channelId": nextState.UserInfo.ChannelId,
 				"version":   strconv.FormatInt(nextState.UserInfo.Version, 10),
+				"E":         strconv.Itoa(train.EdgeNumber),
+				"channel":   strconv.Itoa(train.Channels),
+				"versions":  strconv.Itoa(len(train.BitRateMap)),
 			},
 		},
-		State: nextState,
+		State: nil,
 		Feedback: &grpc2.Feedback{
 			Reward: reward,
 		},
 	}, nil
 }
 
-func StartGoServer(ctx *context.Context) {
+func StartGoServer(ctx *context.Context, c chan os.Signal) {
 	// 监听本地端口
 	listener, err := net.Listen(Network, Address)
 	if err != nil {
@@ -106,7 +119,8 @@ func StartGoServer(ctx *context.Context) {
 	grpcServer := grpc.NewServer()
 	// 在gRPC服务器注册我们的服务
 	grpc2.RegisterTrainApiServer(grpcServer, &GoServer{
-		c: ctx,
+		c:  ctx,
+		ch: c,
 	})
 
 	//用服务器 Serve() 方法以及我们的端口信息区实现阻塞等待，直到进程被杀死或者 Stop() 被调用

@@ -25,6 +25,7 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
 		return nil, err
 	} else {
+		// channelMap := make(map[string]int64)
 		topLivers := GetTopLivers(ctx, csvData)
 		var topLiverNames []string
 		for k := range *topLivers {
@@ -35,9 +36,9 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 		for _, data := range csvData {
 			csvRow := data
 			var liverName, channelId string
-			if _, ok := (*topLivers)[csvRow[2]]; ok {
+			if _channelId, ok := (*topLivers)[csvRow[2]]; ok {
 				liverName = csvRow[2]
-				channelId = csvRow[1]
+				channelId = _channelId
 			} else {
 				liverName = topLiverNames[topLiverIndex]
 				channelId = (*topLivers)[liverName]
@@ -75,7 +76,13 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 					EndTime:   userViewingInfo.EndTime,
 				})
 			}
+			//if n, ok := channelMap[userViewingInfo.ChannelId]; ok {
+			//	channelMap[userViewingInfo.ChannelId] = n + 1
+			//} else {
+			//	channelMap[userViewingInfo.ChannelId] = 1
+			//}
 		}
+		// log.Printf("channelMap: %d", len(channelMap))
 		return &viewerInfoMap, nil
 	}
 }
@@ -186,7 +193,7 @@ func GetTopLivers(ctx context.Context, data [][]string) *map[string]string {
 		return topCount[i].Count > topCount[j].Count
 	})
 	topLiverMap := make(map[string]string, 0)
-	for index := 0; index < channels; index++ {
+	for index := 0; index < Channels; index++ {
 		topLiverMap[topCount[index].Liver] = channelMap[topCount[index].Liver]
 	}
 	return &topLiverMap

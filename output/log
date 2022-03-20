@@ -1,0 +1,14 @@
+2022/03/20 14:32:28 server.go:115: 0.0.0.0:5001 net.Listing...
+2022/03/20 14:32:44 server.go:40: Received reset env
+2022/03/20 14:32:44 task.go:136: Time growth: 0
+2022/03/20 14:32:46 task.go:120: solved count: 0
+2022/03/20 14:32:46 task.go:121: current watch count: 0
+2022/03/20 14:32:48 server.go:60: Received train step
+2022/03/20 14:32:48 server.go:73: action: viewer_id:"50393" channel_id:"33842283408" version:720 action:8 qoe_preference:{alpha1:2 alpha2:1.5 alpha3:2}
+2022/03/20 14:32:48 task.go:245: Channel Id: 33842283408	Device name: Edge8	Version: 720	Reward: -26425.637568
+2022/03/20 14:32:48 server.go:40: Received reset env
+2022/03/20 14:32:48 server.go:60: Received train step
+2022/03/20 14:32:48 server.go:73: action: viewer_id:"84976" channel_id:"34334627120" version:720 action:5 qoe_preference:{alpha1:1 alpha2:3 alpha3:4}
+2022/03/20 14:32:48 task.go:245: Channel Id: 34334627120	Device name: Edge5	Version: 720	Reward: -26425.577283
+2022/03/20 14:32:48 server.go:28: Received hello message: Over
+2022/03/20 14:32:48 train.go:48: signal received, stopping

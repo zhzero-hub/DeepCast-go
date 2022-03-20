@@ -4,10 +4,12 @@ import (
 	"DeepCast/server"
 	"DeepCast/train"
 	"context"
+	"os"
 )
 
 func main() {
 	ctx := context.Background()
-	train.Init(&ctx)
-	server.StartGoServer(&ctx)
+	c := make(chan os.Signal, 1)
+	train.Init(&ctx, c)
+	server.StartGoServer(&ctx, c)
 }

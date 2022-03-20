@@ -10,8 +10,8 @@ from rpc.train import *
 # render()：如果要进行可视化则实现
 
 E = 10
-channel = 100
-version = 4
+channel = 50
+version = 6
 
 
 class DeepCastEnv(core.Env):

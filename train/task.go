@@ -267,19 +267,19 @@ func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
 	conn := GetConnMap(t.solved) // edge->channel->version->number
 	var viewerConnectionMap rpc.ViewerConnection
 	viewerConnectionMap.ViewerConnectionTable = make(map[string]*rpc.H2V, 0)
-	for deviceName, c2v := range *conn {
+	for deviceId, c2v := range *conn {
+		_v2number := make(map[string]*rpc.V2Number, 0)
 		for channelId, v2number := range *c2v {
+			_number := make(map[string]int64, 0)
 			for version, number := range *v2number {
-				_number := make(map[string]int64, 0)
-				_v2number := make(map[string]*rpc.V2Number, 0)
 				_number[strconv.FormatInt(version, 10)] = *number
-				_v2number[channelId] = &rpc.V2Number{
-					Number: _number,
-				}
-				viewerConnectionMap.ViewerConnectionTable[deviceName] = &rpc.H2V{
-					H2V: _v2number,
-				}
 			}
+			_v2number[channelId] = &rpc.V2Number{
+				Number: _number,
+			}
+		}
+		viewerConnectionMap.ViewerConnectionTable[deviceId] = &rpc.H2V{
+			H2V: _v2number,
 		}
 	}
 	qoePreference := GetQoePreference(task)
@@ -379,7 +379,7 @@ func GetBandwidthCost(ctx *context.Context, viewer *Viewer) float64 {
 	var bandwidthCost float64
 	if strings.Contains(viewer.AssignInfo.DeviceId, "Edge") {
 		bandwidthCost += BitRateMap[viewer.AssignInfo.Version] * EdgeBandwidthPrice
-		bandwidthCost += BitRateMap[1440] * CdnToEdgeBandwidthPrice // cdn->edge 先不算价格，体现优势
+		bandwidthCost += BitRateMap[1440] * CdnToEdgeBandwidthPrice // cdn->edge
 	} else {
 		bandwidthCost += BitRateMap[viewer.AssignInfo.Version] * CdnBandwidthPrice
 	}
@@ -387,16 +387,15 @@ func GetBandwidthCost(ctx *context.Context, viewer *Viewer) float64 {
 }
 
 func GetConnMap(solved map[*ViewerWithWatchChannel]*DeviceCommon) *map[string]*map[string]*map[int64]*int64 {
-	// todo: 这里有问题，在Python那全是0
 	conn := make(map[string]*map[string]*map[int64]*int64, 0)
 	for viewerWithWatchInfo, device := range solved {
 		viewer := viewerWithWatchInfo.Viewer
 		var c2v *map[string]*map[int64]*int64
 		var v2number *map[int64]*int64
 		var ok bool
-		if c2v, ok = conn[device.Name]; !ok {
+		if c2v, ok = conn[strconv.Itoa(int(device.Id))]; !ok {
 			v := make(map[string]*map[int64]*int64, 0)
-			conn[device.Name] = &v
+			conn[strconv.Itoa(int(device.Id))] = &v
 			c2v = &v
 		}
 		if v2number, ok = (*c2v)[viewer.AssignInfo.ChannelId]; !ok {
