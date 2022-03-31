@@ -130,3 +130,163 @@ class TrainApi(object):
             bridge__pb2.ResetEnvResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class ServiceApiStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Service = channel.unary_unary(
+                '/pb.ServiceApi/Service',
+                request_serializer=bridge__pb2.ServiceRequest.SerializeToString,
+                response_deserializer=bridge__pb2.ServiceResponse.FromString,
+                )
+        self.SystemInfo = channel.unary_unary(
+                '/pb.ServiceApi/SystemInfo',
+                request_serializer=bridge__pb2.SystemInfoRequest.SerializeToString,
+                response_deserializer=bridge__pb2.SystemInfoResponse.FromString,
+                )
+        self.TaskManagerInfo = channel.unary_unary(
+                '/pb.ServiceApi/TaskManagerInfo',
+                request_serializer=bridge__pb2.TaskManagerInfoRequest.SerializeToString,
+                response_deserializer=bridge__pb2.TaskManagerInfoResponse.FromString,
+                )
+        self.BackgroundInfo = channel.unary_unary(
+                '/pb.ServiceApi/BackgroundInfo',
+                request_serializer=bridge__pb2.BackgroundInfoRequest.SerializeToString,
+                response_deserializer=bridge__pb2.BackgroundInfoResponse.FromString,
+                )
+
+
+class ServiceApiServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def Service(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SystemInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TaskManagerInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BackgroundInfo(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ServiceApiServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Service': grpc.unary_unary_rpc_method_handler(
+                    servicer.Service,
+                    request_deserializer=bridge__pb2.ServiceRequest.FromString,
+                    response_serializer=bridge__pb2.ServiceResponse.SerializeToString,
+            ),
+            'SystemInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.SystemInfo,
+                    request_deserializer=bridge__pb2.SystemInfoRequest.FromString,
+                    response_serializer=bridge__pb2.SystemInfoResponse.SerializeToString,
+            ),
+            'TaskManagerInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.TaskManagerInfo,
+                    request_deserializer=bridge__pb2.TaskManagerInfoRequest.FromString,
+                    response_serializer=bridge__pb2.TaskManagerInfoResponse.SerializeToString,
+            ),
+            'BackgroundInfo': grpc.unary_unary_rpc_method_handler(
+                    servicer.BackgroundInfo,
+                    request_deserializer=bridge__pb2.BackgroundInfoRequest.FromString,
+                    response_serializer=bridge__pb2.BackgroundInfoResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'pb.ServiceApi', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ServiceApi(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Service(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/pb.ServiceApi/Service',
+            bridge__pb2.ServiceRequest.SerializeToString,
+            bridge__pb2.ServiceResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SystemInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/pb.ServiceApi/SystemInfo',
+            bridge__pb2.SystemInfoRequest.SerializeToString,
+            bridge__pb2.SystemInfoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TaskManagerInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/pb.ServiceApi/TaskManagerInfo',
+            bridge__pb2.TaskManagerInfoRequest.SerializeToString,
+            bridge__pb2.TaskManagerInfoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def BackgroundInfo(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/pb.ServiceApi/BackgroundInfo',
+            bridge__pb2.BackgroundInfoRequest.SerializeToString,
+            bridge__pb2.BackgroundInfoResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

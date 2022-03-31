@@ -783,6 +783,408 @@ func (x *Feedback) GetAccuracy() float64 {
 	return 0
 }
 
+type BandWidthInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	InboundBandwidthUsage  float64 `protobuf:"fixed64,1,opt,name=inbound_bandwidth_usage,json=inboundBandwidthUsage,proto3" json:"inbound_bandwidth_usage,omitempty"`
+	OutboundBandwidthUsage float64 `protobuf:"fixed64,2,opt,name=outbound_bandwidth_usage,json=outboundBandwidthUsage,proto3" json:"outbound_bandwidth_usage,omitempty"`
+	InboundBandwidthLimit  float64 `protobuf:"fixed64,3,opt,name=inbound_bandwidth_limit,json=inboundBandwidthLimit,proto3" json:"inbound_bandwidth_limit,omitempty"`
+	OutboundBandwidthLimit float64 `protobuf:"fixed64,4,opt,name=outbound_bandwidth_limit,json=outboundBandwidthLimit,proto3" json:"outbound_bandwidth_limit,omitempty"`
+}
+
+func (x *BandWidthInfo) Reset() {
+	*x = BandWidthInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BandWidthInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BandWidthInfo) ProtoMessage() {}
+
+func (x *BandWidthInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BandWidthInfo.ProtoReflect.Descriptor instead.
+func (*BandWidthInfo) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *BandWidthInfo) GetInboundBandwidthUsage() float64 {
+	if x != nil {
+		return x.InboundBandwidthUsage
+	}
+	return 0
+}
+
+func (x *BandWidthInfo) GetOutboundBandwidthUsage() float64 {
+	if x != nil {
+		return x.OutboundBandwidthUsage
+	}
+	return 0
+}
+
+func (x *BandWidthInfo) GetInboundBandwidthLimit() float64 {
+	if x != nil {
+		return x.InboundBandwidthLimit
+	}
+	return 0
+}
+
+func (x *BandWidthInfo) GetOutboundBandwidthLimit() float64 {
+	if x != nil {
+		return x.OutboundBandwidthLimit
+	}
+	return 0
+}
+
+type Device struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id               int32          `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name             string         `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CpuCore          int32          `protobuf:"varint,3,opt,name=cpu_core,json=cpuCore,proto3" json:"cpu_core,omitempty"`
+	Location         *Location      `protobuf:"bytes,4,opt,name=location,proto3" json:"location,omitempty"`
+	BandWidthInfo    *BandWidthInfo `protobuf:"bytes,5,opt,name=band_width_info,json=bandWidthInfo,proto3" json:"band_width_info,omitempty"`
+	LatencyToUpper   float64        `protobuf:"fixed64,6,opt,name=latency_to_upper,json=latencyToUpper,proto3" json:"latency_to_upper,omitempty"`
+	ComputationUsage float64        `protobuf:"fixed64,7,opt,name=computation_usage,json=computationUsage,proto3" json:"computation_usage,omitempty"`
+}
+
+func (x *Device) Reset() {
+	*x = Device{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Device) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Device) ProtoMessage() {}
+
+func (x *Device) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Device.ProtoReflect.Descriptor instead.
+func (*Device) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *Device) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Device) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Device) GetCpuCore() int32 {
+	if x != nil {
+		return x.CpuCore
+	}
+	return 0
+}
+
+func (x *Device) GetLocation() *Location {
+	if x != nil {
+		return x.Location
+	}
+	return nil
+}
+
+func (x *Device) GetBandWidthInfo() *BandWidthInfo {
+	if x != nil {
+		return x.BandWidthInfo
+	}
+	return nil
+}
+
+func (x *Device) GetLatencyToUpper() float64 {
+	if x != nil {
+		return x.LatencyToUpper
+	}
+	return 0
+}
+
+func (x *Device) GetComputationUsage() float64 {
+	if x != nil {
+		return x.ComputationUsage
+	}
+	return 0
+}
+
+type SystemInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Edges []*Device `protobuf:"bytes,1,rep,name=edges,proto3" json:"edges,omitempty"`
+	Cdn   []*Device `protobuf:"bytes,2,rep,name=cdn,proto3" json:"cdn,omitempty"`
+}
+
+func (x *SystemInfo) Reset() {
+	*x = SystemInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SystemInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SystemInfo) ProtoMessage() {}
+
+func (x *SystemInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SystemInfo.ProtoReflect.Descriptor instead.
+func (*SystemInfo) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *SystemInfo) GetEdges() []*Device {
+	if x != nil {
+		return x.Edges
+	}
+	return nil
+}
+
+func (x *SystemInfo) GetCdn() []*Device {
+	if x != nil {
+		return x.Cdn
+	}
+	return nil
+}
+
+type Solve struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserInfo   *UserInfo `protobuf:"bytes,1,opt,name=user_info,json=userInfo,proto3" json:"user_info,omitempty"`
+	DeviceName string    `protobuf:"bytes,2,opt,name=device_name,json=deviceName,proto3" json:"device_name,omitempty"`
+}
+
+func (x *Solve) Reset() {
+	*x = Solve{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Solve) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Solve) ProtoMessage() {}
+
+func (x *Solve) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Solve.ProtoReflect.Descriptor instead.
+func (*Solve) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *Solve) GetUserInfo() *UserInfo {
+	if x != nil {
+		return x.UserInfo
+	}
+	return nil
+}
+
+func (x *Solve) GetDeviceName() string {
+	if x != nil {
+		return x.DeviceName
+	}
+	return ""
+}
+
+type TaskManagerInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Time     int64       `protobuf:"varint,1,opt,name=time,proto3" json:"time,omitempty"`
+	UserInfo []*UserInfo `protobuf:"bytes,2,rep,name=user_info,json=userInfo,proto3" json:"user_info,omitempty"`
+	Solved   []*Solve    `protobuf:"bytes,3,rep,name=solved,proto3" json:"solved,omitempty"`
+}
+
+func (x *TaskManagerInfo) Reset() {
+	*x = TaskManagerInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TaskManagerInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TaskManagerInfo) ProtoMessage() {}
+
+func (x *TaskManagerInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TaskManagerInfo.ProtoReflect.Descriptor instead.
+func (*TaskManagerInfo) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *TaskManagerInfo) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+func (x *TaskManagerInfo) GetUserInfo() []*UserInfo {
+	if x != nil {
+		return x.UserInfo
+	}
+	return nil
+}
+
+func (x *TaskManagerInfo) GetSolved() []*Solve {
+	if x != nil {
+		return x.Solved
+	}
+	return nil
+}
+
+type BackgroundInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Time     int64     `protobuf:"varint,1,opt,name=time,proto3" json:"time,omitempty"`
+	MaxTime  int64     `protobuf:"varint,2,opt,name=max_time,json=maxTime,proto3" json:"max_time,omitempty"`
+	Location *Location `protobuf:"bytes,3,opt,name=location,proto3" json:"location,omitempty"`
+}
+
+func (x *BackgroundInfo) Reset() {
+	*x = BackgroundInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_common_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BackgroundInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BackgroundInfo) ProtoMessage() {}
+
+func (x *BackgroundInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BackgroundInfo.ProtoReflect.Descriptor instead.
+func (*BackgroundInfo) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *BackgroundInfo) GetTime() int64 {
+	if x != nil {
+		return x.Time
+	}
+	return 0
+}
+
+func (x *BackgroundInfo) GetMaxTime() int64 {
+	if x != nil {
+		return x.MaxTime
+	}
+	return 0
+}
+
+func (x *BackgroundInfo) GetLocation() *Location {
+	if x != nil {
+		return x.Location
+	}
+	return nil
+}
+
 var File_common_proto protoreflect.FileDescriptor
 
 var file_common_proto_rawDesc = []byte{
@@ -904,8 +1306,64 @@ var file_common_proto_rawDesc = []byte{
 	0x72, 0x65, 0x77, 0x61, 0x72, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x52, 0x06, 0x72, 0x65,
 	0x77, 0x61, 0x72, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x61, 0x63, 0x63, 0x75, 0x72, 0x61, 0x63, 0x79,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x01, 0x52, 0x08, 0x61, 0x63, 0x63, 0x75, 0x72, 0x61, 0x63, 0x79,
-	0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2e, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x22, 0xf3, 0x01, 0x0a, 0x0d, 0x42, 0x61, 0x6e, 0x64, 0x57, 0x69, 0x64, 0x74, 0x68, 0x49, 0x6e,
+	0x66, 0x6f, 0x12, 0x36, 0x0a, 0x17, 0x69, 0x6e, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x62, 0x61,
+	0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x5f, 0x75, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x01, 0x52, 0x15, 0x69, 0x6e, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x42, 0x61, 0x6e, 0x64,
+	0x77, 0x69, 0x64, 0x74, 0x68, 0x55, 0x73, 0x61, 0x67, 0x65, 0x12, 0x38, 0x0a, 0x18, 0x6f, 0x75,
+	0x74, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x62, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68,
+	0x5f, 0x75, 0x73, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x01, 0x52, 0x16, 0x6f, 0x75,
+	0x74, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x55,
+	0x73, 0x61, 0x67, 0x65, 0x12, 0x36, 0x0a, 0x17, 0x69, 0x6e, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x5f,
+	0x62, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x5f, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x01, 0x52, 0x15, 0x69, 0x6e, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x42, 0x61,
+	0x6e, 0x64, 0x77, 0x69, 0x64, 0x74, 0x68, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x12, 0x38, 0x0a, 0x18,
+	0x6f, 0x75, 0x74, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x62, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64,
+	0x74, 0x68, 0x5f, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x01, 0x52, 0x16,
+	0x6f, 0x75, 0x74, 0x62, 0x6f, 0x75, 0x6e, 0x64, 0x42, 0x61, 0x6e, 0x64, 0x77, 0x69, 0x64, 0x74,
+	0x68, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x22, 0x83, 0x02, 0x0a, 0x06, 0x44, 0x65, 0x76, 0x69, 0x63,
+	0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69,
+	0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x63, 0x70, 0x75, 0x5f, 0x63, 0x6f, 0x72,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x07, 0x63, 0x70, 0x75, 0x43, 0x6f, 0x72, 0x65,
+	0x12, 0x28, 0x0a, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x39, 0x0a, 0x0f, 0x62, 0x61,
+	0x6e, 0x64, 0x5f, 0x77, 0x69, 0x64, 0x74, 0x68, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x6e, 0x64, 0x57, 0x69, 0x64,
+	0x74, 0x68, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x0d, 0x62, 0x61, 0x6e, 0x64, 0x57, 0x69, 0x64, 0x74,
+	0x68, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x28, 0x0a, 0x10, 0x6c, 0x61, 0x74, 0x65, 0x6e, 0x63, 0x79,
+	0x5f, 0x74, 0x6f, 0x5f, 0x75, 0x70, 0x70, 0x65, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x01, 0x52,
+	0x0e, 0x6c, 0x61, 0x74, 0x65, 0x6e, 0x63, 0x79, 0x54, 0x6f, 0x55, 0x70, 0x70, 0x65, 0x72, 0x12,
+	0x2b, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x75,
+	0x73, 0x61, 0x67, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x01, 0x52, 0x10, 0x63, 0x6f, 0x6d, 0x70,
+	0x75, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x61, 0x67, 0x65, 0x22, 0x4c, 0x0a, 0x0a,
+	0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x20, 0x0a, 0x05, 0x65, 0x64,
+	0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x05, 0x65, 0x64, 0x67, 0x65, 0x73, 0x12, 0x1c, 0x0a, 0x03,
+	0x63, 0x64, 0x6e, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x2e, 0x44,
+	0x65, 0x76, 0x69, 0x63, 0x65, 0x52, 0x03, 0x63, 0x64, 0x6e, 0x22, 0x53, 0x0a, 0x05, 0x53, 0x6f,
+	0x6c, 0x76, 0x65, 0x12, 0x29, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x6e, 0x66, 0x6f,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x73, 0x65, 0x72,
+	0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1f,
+	0x0a, 0x0b, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x65, 0x76, 0x69, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22,
+	0x73, 0x0a, 0x0f, 0x54, 0x61, 0x73, 0x6b, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e,
+	0x66, 0x6f, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x12, 0x29, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69,
+	0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x55,
+	0x73, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x49, 0x6e, 0x66,
+	0x6f, 0x12, 0x21, 0x0a, 0x06, 0x73, 0x6f, 0x6c, 0x76, 0x65, 0x64, 0x18, 0x03, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x09, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x6f, 0x6c, 0x76, 0x65, 0x52, 0x06, 0x73, 0x6f,
+	0x6c, 0x76, 0x65, 0x64, 0x22, 0x69, 0x0a, 0x0e, 0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75,
+	0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x74, 0x69, 0x6d, 0x65, 0x12, 0x19, 0x0a, 0x08, 0x6d, 0x61,
+	0x78, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x6d, 0x61,
+	0x78, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x28, 0x0a, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x4c, 0x6f, 0x63,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x08, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42,
+	0x09, 0x5a, 0x07, 0x2e, 0x2e, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -920,7 +1378,7 @@ func file_common_proto_rawDescGZIP() []byte {
 	return file_common_proto_rawDescData
 }
 
-var file_common_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_common_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_common_proto_goTypes = []interface{}{
 	(*Base)(nil),                     // 0: pb.Base
 	(*InboundBandwidthUsage)(nil),    // 1: pb.InboundBandwidthUsage
@@ -935,17 +1393,23 @@ var file_common_proto_goTypes = []interface{}{
 	(*State)(nil),                    // 10: pb.State
 	(*Action)(nil),                   // 11: pb.Action
 	(*Feedback)(nil),                 // 12: pb.Feedback
-	nil,                              // 13: pb.Base.ExtraEntry
-	nil,                              // 14: pb.V2Number.NumberEntry
-	nil,                              // 15: pb.H2V.H2vEntry
-	nil,                              // 16: pb.ViewerConnection.ViewerConnectionTableEntry
+	(*BandWidthInfo)(nil),            // 13: pb.BandWidthInfo
+	(*Device)(nil),                   // 14: pb.Device
+	(*SystemInfo)(nil),               // 15: pb.SystemInfo
+	(*Solve)(nil),                    // 16: pb.Solve
+	(*TaskManagerInfo)(nil),          // 17: pb.TaskManagerInfo
+	(*BackgroundInfo)(nil),           // 18: pb.BackgroundInfo
+	nil,                              // 19: pb.Base.ExtraEntry
+	nil,                              // 20: pb.V2Number.NumberEntry
+	nil,                              // 21: pb.H2V.H2vEntry
+	nil,                              // 22: pb.ViewerConnection.ViewerConnectionTableEntry
 }
 var file_common_proto_depIdxs = []int32{
-	13, // 0: pb.Base.Extra:type_name -> pb.Base.ExtraEntry
+	19, // 0: pb.Base.Extra:type_name -> pb.Base.ExtraEntry
 	4,  // 1: pb.UserInfo.location:type_name -> pb.Location
-	14, // 2: pb.V2Number.number:type_name -> pb.V2Number.NumberEntry
-	15, // 3: pb.H2V.h2v:type_name -> pb.H2V.H2vEntry
-	16, // 4: pb.ViewerConnection.viewer_connection_table:type_name -> pb.ViewerConnection.ViewerConnectionTableEntry
+	20, // 2: pb.V2Number.number:type_name -> pb.V2Number.NumberEntry
+	21, // 3: pb.H2V.h2v:type_name -> pb.H2V.H2vEntry
+	22, // 4: pb.ViewerConnection.viewer_connection_table:type_name -> pb.ViewerConnection.ViewerConnectionTableEntry
 	1,  // 5: pb.State.inbound_bandwidth_usage:type_name -> pb.InboundBandwidthUsage
 	2,  // 6: pb.State.outbound_bandwidth_usage:type_name -> pb.OutboundBandwidthUsage
 	3,  // 7: pb.State.computation_resource_usage:type_name -> pb.ComputationResourceUsage
@@ -953,13 +1417,21 @@ var file_common_proto_depIdxs = []int32{
 	5,  // 9: pb.State.user_info:type_name -> pb.UserInfo
 	8,  // 10: pb.State.viewer_connection:type_name -> pb.ViewerConnection
 	9,  // 11: pb.Action.qoe_preference:type_name -> pb.QoEPreference
-	6,  // 12: pb.H2V.H2vEntry.value:type_name -> pb.V2Number
-	7,  // 13: pb.ViewerConnection.ViewerConnectionTableEntry.value:type_name -> pb.H2V
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	4,  // 12: pb.Device.location:type_name -> pb.Location
+	13, // 13: pb.Device.band_width_info:type_name -> pb.BandWidthInfo
+	14, // 14: pb.SystemInfo.edges:type_name -> pb.Device
+	14, // 15: pb.SystemInfo.cdn:type_name -> pb.Device
+	5,  // 16: pb.Solve.user_info:type_name -> pb.UserInfo
+	5,  // 17: pb.TaskManagerInfo.user_info:type_name -> pb.UserInfo
+	16, // 18: pb.TaskManagerInfo.solved:type_name -> pb.Solve
+	4,  // 19: pb.BackgroundInfo.location:type_name -> pb.Location
+	6,  // 20: pb.H2V.H2vEntry.value:type_name -> pb.V2Number
+	7,  // 21: pb.ViewerConnection.ViewerConnectionTableEntry.value:type_name -> pb.H2V
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_common_proto_init() }
@@ -1124,6 +1596,78 @@ func file_common_proto_init() {
 				return nil
 			}
 		}
+		file_common_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BandWidthInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Device); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SystemInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Solve); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TaskManagerInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_common_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BackgroundInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1131,7 +1675,7 @@ func file_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_common_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

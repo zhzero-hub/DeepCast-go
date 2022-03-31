@@ -12,6 +12,12 @@ from rpc.train import *
 E = 10
 channel = 50
 version = 6
+STATUS = False
+
+
+def set_status(_STATUS):
+    global STATUS
+    STATUS = _STATUS
 
 
 class DeepCastEnv(core.Env):

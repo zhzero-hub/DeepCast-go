@@ -1,5 +1,7 @@
 package train
 
+import "sync"
+
 const (
 	EdgeNumber                    = 10
 	EdgeCpuCore                   = 36                // 4 * 8
@@ -35,4 +37,13 @@ type System struct {
 	InboundMap     []*float64
 	OutboundMap    []*float64
 	ComputationMap []*float64
+	lock           sync.RWMutex
+}
+
+func (s *System) Lock() {
+	s.lock.Lock()
+}
+
+func (s *System) Unlock() {
+	s.lock.Unlock()
 }

@@ -9,6 +9,7 @@ import (
 	"os"
 	"sort"
 	"strconv"
+	"sync"
 )
 
 type UserViewingInfo struct {
@@ -19,7 +20,7 @@ type UserViewingInfo struct {
 	EndTime   int64
 }
 
-func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
+func LoadUserViewingDataset(ctx context.Context) (*ViewerInfo, error) {
 	pwd, _ := os.Getwd()
 	if csvData, err := ReadFromFile(pwd+"/data/", "user_viewing_dataset.csv", "csv"); err != nil {
 		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
@@ -83,7 +84,10 @@ func LoadUserViewingDataset(ctx context.Context) (*map[string]*Viewer, error) {
 			//}
 		}
 		// log.Printf("channelMap: %d", len(channelMap))
-		return &viewerInfoMap, nil
+		return &ViewerInfo{
+			viewer: viewerInfoMap,
+			lock:   sync.RWMutex{},
+		}, nil
 	}
 }
 
@@ -93,7 +97,7 @@ func LoadUserLocationDataset(ctx context.Context) error {
 		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
 		return err
 	} else {
-		userMap := ctx.Value("viewer").(*map[string]*Viewer)
+		viewerInfo := ctx.Value("viewer").(*ViewerInfo)
 		var locationInfo []struct {
 			Lat float64
 			Lot float64
@@ -109,7 +113,7 @@ func LoadUserLocationDataset(ctx context.Context) error {
 			}
 		}
 		index := 0
-		for userId, viewer := range *userMap {
+		for userId, viewer := range viewerInfo.viewer {
 			viewer.Location = Location{
 				Name: userId + "->" + strconv.FormatFloat(locationInfo[index].Lot, 'f', 2, 64) + ", " + strconv.FormatFloat(locationInfo[index].Lat, 'f', 2, 64),
 				Lat:  locationInfo[index].Lat,
@@ -130,7 +134,7 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 		log.Fatalf("User_viewing_dataset 数据加载错误: %v", err)
 		return err
 	} else {
-		userMap := ctx.Value("viewer").(*map[string]*Viewer)
+		viewerInfo := ctx.Value("viewer").(*ViewerInfo)
 		userBandwidthInfo := make([]float64, 0)
 		bitRateInfo := make([]int64, 0)
 		bitRateMap := make(map[int64]*int64)
@@ -157,7 +161,7 @@ func LoadUserBandWidthDataset(ctx context.Context) error {
 			}
 		}
 		index := 0
-		for _, viewer := range *userMap {
+		for _, viewer := range viewerInfo.viewer {
 			viewer.DownThroughput = userBandwidthInfo[index]
 			viewer.VersionBit = bitRateInfo[index]
 			index++
@@ -280,5 +284,6 @@ func InitEdgeSystemInfo(ctx context.Context) *System {
 	system.InboundMap = inboundBandPointer
 	system.OutboundMap = outboundBandPointer
 	system.ComputationMap = computationPointer
+	system.lock = sync.RWMutex{}
 	return &system
 }

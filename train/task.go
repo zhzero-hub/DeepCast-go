@@ -8,6 +8,7 @@ import (
 	"math"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -50,21 +51,65 @@ type Task struct {
 	watchInfo *ViewerWithWatchChannel
 }
 
+func (t *Task) GetTask() *ViewerWithWatchChannel {
+	return t.watchInfo
+}
+
 type TaskManager struct {
 	ctx        *context.Context
 	time       int64
 	task       map[int64][]*Task
+	taskLock   sync.RWMutex
 	viewerList ViewerHeap
 	solved     map[*ViewerWithWatchChannel]*DeviceCommon
+	solvedLock sync.RWMutex
 	maxTime    int64
+}
+
+func (t *TaskManager) Lock() {
+	t.taskLock.Lock()
+	t.solvedLock.Lock()
+}
+
+func (t *TaskManager) Unlock() {
+	t.taskLock.Unlock()
+	t.solvedLock.Unlock()
+}
+
+func (t *TaskManager) GetTime() int64 {
+	return t.time
+}
+
+func (t *TaskManager) GetMaxTime() int64 {
+	return t.maxTime
+}
+
+func (t *TaskManager) GetAllTasks() []*Task {
+	var tasks []*Task
+	for _time := int64(0); _time < t.maxTime; _time++ {
+		if _, ok := t.task[_time]; ok {
+			for _, v := range t.task[_time] {
+				tasks = append(tasks, v)
+			}
+		}
+	}
+	return tasks
+}
+
+func (t *TaskManager) GetAllSolved() map[*ViewerWithWatchChannel]string {
+	solved := make(map[*ViewerWithWatchChannel]string)
+	for u, v := range t.solved {
+		solved[u] = v.Name
+	}
+	return solved
 }
 
 func InitTaskManager(ctx *context.Context) {
 	viewerWithWatchChannel := make(ViewerHeap, 0)
 	heap.Init(&viewerWithWatchChannel)
 	maxEndTime := int64(0)
-	viewers := (*ctx).Value("viewer").(*map[string]*Viewer)
-	for _, viewer := range *viewers {
+	viewers := (*ctx).Value("viewer").(*ViewerInfo)
+	for _, viewer := range viewers.viewer {
 		for _, live := range viewer.LiveInfo {
 			if live.EndTime > maxEndTime {
 				maxEndTime = live.EndTime
@@ -75,8 +120,10 @@ func InitTaskManager(ctx *context.Context) {
 		ctx:        ctx,
 		time:       -1,
 		task:       make(map[int64][]*Task),
+		taskLock:   sync.RWMutex{},
 		viewerList: viewerWithWatchChannel,
 		solved:     make(map[*ViewerWithWatchChannel]*DeviceCommon),
+		solvedLock: sync.RWMutex{},
 		maxTime:    maxEndTime,
 	}
 	*ctx = context.WithValue(*ctx, "taskManager", &taskManager)
@@ -119,7 +166,7 @@ func (t *TaskManager) RefreshTasks() {
 	}
 	log.Printf("solved count: %d\n", count)
 	log.Printf("current watch count: %d\n", len(t.solved))
-	time.Sleep(2 * time.Second)
+	// time.Sleep(2 * time.Second)
 	//for top := t.viewerList.Top(); top.EndTime <= t.time; top = t.viewerList.Top() {
 	//	watchInfo := t.viewerList.Pop().(*ViewerWithWatchChannel)
 	//	system := (*t.ctx).Value("system").(*System)
@@ -134,7 +181,7 @@ func (t *TaskManager) RefreshTasks() {
 func (t *TaskManager) TimeGrowth() {
 	t.time++
 	log.Printf("Time growth: %d", t.time)
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 	t.RefreshTasks()
 	for _, task := range t.task[t.time] {
 		t.viewerList.Push(task.watchInfo)
@@ -157,8 +204,8 @@ func (t *TaskManager) TakeAction(ctx *context.Context, req *rpc.TrainStepRequest
 	action := req.Action
 	system := (*t.ctx).Value("system").(*System)
 	viewerId := action.GetViewerId()
-	viewerMap := (*t.ctx).Value("viewer").(*map[string]*Viewer)
-	viewer := (*viewerMap)[viewerId]
+	viewerInfo := (*t.ctx).Value("viewer").(*ViewerInfo)
+	viewer := viewerInfo.viewer[viewerId]
 	var liveInfo *LiveInfo
 	for _, live := range viewer.LiveInfo {
 		if live.ChannelId == req.Action.ChannelId && t.time == live.StartTime {

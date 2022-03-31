@@ -10,6 +10,9 @@ import (
 func main() {
 	ctx := context.Background()
 	c := make(chan os.Signal, 1)
+	// InitLog(ctx)
 	train.Init(&ctx, c)
-	server.StartGoServer(&ctx, c)
+	go server.StartGoServer(&ctx, c)
+	go server.StartWebServer(&ctx, make(chan os.Signal, 1))
+	select {}
 }

@@ -13,6 +13,13 @@ service TrainApi {
   rpc ResetEnv(ResetEnvRequest) returns (ResetEnvResponse) {}
 }
 
+service ServiceApi {
+  rpc Service(ServiceRequest) returns (ServiceResponse) {}
+  rpc SystemInfo(SystemInfoRequest) returns (SystemInfoResponse) {}
+  rpc TaskManagerInfo(TaskManagerInfoRequest) returns (TaskManagerInfoResponse) {}
+  rpc BackgroundInfo(BackgroundInfoRequest) returns (BackgroundInfoResponse) {}
+}
+
 message SayHelloRequest {
   string msg = 1;
 }
@@ -39,4 +46,40 @@ message ResetEnvRequest {
 message ResetEnvResponse {
   Base Base = 1;
   State State = 2;
+}
+
+message ServiceRequest {
+  Base Base = 1;
+}
+
+message ServiceResponse {
+  Base Base = 1;
+  State State = 2;
+}
+
+message SystemInfoRequest {
+  Base Base = 1;
+}
+
+message SystemInfoResponse {
+  Base Base = 1;
+  SystemInfo SystemInfo = 2;
+}
+
+message TaskManagerInfoRequest {
+  Base Base = 1;
+}
+
+message TaskManagerInfoResponse {
+  Base Base = 1;
+  TaskManagerInfo TaskManagerInfo = 2;
+}
+
+message BackgroundInfoRequest {
+  Base Base = 1;
+}
+
+message BackgroundInfoResponse {
+  Base Base = 1;
+  BackgroundInfo BackgroundInfo = 2;
 }

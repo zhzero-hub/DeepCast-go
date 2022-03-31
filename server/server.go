@@ -40,7 +40,13 @@ func (g *GoServer) SayHello(ctx context.Context, request *grpc2.SayHelloRequest)
 
 func (g *GoServer) ResetEnv(ctx context.Context, request *grpc2.ResetEnvRequest) (*grpc2.ResetEnvResponse, error) {
 	log.Printf("Received reset env")
+	defer log.Printf("Reset env done")
 	taskManager := (*g.c).Value("taskManager").(*train.TaskManager)
+	system := (*g.c).Value("system").(*train.System)
+	taskManager.Lock()
+	defer taskManager.Unlock()
+	system.Lock()
+	defer system.Unlock()
 	nextState := taskManager.NextState(g.c)
 	return &grpc2.ResetEnvResponse{
 		Base: &grpc2.Base{
@@ -74,6 +80,11 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 	}
 	log.Printf("action: %v\n", action)
 	taskManager := (*g.c).Value("taskManager").(*train.TaskManager)
+	system := (*g.c).Value("system").(*train.System)
+	taskManager.Lock()
+	defer taskManager.Unlock()
+	system.Lock()
+	defer system.Unlock()
 	reward := taskManager.TakeAction(g.c, request)
 	nextState := taskManager.NextState(g.c)
 	if nextState == nil {

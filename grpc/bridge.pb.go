@@ -341,6 +341,414 @@ func (x *ResetEnvResponse) GetState() *State {
 	return nil
 }
 
+type ServiceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base *Base `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+}
+
+func (x *ServiceRequest) Reset() {
+	*x = ServiceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceRequest) ProtoMessage() {}
+
+func (x *ServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceRequest.ProtoReflect.Descriptor instead.
+func (*ServiceRequest) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ServiceRequest) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+type ServiceResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base  *Base  `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+	State *State `protobuf:"bytes,2,opt,name=State,proto3" json:"State,omitempty"`
+}
+
+func (x *ServiceResponse) Reset() {
+	*x = ServiceResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServiceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceResponse) ProtoMessage() {}
+
+func (x *ServiceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceResponse.ProtoReflect.Descriptor instead.
+func (*ServiceResponse) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ServiceResponse) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+func (x *ServiceResponse) GetState() *State {
+	if x != nil {
+		return x.State
+	}
+	return nil
+}
+
+type SystemInfoRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base *Base `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+}
+
+func (x *SystemInfoRequest) Reset() {
+	*x = SystemInfoRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SystemInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SystemInfoRequest) ProtoMessage() {}
+
+func (x *SystemInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SystemInfoRequest.ProtoReflect.Descriptor instead.
+func (*SystemInfoRequest) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *SystemInfoRequest) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+type SystemInfoResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base       *Base       `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+	SystemInfo *SystemInfo `protobuf:"bytes,2,opt,name=SystemInfo,proto3" json:"SystemInfo,omitempty"`
+}
+
+func (x *SystemInfoResponse) Reset() {
+	*x = SystemInfoResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SystemInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SystemInfoResponse) ProtoMessage() {}
+
+func (x *SystemInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SystemInfoResponse.ProtoReflect.Descriptor instead.
+func (*SystemInfoResponse) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *SystemInfoResponse) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+func (x *SystemInfoResponse) GetSystemInfo() *SystemInfo {
+	if x != nil {
+		return x.SystemInfo
+	}
+	return nil
+}
+
+type TaskManagerInfoRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base *Base `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+}
+
+func (x *TaskManagerInfoRequest) Reset() {
+	*x = TaskManagerInfoRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TaskManagerInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TaskManagerInfoRequest) ProtoMessage() {}
+
+func (x *TaskManagerInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TaskManagerInfoRequest.ProtoReflect.Descriptor instead.
+func (*TaskManagerInfoRequest) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *TaskManagerInfoRequest) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+type TaskManagerInfoResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base            *Base            `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+	TaskManagerInfo *TaskManagerInfo `protobuf:"bytes,2,opt,name=TaskManagerInfo,proto3" json:"TaskManagerInfo,omitempty"`
+}
+
+func (x *TaskManagerInfoResponse) Reset() {
+	*x = TaskManagerInfoResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TaskManagerInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TaskManagerInfoResponse) ProtoMessage() {}
+
+func (x *TaskManagerInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TaskManagerInfoResponse.ProtoReflect.Descriptor instead.
+func (*TaskManagerInfoResponse) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *TaskManagerInfoResponse) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+func (x *TaskManagerInfoResponse) GetTaskManagerInfo() *TaskManagerInfo {
+	if x != nil {
+		return x.TaskManagerInfo
+	}
+	return nil
+}
+
+type BackgroundInfoRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base *Base `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+}
+
+func (x *BackgroundInfoRequest) Reset() {
+	*x = BackgroundInfoRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BackgroundInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BackgroundInfoRequest) ProtoMessage() {}
+
+func (x *BackgroundInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BackgroundInfoRequest.ProtoReflect.Descriptor instead.
+func (*BackgroundInfoRequest) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *BackgroundInfoRequest) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+type BackgroundInfoResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base           *Base           `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+	BackgroundInfo *BackgroundInfo `protobuf:"bytes,2,opt,name=BackgroundInfo,proto3" json:"BackgroundInfo,omitempty"`
+}
+
+func (x *BackgroundInfoResponse) Reset() {
+	*x = BackgroundInfoResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_bridge_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BackgroundInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BackgroundInfoResponse) ProtoMessage() {}
+
+func (x *BackgroundInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bridge_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BackgroundInfoResponse.ProtoReflect.Descriptor instead.
+func (*BackgroundInfoResponse) Descriptor() ([]byte, []int) {
+	return file_bridge_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *BackgroundInfoResponse) GetBase() *Base {
+	if x != nil {
+		return x.Base
+	}
+	return nil
+}
+
+func (x *BackgroundInfoResponse) GetBackgroundInfo() *BackgroundInfo {
+	if x != nil {
+		return x.BackgroundInfo
+	}
+	return nil
+}
+
 var File_bridge_proto protoreflect.FileDescriptor
 
 var file_bridge_proto_rawDesc = []byte{
@@ -372,20 +780,77 @@ var file_bridge_proto_rawDesc = []byte{
 	0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42, 0x61,
 	0x73, 0x65, 0x12, 0x1f, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x09, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x53, 0x74,
-	0x61, 0x74, 0x65, 0x32, 0xb8, 0x01, 0x0a, 0x08, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x41, 0x70, 0x69,
-	0x12, 0x37, 0x0a, 0x08, 0x53, 0x61, 0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x12, 0x13, 0x2e, 0x70,
-	0x62, 0x2e, 0x53, 0x61, 0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x61, 0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3a, 0x0a, 0x09, 0x54, 0x72, 0x61,
-	0x69, 0x6e, 0x53, 0x74, 0x65, 0x70, 0x12, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x54, 0x72, 0x61, 0x69,
-	0x6e, 0x53, 0x74, 0x65, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x70,
-	0x62, 0x2e, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x53, 0x74, 0x65, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x37, 0x0a, 0x08, 0x52, 0x65, 0x73, 0x65, 0x74, 0x45, 0x6e,
-	0x76, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x73, 0x65, 0x74, 0x45, 0x6e, 0x76, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x73, 0x65,
-	0x74, 0x45, 0x6e, 0x76, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x09,
-	0x5a, 0x07, 0x2e, 0x2e, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x61, 0x74, 0x65, 0x22, 0x2e, 0x0a, 0x0e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42,
+	0x61, 0x73, 0x65, 0x22, 0x50, 0x0a, 0x0f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04,
+	0x42, 0x61, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x09, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05,
+	0x53, 0x74, 0x61, 0x74, 0x65, 0x22, 0x31, 0x0a, 0x11, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49,
+	0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61,
+	0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61,
+	0x73, 0x65, 0x52, 0x04, 0x42, 0x61, 0x73, 0x65, 0x22, 0x62, 0x0a, 0x12, 0x53, 0x79, 0x73, 0x74,
+	0x65, 0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c,
+	0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70,
+	0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42, 0x61, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x0a,
+	0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0e, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x6e, 0x66, 0x6f,
+	0x52, 0x0a, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x36, 0x0a, 0x16,
+	0x54, 0x61, 0x73, 0x6b, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04,
+	0x42, 0x61, 0x73, 0x65, 0x22, 0x76, 0x0a, 0x17, 0x54, 0x61, 0x73, 0x6b, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e,
+	0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42, 0x61, 0x73, 0x65, 0x12, 0x3d, 0x0a,
+	0x0f, 0x54, 0x61, 0x73, 0x6b, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x54, 0x61, 0x73, 0x6b,
+	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x0f, 0x54, 0x61, 0x73,
+	0x6b, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x35, 0x0a, 0x15,
+	0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42,
+	0x61, 0x73, 0x65, 0x22, 0x72, 0x0a, 0x16, 0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75, 0x6e,
+	0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a,
+	0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62,
+	0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42, 0x61, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x0e, 0x42,
+	0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f,
+	0x75, 0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x0e, 0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f,
+	0x75, 0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x32, 0xb8, 0x01, 0x0a, 0x08, 0x54, 0x72, 0x61, 0x69,
+	0x6e, 0x41, 0x70, 0x69, 0x12, 0x37, 0x0a, 0x08, 0x53, 0x61, 0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f,
+	0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x61, 0x79, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x61, 0x79, 0x48, 0x65,
+	0x6c, 0x6c, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3a, 0x0a,
+	0x09, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x53, 0x74, 0x65, 0x70, 0x12, 0x14, 0x2e, 0x70, 0x62, 0x2e,
+	0x54, 0x72, 0x61, 0x69, 0x6e, 0x53, 0x74, 0x65, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x54, 0x72, 0x61, 0x69, 0x6e, 0x53, 0x74, 0x65, 0x70, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x37, 0x0a, 0x08, 0x52, 0x65, 0x73,
+	0x65, 0x74, 0x45, 0x6e, 0x76, 0x12, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x52, 0x65, 0x73, 0x65, 0x74,
+	0x45, 0x6e, 0x76, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x62, 0x2e,
+	0x52, 0x65, 0x73, 0x65, 0x74, 0x45, 0x6e, 0x76, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x32, 0x9a, 0x02, 0x0a, 0x0a, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x41, 0x70,
+	0x69, 0x12, 0x34, 0x0a, 0x07, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x12, 0x2e, 0x70,
+	0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x13, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3d, 0x0a, 0x0a, 0x53, 0x79, 0x73, 0x74, 0x65,
+	0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x15, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x79, 0x73, 0x74, 0x65,
+	0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x70,
+	0x62, 0x2e, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4c, 0x0a, 0x0f, 0x54, 0x61, 0x73, 0x6b, 0x4d, 0x61,
+	0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x54,
+	0x61, 0x73, 0x6b, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x70, 0x62, 0x2e, 0x54, 0x61, 0x73, 0x6b, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x12, 0x49, 0x0a, 0x0e, 0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75,
+	0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x19, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x63, 0x6b,
+	0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1a, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75, 0x6e,
+	0x64, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42,
+	0x09, 0x5a, 0x07, 0x2e, 0x2e, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -400,39 +865,70 @@ func file_bridge_proto_rawDescGZIP() []byte {
 	return file_bridge_proto_rawDescData
 }
 
-var file_bridge_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_bridge_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_bridge_proto_goTypes = []interface{}{
-	(*SayHelloRequest)(nil),   // 0: pb.SayHelloRequest
-	(*SayHelloResponse)(nil),  // 1: pb.SayHelloResponse
-	(*TrainStepRequest)(nil),  // 2: pb.TrainStepRequest
-	(*TrainStepResponse)(nil), // 3: pb.TrainStepResponse
-	(*ResetEnvRequest)(nil),   // 4: pb.ResetEnvRequest
-	(*ResetEnvResponse)(nil),  // 5: pb.ResetEnvResponse
-	(*Base)(nil),              // 6: pb.Base
-	(*Action)(nil),            // 7: pb.Action
-	(*State)(nil),             // 8: pb.State
-	(*Feedback)(nil),          // 9: pb.Feedback
+	(*SayHelloRequest)(nil),         // 0: pb.SayHelloRequest
+	(*SayHelloResponse)(nil),        // 1: pb.SayHelloResponse
+	(*TrainStepRequest)(nil),        // 2: pb.TrainStepRequest
+	(*TrainStepResponse)(nil),       // 3: pb.TrainStepResponse
+	(*ResetEnvRequest)(nil),         // 4: pb.ResetEnvRequest
+	(*ResetEnvResponse)(nil),        // 5: pb.ResetEnvResponse
+	(*ServiceRequest)(nil),          // 6: pb.ServiceRequest
+	(*ServiceResponse)(nil),         // 7: pb.ServiceResponse
+	(*SystemInfoRequest)(nil),       // 8: pb.SystemInfoRequest
+	(*SystemInfoResponse)(nil),      // 9: pb.SystemInfoResponse
+	(*TaskManagerInfoRequest)(nil),  // 10: pb.TaskManagerInfoRequest
+	(*TaskManagerInfoResponse)(nil), // 11: pb.TaskManagerInfoResponse
+	(*BackgroundInfoRequest)(nil),   // 12: pb.BackgroundInfoRequest
+	(*BackgroundInfoResponse)(nil),  // 13: pb.BackgroundInfoResponse
+	(*Base)(nil),                    // 14: pb.Base
+	(*Action)(nil),                  // 15: pb.Action
+	(*State)(nil),                   // 16: pb.State
+	(*Feedback)(nil),                // 17: pb.Feedback
+	(*SystemInfo)(nil),              // 18: pb.SystemInfo
+	(*TaskManagerInfo)(nil),         // 19: pb.TaskManagerInfo
+	(*BackgroundInfo)(nil),          // 20: pb.BackgroundInfo
 }
 var file_bridge_proto_depIdxs = []int32{
-	6,  // 0: pb.TrainStepRequest.Base:type_name -> pb.Base
-	7,  // 1: pb.TrainStepRequest.Action:type_name -> pb.Action
-	6,  // 2: pb.TrainStepResponse.Base:type_name -> pb.Base
-	8,  // 3: pb.TrainStepResponse.State:type_name -> pb.State
-	9,  // 4: pb.TrainStepResponse.Feedback:type_name -> pb.Feedback
-	6,  // 5: pb.ResetEnvRequest.Base:type_name -> pb.Base
-	6,  // 6: pb.ResetEnvResponse.Base:type_name -> pb.Base
-	8,  // 7: pb.ResetEnvResponse.State:type_name -> pb.State
-	0,  // 8: pb.TrainApi.SayHello:input_type -> pb.SayHelloRequest
-	2,  // 9: pb.TrainApi.TrainStep:input_type -> pb.TrainStepRequest
-	4,  // 10: pb.TrainApi.ResetEnv:input_type -> pb.ResetEnvRequest
-	1,  // 11: pb.TrainApi.SayHello:output_type -> pb.SayHelloResponse
-	3,  // 12: pb.TrainApi.TrainStep:output_type -> pb.TrainStepResponse
-	5,  // 13: pb.TrainApi.ResetEnv:output_type -> pb.ResetEnvResponse
-	11, // [11:14] is the sub-list for method output_type
-	8,  // [8:11] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	14, // 0: pb.TrainStepRequest.Base:type_name -> pb.Base
+	15, // 1: pb.TrainStepRequest.Action:type_name -> pb.Action
+	14, // 2: pb.TrainStepResponse.Base:type_name -> pb.Base
+	16, // 3: pb.TrainStepResponse.State:type_name -> pb.State
+	17, // 4: pb.TrainStepResponse.Feedback:type_name -> pb.Feedback
+	14, // 5: pb.ResetEnvRequest.Base:type_name -> pb.Base
+	14, // 6: pb.ResetEnvResponse.Base:type_name -> pb.Base
+	16, // 7: pb.ResetEnvResponse.State:type_name -> pb.State
+	14, // 8: pb.ServiceRequest.Base:type_name -> pb.Base
+	14, // 9: pb.ServiceResponse.Base:type_name -> pb.Base
+	16, // 10: pb.ServiceResponse.State:type_name -> pb.State
+	14, // 11: pb.SystemInfoRequest.Base:type_name -> pb.Base
+	14, // 12: pb.SystemInfoResponse.Base:type_name -> pb.Base
+	18, // 13: pb.SystemInfoResponse.SystemInfo:type_name -> pb.SystemInfo
+	14, // 14: pb.TaskManagerInfoRequest.Base:type_name -> pb.Base
+	14, // 15: pb.TaskManagerInfoResponse.Base:type_name -> pb.Base
+	19, // 16: pb.TaskManagerInfoResponse.TaskManagerInfo:type_name -> pb.TaskManagerInfo
+	14, // 17: pb.BackgroundInfoRequest.Base:type_name -> pb.Base
+	14, // 18: pb.BackgroundInfoResponse.Base:type_name -> pb.Base
+	20, // 19: pb.BackgroundInfoResponse.BackgroundInfo:type_name -> pb.BackgroundInfo
+	0,  // 20: pb.TrainApi.SayHello:input_type -> pb.SayHelloRequest
+	2,  // 21: pb.TrainApi.TrainStep:input_type -> pb.TrainStepRequest
+	4,  // 22: pb.TrainApi.ResetEnv:input_type -> pb.ResetEnvRequest
+	6,  // 23: pb.ServiceApi.Service:input_type -> pb.ServiceRequest
+	8,  // 24: pb.ServiceApi.SystemInfo:input_type -> pb.SystemInfoRequest
+	10, // 25: pb.ServiceApi.TaskManagerInfo:input_type -> pb.TaskManagerInfoRequest
+	12, // 26: pb.ServiceApi.BackgroundInfo:input_type -> pb.BackgroundInfoRequest
+	1,  // 27: pb.TrainApi.SayHello:output_type -> pb.SayHelloResponse
+	3,  // 28: pb.TrainApi.TrainStep:output_type -> pb.TrainStepResponse
+	5,  // 29: pb.TrainApi.ResetEnv:output_type -> pb.ResetEnvResponse
+	7,  // 30: pb.ServiceApi.Service:output_type -> pb.ServiceResponse
+	9,  // 31: pb.ServiceApi.SystemInfo:output_type -> pb.SystemInfoResponse
+	11, // 32: pb.ServiceApi.TaskManagerInfo:output_type -> pb.TaskManagerInfoResponse
+	13, // 33: pb.ServiceApi.BackgroundInfo:output_type -> pb.BackgroundInfoResponse
+	27, // [27:34] is the sub-list for method output_type
+	20, // [20:27] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_bridge_proto_init() }
@@ -514,6 +1010,102 @@ func file_bridge_proto_init() {
 				return nil
 			}
 		}
+		file_bridge_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServiceRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServiceResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SystemInfoRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SystemInfoResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TaskManagerInfoRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TaskManagerInfoResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BackgroundInfoRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_bridge_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BackgroundInfoResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -521,9 +1113,9 @@ func file_bridge_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_bridge_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   14,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_bridge_proto_goTypes,
 		DependencyIndexes: file_bridge_proto_depIdxs,
@@ -681,6 +1273,186 @@ var _TrainApi_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResetEnv",
 			Handler:    _TrainApi_ResetEnv_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "bridge.proto",
+}
+
+// ServiceApiClient is the client API for ServiceApi service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type ServiceApiClient interface {
+	Service(ctx context.Context, in *ServiceRequest, opts ...grpc.CallOption) (*ServiceResponse, error)
+	SystemInfo(ctx context.Context, in *SystemInfoRequest, opts ...grpc.CallOption) (*SystemInfoResponse, error)
+	TaskManagerInfo(ctx context.Context, in *TaskManagerInfoRequest, opts ...grpc.CallOption) (*TaskManagerInfoResponse, error)
+	BackgroundInfo(ctx context.Context, in *BackgroundInfoRequest, opts ...grpc.CallOption) (*BackgroundInfoResponse, error)
+}
+
+type serviceApiClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewServiceApiClient(cc grpc.ClientConnInterface) ServiceApiClient {
+	return &serviceApiClient{cc}
+}
+
+func (c *serviceApiClient) Service(ctx context.Context, in *ServiceRequest, opts ...grpc.CallOption) (*ServiceResponse, error) {
+	out := new(ServiceResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServiceApi/Service", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceApiClient) SystemInfo(ctx context.Context, in *SystemInfoRequest, opts ...grpc.CallOption) (*SystemInfoResponse, error) {
+	out := new(SystemInfoResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServiceApi/SystemInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceApiClient) TaskManagerInfo(ctx context.Context, in *TaskManagerInfoRequest, opts ...grpc.CallOption) (*TaskManagerInfoResponse, error) {
+	out := new(TaskManagerInfoResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServiceApi/TaskManagerInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceApiClient) BackgroundInfo(ctx context.Context, in *BackgroundInfoRequest, opts ...grpc.CallOption) (*BackgroundInfoResponse, error) {
+	out := new(BackgroundInfoResponse)
+	err := c.cc.Invoke(ctx, "/pb.ServiceApi/BackgroundInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ServiceApiServer is the server API for ServiceApi service.
+type ServiceApiServer interface {
+	Service(context.Context, *ServiceRequest) (*ServiceResponse, error)
+	SystemInfo(context.Context, *SystemInfoRequest) (*SystemInfoResponse, error)
+	TaskManagerInfo(context.Context, *TaskManagerInfoRequest) (*TaskManagerInfoResponse, error)
+	BackgroundInfo(context.Context, *BackgroundInfoRequest) (*BackgroundInfoResponse, error)
+}
+
+// UnimplementedServiceApiServer can be embedded to have forward compatible implementations.
+type UnimplementedServiceApiServer struct {
+}
+
+func (*UnimplementedServiceApiServer) Service(context.Context, *ServiceRequest) (*ServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Service not implemented")
+}
+func (*UnimplementedServiceApiServer) SystemInfo(context.Context, *SystemInfoRequest) (*SystemInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SystemInfo not implemented")
+}
+func (*UnimplementedServiceApiServer) TaskManagerInfo(context.Context, *TaskManagerInfoRequest) (*TaskManagerInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TaskManagerInfo not implemented")
+}
+func (*UnimplementedServiceApiServer) BackgroundInfo(context.Context, *BackgroundInfoRequest) (*BackgroundInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BackgroundInfo not implemented")
+}
+
+func RegisterServiceApiServer(s *grpc.Server, srv ServiceApiServer) {
+	s.RegisterService(&_ServiceApi_serviceDesc, srv)
+}
+
+func _ServiceApi_Service_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceApiServer).Service(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServiceApi/Service",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceApiServer).Service(ctx, req.(*ServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceApi_SystemInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SystemInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceApiServer).SystemInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServiceApi/SystemInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceApiServer).SystemInfo(ctx, req.(*SystemInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceApi_TaskManagerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TaskManagerInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceApiServer).TaskManagerInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServiceApi/TaskManagerInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceApiServer).TaskManagerInfo(ctx, req.(*TaskManagerInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceApi_BackgroundInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BackgroundInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceApiServer).BackgroundInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.ServiceApi/BackgroundInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceApiServer).BackgroundInfo(ctx, req.(*BackgroundInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _ServiceApi_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.ServiceApi",
+	HandlerType: (*ServiceApiServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Service",
+			Handler:    _ServiceApi_Service_Handler,
+		},
+		{
+			MethodName: "SystemInfo",
+			Handler:    _ServiceApi_SystemInfo_Handler,
+		},
+		{
+			MethodName: "TaskManagerInfo",
+			Handler:    _ServiceApi_TaskManagerInfo_Handler,
+		},
+		{
+			MethodName: "BackgroundInfo",
+			Handler:    _ServiceApi_BackgroundInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

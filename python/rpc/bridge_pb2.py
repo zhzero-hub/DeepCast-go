@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x62ridge.proto\x12\x02pb\x1a\x0c\x63ommon.proto\"\x1e\n\x0fSayHelloRequest\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x1f\n\x10SayHelloResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"F\n\x10TrainStepRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x1a\n\x06\x41\x63tion\x18\x02 \x01(\x0b\x32\n.pb.Action\"e\n\x11TrainStepResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x18\n\x05State\x18\x02 \x01(\x0b\x32\t.pb.State\x12\x1e\n\x08\x46\x65\x65\x64\x62\x61\x63k\x18\x03 \x01(\x0b\x32\x0c.pb.Feedback\")\n\x0fResetEnvRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\"D\n\x10ResetEnvResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x18\n\x05State\x18\x02 \x01(\x0b\x32\t.pb.State2\xb8\x01\n\x08TrainApi\x12\x37\n\x08SayHello\x12\x13.pb.SayHelloRequest\x1a\x14.pb.SayHelloResponse\"\x00\x12:\n\tTrainStep\x12\x14.pb.TrainStepRequest\x1a\x15.pb.TrainStepResponse\"\x00\x12\x37\n\x08ResetEnv\x12\x13.pb.ResetEnvRequest\x1a\x14.pb.ResetEnvResponse\"\x00\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x62ridge.proto\x12\x02pb\x1a\x0c\x63ommon.proto\"\x1e\n\x0fSayHelloRequest\x12\x0b\n\x03msg\x18\x01 \x01(\t\"\x1f\n\x10SayHelloResponse\x12\x0b\n\x03msg\x18\x01 \x01(\t\"F\n\x10TrainStepRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x1a\n\x06\x41\x63tion\x18\x02 \x01(\x0b\x32\n.pb.Action\"e\n\x11TrainStepResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x18\n\x05State\x18\x02 \x01(\x0b\x32\t.pb.State\x12\x1e\n\x08\x46\x65\x65\x64\x62\x61\x63k\x18\x03 \x01(\x0b\x32\x0c.pb.Feedback\")\n\x0fResetEnvRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\"D\n\x10ResetEnvResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x18\n\x05State\x18\x02 \x01(\x0b\x32\t.pb.State\"(\n\x0eServiceRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\"C\n\x0fServiceResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\x18\n\x05State\x18\x02 \x01(\x0b\x32\t.pb.State\"+\n\x11SystemInfoRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\"P\n\x12SystemInfoResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12\"\n\nSystemInfo\x18\x02 \x01(\x0b\x32\x0e.pb.SystemInfo\"0\n\x16TaskManagerInfoRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\"_\n\x17TaskManagerInfoResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12,\n\x0fTaskManagerInfo\x18\x02 \x01(\x0b\x32\x13.pb.TaskManagerInfo\"/\n\x15\x42\x61\x63kgroundInfoRequest\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\"\\\n\x16\x42\x61\x63kgroundInfoResponse\x12\x16\n\x04\x42\x61se\x18\x01 \x01(\x0b\x32\x08.pb.Base\x12*\n\x0e\x42\x61\x63kgroundInfo\x18\x02 \x01(\x0b\x32\x12.pb.BackgroundInfo2\xb8\x01\n\x08TrainApi\x12\x37\n\x08SayHello\x12\x13.pb.SayHelloRequest\x1a\x14.pb.SayHelloResponse\"\x00\x12:\n\tTrainStep\x12\x14.pb.TrainStepRequest\x1a\x15.pb.TrainStepResponse\"\x00\x12\x37\n\x08ResetEnv\x12\x13.pb.ResetEnvRequest\x1a\x14.pb.ResetEnvResponse\"\x00\x32\x9a\x02\n\nServiceApi\x12\x34\n\x07Service\x12\x12.pb.ServiceRequest\x1a\x13.pb.ServiceResponse\"\x00\x12=\n\nSystemInfo\x12\x15.pb.SystemInfoRequest\x1a\x16.pb.SystemInfoResponse\"\x00\x12L\n\x0fTaskManagerInfo\x12\x1a.pb.TaskManagerInfoRequest\x1a\x1b.pb.TaskManagerInfoResponse\"\x00\x12I\n\x0e\x42\x61\x63kgroundInfo\x12\x19.pb.BackgroundInfoRequest\x1a\x1a.pb.BackgroundInfoResponse\"\x00\x42\tZ\x07../grpcb\x06proto3'
   ,
   dependencies=[common__pb2.DESCRIPTOR,])
 
@@ -246,6 +246,290 @@ _RESETENVRESPONSE = _descriptor.Descriptor(
   serialized_end=385,
 )
 
+
+_SERVICEREQUEST = _descriptor.Descriptor(
+  name='ServiceRequest',
+  full_name='pb.ServiceRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.ServiceRequest.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=387,
+  serialized_end=427,
+)
+
+
+_SERVICERESPONSE = _descriptor.Descriptor(
+  name='ServiceResponse',
+  full_name='pb.ServiceResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.ServiceResponse.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='State', full_name='pb.ServiceResponse.State', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=429,
+  serialized_end=496,
+)
+
+
+_SYSTEMINFOREQUEST = _descriptor.Descriptor(
+  name='SystemInfoRequest',
+  full_name='pb.SystemInfoRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.SystemInfoRequest.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=498,
+  serialized_end=541,
+)
+
+
+_SYSTEMINFORESPONSE = _descriptor.Descriptor(
+  name='SystemInfoResponse',
+  full_name='pb.SystemInfoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.SystemInfoResponse.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='SystemInfo', full_name='pb.SystemInfoResponse.SystemInfo', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=543,
+  serialized_end=623,
+)
+
+
+_TASKMANAGERINFOREQUEST = _descriptor.Descriptor(
+  name='TaskManagerInfoRequest',
+  full_name='pb.TaskManagerInfoRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.TaskManagerInfoRequest.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=625,
+  serialized_end=673,
+)
+
+
+_TASKMANAGERINFORESPONSE = _descriptor.Descriptor(
+  name='TaskManagerInfoResponse',
+  full_name='pb.TaskManagerInfoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.TaskManagerInfoResponse.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='TaskManagerInfo', full_name='pb.TaskManagerInfoResponse.TaskManagerInfo', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=675,
+  serialized_end=770,
+)
+
+
+_BACKGROUNDINFOREQUEST = _descriptor.Descriptor(
+  name='BackgroundInfoRequest',
+  full_name='pb.BackgroundInfoRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.BackgroundInfoRequest.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=772,
+  serialized_end=819,
+)
+
+
+_BACKGROUNDINFORESPONSE = _descriptor.Descriptor(
+  name='BackgroundInfoResponse',
+  full_name='pb.BackgroundInfoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='Base', full_name='pb.BackgroundInfoResponse.Base', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='BackgroundInfo', full_name='pb.BackgroundInfoResponse.BackgroundInfo', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=821,
+  serialized_end=913,
+)
+
 _TRAINSTEPREQUEST.fields_by_name['Base'].message_type = common__pb2._BASE
 _TRAINSTEPREQUEST.fields_by_name['Action'].message_type = common__pb2._ACTION
 _TRAINSTEPRESPONSE.fields_by_name['Base'].message_type = common__pb2._BASE
@@ -254,12 +538,32 @@ _TRAINSTEPRESPONSE.fields_by_name['Feedback'].message_type = common__pb2._FEEDBA
 _RESETENVREQUEST.fields_by_name['Base'].message_type = common__pb2._BASE
 _RESETENVRESPONSE.fields_by_name['Base'].message_type = common__pb2._BASE
 _RESETENVRESPONSE.fields_by_name['State'].message_type = common__pb2._STATE
+_SERVICEREQUEST.fields_by_name['Base'].message_type = common__pb2._BASE
+_SERVICERESPONSE.fields_by_name['Base'].message_type = common__pb2._BASE
+_SERVICERESPONSE.fields_by_name['State'].message_type = common__pb2._STATE
+_SYSTEMINFOREQUEST.fields_by_name['Base'].message_type = common__pb2._BASE
+_SYSTEMINFORESPONSE.fields_by_name['Base'].message_type = common__pb2._BASE
+_SYSTEMINFORESPONSE.fields_by_name['SystemInfo'].message_type = common__pb2._SYSTEMINFO
+_TASKMANAGERINFOREQUEST.fields_by_name['Base'].message_type = common__pb2._BASE
+_TASKMANAGERINFORESPONSE.fields_by_name['Base'].message_type = common__pb2._BASE
+_TASKMANAGERINFORESPONSE.fields_by_name['TaskManagerInfo'].message_type = common__pb2._TASKMANAGERINFO
+_BACKGROUNDINFOREQUEST.fields_by_name['Base'].message_type = common__pb2._BASE
+_BACKGROUNDINFORESPONSE.fields_by_name['Base'].message_type = common__pb2._BASE
+_BACKGROUNDINFORESPONSE.fields_by_name['BackgroundInfo'].message_type = common__pb2._BACKGROUNDINFO
 DESCRIPTOR.message_types_by_name['SayHelloRequest'] = _SAYHELLOREQUEST
 DESCRIPTOR.message_types_by_name['SayHelloResponse'] = _SAYHELLORESPONSE
 DESCRIPTOR.message_types_by_name['TrainStepRequest'] = _TRAINSTEPREQUEST
 DESCRIPTOR.message_types_by_name['TrainStepResponse'] = _TRAINSTEPRESPONSE
 DESCRIPTOR.message_types_by_name['ResetEnvRequest'] = _RESETENVREQUEST
 DESCRIPTOR.message_types_by_name['ResetEnvResponse'] = _RESETENVRESPONSE
+DESCRIPTOR.message_types_by_name['ServiceRequest'] = _SERVICEREQUEST
+DESCRIPTOR.message_types_by_name['ServiceResponse'] = _SERVICERESPONSE
+DESCRIPTOR.message_types_by_name['SystemInfoRequest'] = _SYSTEMINFOREQUEST
+DESCRIPTOR.message_types_by_name['SystemInfoResponse'] = _SYSTEMINFORESPONSE
+DESCRIPTOR.message_types_by_name['TaskManagerInfoRequest'] = _TASKMANAGERINFOREQUEST
+DESCRIPTOR.message_types_by_name['TaskManagerInfoResponse'] = _TASKMANAGERINFORESPONSE
+DESCRIPTOR.message_types_by_name['BackgroundInfoRequest'] = _BACKGROUNDINFOREQUEST
+DESCRIPTOR.message_types_by_name['BackgroundInfoResponse'] = _BACKGROUNDINFORESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 SayHelloRequest = _reflection.GeneratedProtocolMessageType('SayHelloRequest', (_message.Message,), {
@@ -304,6 +608,62 @@ ResetEnvResponse = _reflection.GeneratedProtocolMessageType('ResetEnvResponse', 
   })
 _sym_db.RegisterMessage(ResetEnvResponse)
 
+ServiceRequest = _reflection.GeneratedProtocolMessageType('ServiceRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SERVICEREQUEST,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.ServiceRequest)
+  })
+_sym_db.RegisterMessage(ServiceRequest)
+
+ServiceResponse = _reflection.GeneratedProtocolMessageType('ServiceResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SERVICERESPONSE,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.ServiceResponse)
+  })
+_sym_db.RegisterMessage(ServiceResponse)
+
+SystemInfoRequest = _reflection.GeneratedProtocolMessageType('SystemInfoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SYSTEMINFOREQUEST,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.SystemInfoRequest)
+  })
+_sym_db.RegisterMessage(SystemInfoRequest)
+
+SystemInfoResponse = _reflection.GeneratedProtocolMessageType('SystemInfoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SYSTEMINFORESPONSE,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.SystemInfoResponse)
+  })
+_sym_db.RegisterMessage(SystemInfoResponse)
+
+TaskManagerInfoRequest = _reflection.GeneratedProtocolMessageType('TaskManagerInfoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _TASKMANAGERINFOREQUEST,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.TaskManagerInfoRequest)
+  })
+_sym_db.RegisterMessage(TaskManagerInfoRequest)
+
+TaskManagerInfoResponse = _reflection.GeneratedProtocolMessageType('TaskManagerInfoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _TASKMANAGERINFORESPONSE,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.TaskManagerInfoResponse)
+  })
+_sym_db.RegisterMessage(TaskManagerInfoResponse)
+
+BackgroundInfoRequest = _reflection.GeneratedProtocolMessageType('BackgroundInfoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _BACKGROUNDINFOREQUEST,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.BackgroundInfoRequest)
+  })
+_sym_db.RegisterMessage(BackgroundInfoRequest)
+
+BackgroundInfoResponse = _reflection.GeneratedProtocolMessageType('BackgroundInfoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _BACKGROUNDINFORESPONSE,
+  '__module__' : 'bridge_pb2'
+  # @@protoc_insertion_point(class_scope:pb.BackgroundInfoResponse)
+  })
+_sym_db.RegisterMessage(BackgroundInfoResponse)
+
 
 DESCRIPTOR._options = None
 
@@ -314,8 +674,8 @@ _TRAINAPI = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=388,
-  serialized_end=572,
+  serialized_start=916,
+  serialized_end=1100,
   methods=[
   _descriptor.MethodDescriptor(
     name='SayHello',
@@ -351,5 +711,61 @@ _TRAINAPI = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_TRAINAPI)
 
 DESCRIPTOR.services_by_name['TrainApi'] = _TRAINAPI
+
+
+_SERVICEAPI = _descriptor.ServiceDescriptor(
+  name='ServiceApi',
+  full_name='pb.ServiceApi',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=1103,
+  serialized_end=1385,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='Service',
+    full_name='pb.ServiceApi.Service',
+    index=0,
+    containing_service=None,
+    input_type=_SERVICEREQUEST,
+    output_type=_SERVICERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SystemInfo',
+    full_name='pb.ServiceApi.SystemInfo',
+    index=1,
+    containing_service=None,
+    input_type=_SYSTEMINFOREQUEST,
+    output_type=_SYSTEMINFORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='TaskManagerInfo',
+    full_name='pb.ServiceApi.TaskManagerInfo',
+    index=2,
+    containing_service=None,
+    input_type=_TASKMANAGERINFOREQUEST,
+    output_type=_TASKMANAGERINFORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='BackgroundInfo',
+    full_name='pb.ServiceApi.BackgroundInfo',
+    index=3,
+    containing_service=None,
+    input_type=_BACKGROUNDINFOREQUEST,
+    output_type=_BACKGROUNDINFORESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_SERVICEAPI)
+
+DESCRIPTOR.services_by_name['ServiceApi'] = _SERVICEAPI
 
 # @@protoc_insertion_point(module_scope)

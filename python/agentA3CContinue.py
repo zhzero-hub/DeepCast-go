@@ -1,7 +1,10 @@
 # import wandb
+import time
+
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Dense, Lambda, InputLayer, concatenate
 from env.env import E, channel, version
+import env.env as env
 
 import gym
 import argparse
@@ -10,6 +13,7 @@ from threading import Thread
 import sys
 from rpc.train import close
 from multiprocessing import cpu_count
+
 tf.keras.backend.set_floatx('float64')
 # wandb.init(name='A3C', project="deep-rl-tf2")
 
@@ -93,7 +97,7 @@ class Actor:
         std = tf.clip_by_value(std, self.std_bound[0], self.std_bound[1])
         var = std ** 2
         log_policy_pdf = -0.5 * (action - mu) ** 2 / \
-            var - 0.5 * tf.math.log(var * 2 * np.pi)
+                         var - 0.5 * tf.math.log(var * 2 * np.pi)
         return tf.reduce_sum(log_policy_pdf, 1, keepdims=True)
 
     def compute_loss(self, mu, std, actions, advantages):
@@ -229,18 +233,25 @@ class WorkerAgent(Thread):
             state = self.env.reset()
 
             while not done:
+                while True:
+                    if not env.STATUS:
+                        time.sleep(1)
+                    else:
+                        break
                 # self.env.render()
                 x = [np.array(np.reshape(state['inbound_bandwidth_used'], (1, E)), dtype=np.float64) / 1024 / 1024,
                      np.array(np.reshape(state['outbound_bandwidth_used'], (1, E + 1)), dtype=np.float64) / 1024 / 1024,
                      np.array(np.reshape(state['computation_resource_usage'], (1, E)), dtype=np.float64),
-                     np.array(np.reshape(state['viewer_connection_table'], (1, E * channel * version)), dtype=np.float64),
+                     np.array(np.reshape(state['viewer_connection_table'], (1, E * channel * version)),
+                              dtype=np.float64),
                      np.array(np.reshape(state['user_info'], (1, 4)), dtype=np.float64),
                      np.array(np.reshape(state['qoe'], (1, 3)), dtype=np.float64)]
                 device_id = self.actor.get_action(x)
                 device_id = np.clip(device_id, -self.action_bound, self.action_bound)
                 device_id = np.random.choice(np.where(device_id == np.max(device_id))[0])
 
-                print('Action: {}, Channel id: {}, Version: {}'.format(device_id, state['channel_id'], state['version']))
+                print(
+                    'Action: {}, Channel id: {}, Version: {}'.format(device_id, state['channel_id'], state['version']))
 
                 action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
                           'qoe': state['qoe'], 'version': state['version']}
@@ -269,7 +280,7 @@ class WorkerAgent(Thread):
                          np.array(np.reshape(next_state['qoe'], (1, 3)))]
                     next_v_value = self.critic.model.predict(y)
                     td_targets = self.n_step_td_target(
-                        (rewards+8)/8, next_v_value, done)
+                        (rewards + 8) / 8, next_v_value, done)
                     critic = []
                     for state in states:
                         critic.append(self.critic.model(state)[0][0])
@@ -301,7 +312,6 @@ class WorkerAgent(Thread):
             self.actor.model.save_weights('model/actor_model.h5')
             self.critic.model.save('model/critic_model.h5')
 
-
     def run(self):
         self.train()
 
@@ -318,4 +328,3 @@ def main():
     close()
     outputfile.close()
     sys.stdout = output
-

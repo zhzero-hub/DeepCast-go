@@ -25,19 +25,19 @@ func InitDataset(ctx *context.Context) {
 		log.Fatalf("加载用户位置数据失败, %v", err)
 		return
 	}
+	GenerateRandomUserLocation(ctx)
 	//log.Printf("Viewer: %v\n", (*ctx).Value("viewer"))
 	//log.Printf("System: %v\n", (*ctx).Value("system"))
 }
 
 func LoadDatasetInTimeOrder(ctx *context.Context) {
-	viewers := (*ctx).Value("viewer").(*map[string]*Viewer)
+	viewers := (*ctx).Value("viewer").(*ViewerInfo)
 	taskManager := (*ctx).Value("taskManager").(*TaskManager)
-	for _, viewer := range *viewers {
+	for _, viewer := range viewers.viewer {
 		for _, liveInfo := range viewer.LiveInfo {
 			taskManager.AddTask(viewer, liveInfo)
 		}
 	}
-	// log.Printf("%v", taskManager)
 }
 
 func InitSignalInterrupt(ctx *context.Context, c chan os.Signal) {
@@ -46,8 +46,10 @@ func InitSignalInterrupt(ctx *context.Context, c chan os.Signal) {
 		select {
 		case <-c:
 			log.Println("signal received, stopping")
-			file := (*ctx).Value("log").(*os.File)
-			file.Close()
+			file := (*ctx).Value("log")
+			if file != nil {
+				file.(*os.File).Close()
+			}
 			(*ctx).Done()
 			os.Exit(0)
 		}
@@ -71,7 +73,6 @@ func InitLog(ctx *context.Context) {
 }
 
 func Init(ctx *context.Context, c chan os.Signal) {
-	InitLog(ctx)
 	InitSignalInterrupt(ctx, c)
 	InitDataset(ctx)
 	InitTaskManager(ctx)

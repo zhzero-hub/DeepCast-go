@@ -12,11 +12,11 @@ import (
 )
 
 func ChooseEdgeLocationWithKMeans(ctx *context.Context) {
-	viewer := (*ctx).Value("viewer").(*map[string]*Viewer)
+	viewer := (*ctx).Value("viewer").(*ViewerInfo)
 	system := (*ctx).Value("system").(*System)
 
 	var d clusters.Observations
-	for _, viewerInfo := range *viewer {
+	for _, viewerInfo := range viewer.viewer {
 		d = append(d, clusters.Coordinates{
 			viewerInfo.Location.Lat,
 			viewerInfo.Location.Long,
@@ -25,18 +25,52 @@ func ChooseEdgeLocationWithKMeans(ctx *context.Context) {
 
 	// Partition the data points into 16 clusters
 	km := kmeans.New()
-	if cluster, err := km.Partition(d, 10); err != nil {
+	if cluster, err := km.Partition(d, len(system.Cdn)+len(system.Edge)); err != nil {
 		log.Fatalf("k-means生成edge location信息失败: %v\n", err)
 	} else {
 		for i, c := range cluster {
-			system.Edge["Edge"+strconv.FormatInt(int64(i), 10)].Location = Location{
-				Name: "Cluster" + strconv.FormatInt(int64(i), 10),
-				Lat:  c.Center[0],
-				Long: c.Center[1],
+			if i < len(system.Edge) {
+				system.Edge["Edge"+strconv.FormatInt(int64(i), 10)].Location = Location{
+					Name: "Cluster" + strconv.FormatInt(int64(i), 10),
+					Lat:  c.Center[0],
+					Long: c.Center[1],
+				}
+			} else {
+				system.Cdn["Cdn"+strconv.FormatInt(int64(i), 10)].Location = Location{
+					Name: "Cluster" + strconv.FormatInt(int64(i), 10),
+					Lat:  c.Center[0],
+					Long: c.Center[1],
+				}
 			}
 			//log.Printf("Centered at x: %.2f y: %.2f\n", c.Center[0], c.Center[1])
 			//log.Printf("Matching data points: %+v\n\n", c.Observations)
 		}
+	}
+}
+
+func GenerateRandomUserLocation(ctx *context.Context) {
+	viewer := (*ctx).Value("viewer").(*ViewerInfo)
+	var d clusters.Observations
+	for _, viewerInfo := range viewer.viewer {
+		d = append(d, clusters.Coordinates{
+			viewerInfo.Location.Lat,
+			viewerInfo.Location.Long,
+		})
+	}
+	// Partition the data points into 16 clusters
+	km := kmeans.New()
+	if cluster, err := km.Partition(d, 50); err != nil {
+		log.Fatalf("k-means生成edge location信息失败: %v\n", err)
+	} else {
+		locations := make([]Location, 0)
+		for i, c := range cluster {
+			locations = append(locations, Location{
+				Name: "UserLocation" + strconv.FormatInt(int64(i), 10),
+				Lat:  c.Center[0],
+				Long: c.Center[1],
+			})
+		}
+		*ctx = context.WithValue(*ctx, "locations", locations)
 	}
 }
 

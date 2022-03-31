@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"`\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x0f\n\x07user_id\x18\x04 \x01(\t\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\xc0\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x1f\n\tuser_info\x18\x05 \x01(\x0b\x32\x0c.pb.UserInfo\x12/\n\x11viewer_connection\x18\x06 \x01(\x0b\x32\x14.pb.ViewerConnection\"\x90\x01\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12)\n\x0eqoe_preference\x18\x06 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x42\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"`\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x0f\n\x07user_id\x18\x04 \x01(\t\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\xc0\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x1f\n\tuser_info\x18\x05 \x01(\x0b\x32\x0c.pb.UserInfo\x12/\n\x11viewer_connection\x18\x06 \x01(\x0b\x32\x14.pb.ViewerConnection\"\x90\x01\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12)\n\x0eqoe_preference\x18\x06 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\"\x95\x01\n\rBandWidthInfo\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x01\x12 \n\x18outbound_bandwidth_usage\x18\x02 \x01(\x01\x12\x1f\n\x17inbound_bandwidth_limit\x18\x03 \x01(\x01\x12 \n\x18outbound_bandwidth_limit\x18\x04 \x01(\x01\"\xb5\x01\n\x06\x44\x65vice\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08\x63pu_core\x18\x03 \x01(\x05\x12\x1e\n\x08location\x18\x04 \x01(\x0b\x32\x0c.pb.Location\x12*\n\x0f\x62\x61nd_width_info\x18\x05 \x01(\x0b\x32\x11.pb.BandWidthInfo\x12\x18\n\x10latency_to_upper\x18\x06 \x01(\x01\x12\x19\n\x11\x63omputation_usage\x18\x07 \x01(\x01\"@\n\nSystemInfo\x12\x19\n\x05\x65\x64ges\x18\x01 \x03(\x0b\x32\n.pb.Device\x12\x17\n\x03\x63\x64n\x18\x02 \x03(\x0b\x32\n.pb.Device\"=\n\x05Solve\x12\x1f\n\tuser_info\x18\x01 \x01(\x0b\x32\x0c.pb.UserInfo\x12\x13\n\x0b\x64\x65vice_name\x18\x02 \x01(\t\"[\n\x0fTaskManagerInfo\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x1f\n\tuser_info\x18\x02 \x03(\x0b\x32\x0c.pb.UserInfo\x12\x19\n\x06solved\x18\x03 \x03(\x0b\x32\t.pb.Solve\"P\n\x0e\x42\x61\x63kgroundInfo\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x10\n\x08max_time\x18\x02 \x01(\x03\x12\x1e\n\x08location\x18\x03 \x01(\x0b\x32\x0c.pb.LocationB\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -725,6 +725,303 @@ _FEEDBACK = _descriptor.Descriptor(
   serialized_end=1422,
 )
 
+
+_BANDWIDTHINFO = _descriptor.Descriptor(
+  name='BandWidthInfo',
+  full_name='pb.BandWidthInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='inbound_bandwidth_usage', full_name='pb.BandWidthInfo.inbound_bandwidth_usage', index=0,
+      number=1, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='outbound_bandwidth_usage', full_name='pb.BandWidthInfo.outbound_bandwidth_usage', index=1,
+      number=2, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inbound_bandwidth_limit', full_name='pb.BandWidthInfo.inbound_bandwidth_limit', index=2,
+      number=3, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='outbound_bandwidth_limit', full_name='pb.BandWidthInfo.outbound_bandwidth_limit', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1425,
+  serialized_end=1574,
+)
+
+
+_DEVICE = _descriptor.Descriptor(
+  name='Device',
+  full_name='pb.Device',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='pb.Device.id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='pb.Device.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cpu_core', full_name='pb.Device.cpu_core', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='location', full_name='pb.Device.location', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='band_width_info', full_name='pb.Device.band_width_info', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='latency_to_upper', full_name='pb.Device.latency_to_upper', index=5,
+      number=6, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='computation_usage', full_name='pb.Device.computation_usage', index=6,
+      number=7, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1577,
+  serialized_end=1758,
+)
+
+
+_SYSTEMINFO = _descriptor.Descriptor(
+  name='SystemInfo',
+  full_name='pb.SystemInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='edges', full_name='pb.SystemInfo.edges', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='cdn', full_name='pb.SystemInfo.cdn', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1760,
+  serialized_end=1824,
+)
+
+
+_SOLVE = _descriptor.Descriptor(
+  name='Solve',
+  full_name='pb.Solve',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_info', full_name='pb.Solve.user_info', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='device_name', full_name='pb.Solve.device_name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1826,
+  serialized_end=1887,
+)
+
+
+_TASKMANAGERINFO = _descriptor.Descriptor(
+  name='TaskManagerInfo',
+  full_name='pb.TaskManagerInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time', full_name='pb.TaskManagerInfo.time', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_info', full_name='pb.TaskManagerInfo.user_info', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='solved', full_name='pb.TaskManagerInfo.solved', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1889,
+  serialized_end=1980,
+)
+
+
+_BACKGROUNDINFO = _descriptor.Descriptor(
+  name='BackgroundInfo',
+  full_name='pb.BackgroundInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='time', full_name='pb.BackgroundInfo.time', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='max_time', full_name='pb.BackgroundInfo.max_time', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='location', full_name='pb.BackgroundInfo.location', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1982,
+  serialized_end=2062,
+)
+
 _BASE_EXTRAENTRY.containing_type = _BASE
 _BASE.fields_by_name['Extra'].message_type = _BASE_EXTRAENTRY
 _USERINFO.fields_by_name['location'].message_type = _LOCATION
@@ -743,6 +1040,14 @@ _STATE.fields_by_name['qoe_preference'].message_type = _QOEPREFERENCE
 _STATE.fields_by_name['user_info'].message_type = _USERINFO
 _STATE.fields_by_name['viewer_connection'].message_type = _VIEWERCONNECTION
 _ACTION.fields_by_name['qoe_preference'].message_type = _QOEPREFERENCE
+_DEVICE.fields_by_name['location'].message_type = _LOCATION
+_DEVICE.fields_by_name['band_width_info'].message_type = _BANDWIDTHINFO
+_SYSTEMINFO.fields_by_name['edges'].message_type = _DEVICE
+_SYSTEMINFO.fields_by_name['cdn'].message_type = _DEVICE
+_SOLVE.fields_by_name['user_info'].message_type = _USERINFO
+_TASKMANAGERINFO.fields_by_name['user_info'].message_type = _USERINFO
+_TASKMANAGERINFO.fields_by_name['solved'].message_type = _SOLVE
+_BACKGROUNDINFO.fields_by_name['location'].message_type = _LOCATION
 DESCRIPTOR.message_types_by_name['Base'] = _BASE
 DESCRIPTOR.message_types_by_name['InboundBandwidthUsage'] = _INBOUNDBANDWIDTHUSAGE
 DESCRIPTOR.message_types_by_name['OutboundBandwidthUsage'] = _OUTBOUNDBANDWIDTHUSAGE
@@ -756,6 +1061,12 @@ DESCRIPTOR.message_types_by_name['QoEPreference'] = _QOEPREFERENCE
 DESCRIPTOR.message_types_by_name['State'] = _STATE
 DESCRIPTOR.message_types_by_name['Action'] = _ACTION
 DESCRIPTOR.message_types_by_name['Feedback'] = _FEEDBACK
+DESCRIPTOR.message_types_by_name['BandWidthInfo'] = _BANDWIDTHINFO
+DESCRIPTOR.message_types_by_name['Device'] = _DEVICE
+DESCRIPTOR.message_types_by_name['SystemInfo'] = _SYSTEMINFO
+DESCRIPTOR.message_types_by_name['Solve'] = _SOLVE
+DESCRIPTOR.message_types_by_name['TaskManagerInfo'] = _TASKMANAGERINFO
+DESCRIPTOR.message_types_by_name['BackgroundInfo'] = _BACKGROUNDINFO
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Base = _reflection.GeneratedProtocolMessageType('Base', (_message.Message,), {
@@ -880,6 +1191,48 @@ Feedback = _reflection.GeneratedProtocolMessageType('Feedback', (_message.Messag
   # @@protoc_insertion_point(class_scope:pb.Feedback)
   })
 _sym_db.RegisterMessage(Feedback)
+
+BandWidthInfo = _reflection.GeneratedProtocolMessageType('BandWidthInfo', (_message.Message,), {
+  'DESCRIPTOR' : _BANDWIDTHINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.BandWidthInfo)
+  })
+_sym_db.RegisterMessage(BandWidthInfo)
+
+Device = _reflection.GeneratedProtocolMessageType('Device', (_message.Message,), {
+  'DESCRIPTOR' : _DEVICE,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.Device)
+  })
+_sym_db.RegisterMessage(Device)
+
+SystemInfo = _reflection.GeneratedProtocolMessageType('SystemInfo', (_message.Message,), {
+  'DESCRIPTOR' : _SYSTEMINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.SystemInfo)
+  })
+_sym_db.RegisterMessage(SystemInfo)
+
+Solve = _reflection.GeneratedProtocolMessageType('Solve', (_message.Message,), {
+  'DESCRIPTOR' : _SOLVE,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.Solve)
+  })
+_sym_db.RegisterMessage(Solve)
+
+TaskManagerInfo = _reflection.GeneratedProtocolMessageType('TaskManagerInfo', (_message.Message,), {
+  'DESCRIPTOR' : _TASKMANAGERINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.TaskManagerInfo)
+  })
+_sym_db.RegisterMessage(TaskManagerInfo)
+
+BackgroundInfo = _reflection.GeneratedProtocolMessageType('BackgroundInfo', (_message.Message,), {
+  'DESCRIPTOR' : _BACKGROUNDINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.BackgroundInfo)
+  })
+_sym_db.RegisterMessage(BackgroundInfo)
 
 
 DESCRIPTOR._options = None

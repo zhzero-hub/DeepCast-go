@@ -73,3 +73,42 @@ message Feedback {
     double reward = 1;
     double accuracy = 2;
 }
+
+message BandWidthInfo {
+    double inbound_bandwidth_usage = 1;
+    double outbound_bandwidth_usage = 2;
+    double inbound_bandwidth_limit = 3;
+    double outbound_bandwidth_limit = 4;
+}
+
+message Device {
+    int32 id = 1;
+    string name = 2;
+    int32 cpu_core = 3;
+    Location location = 4;
+    BandWidthInfo band_width_info = 5;
+    double latency_to_upper = 6;
+    double computation_usage = 7;
+}
+
+message SystemInfo {
+    repeated Device edges = 1;
+    repeated Device cdn = 2;
+}
+
+message Solve {
+    UserInfo user_info = 1;
+    string device_name = 2;
+}
+
+message TaskManagerInfo {
+    int64 time = 1;
+    repeated UserInfo user_info = 2;
+    repeated Solve solved = 3;
+}
+
+message BackgroundInfo {
+    int64 time = 1;
+    int64 max_time = 2;
+    Location location = 3;
+}

@@ -1,5 +1,7 @@
 package train
 
+import "sync"
+
 const Channels = 50
 
 const LatencyInGeo = 5 * 10e-6 // s 每1000m增加5us时延
@@ -84,4 +86,9 @@ type LiveInfo struct {
 	LiverName string
 	StartTime int64
 	EndTime   int64
+}
+
+type ViewerInfo struct {
+	viewer map[string]*Viewer
+	lock   sync.RWMutex
 }
