@@ -250,8 +250,7 @@ class WorkerAgent(Thread):
                 device_id = np.clip(device_id, -self.action_bound, self.action_bound)
                 device_id = np.random.choice(np.where(device_id == np.max(device_id))[0])
 
-                print(
-                    'Action: {}, Channel id: {}, Version: {}'.format(device_id, state['channel_id'], state['version']))
+                print('Action: {}, Channel id: {}, Version: {}'.format(device_id, state['channel_id'], state['version']))
 
                 action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
                           'qoe': state['qoe'], 'version': state['version']}

@@ -2,6 +2,7 @@ from flask import Flask, json, request
 from rpc.web import *
 from .util import *
 import env.env as env
+from rpc.model import service_agent
 
 app = Flask(__name__)
 
@@ -41,6 +42,14 @@ def get_background():
         extra['location'] = ''
     background = get_background_info(None, extra=extra)
     return json.dumps(background.BackgroundInfo, default=background_info_to_json)
+
+
+@app.route('/service', methods=['POST'])
+def create_service():
+    form = request.json.get('form')
+    resp = service(None, form)
+    actor_result, device_id = service_agent.service(resp)
+    return service_result_to_json(actor_result.tolist(), device_id)
 
 
 def start_web_server():

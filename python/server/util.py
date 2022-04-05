@@ -63,9 +63,19 @@ def background_info_to_json(background):
     if background is None:
         return ''
     js = {'time': background.time, 'maxTime': background.max_time}
-    if background.locaion is not None:
+    if background.location is not None:
         js['location'] = {
-            'lat': background.locaion.latitude,
+            'lat': background.location.latitude,
             'long': background.location.longitude
         }
     return js
+
+
+def service_result_to_json(actor_result, device_id):
+    result = []
+    for value in actor_result:
+        result.append(float(value))
+    return {
+        'result': result,
+        'device_id': int(device_id)
+    }

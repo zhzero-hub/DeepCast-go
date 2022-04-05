@@ -33,6 +33,13 @@ message UserInfo {
     string user_id = 4;
 }
 
+message ServiceInfo {
+    int64 start_time = 1;
+    int64 end_time = 2;
+    bool encrypted = 3;
+    string resource = 4;
+}
+
 message V2Number {
     map<string, int64> number = 1;
 }

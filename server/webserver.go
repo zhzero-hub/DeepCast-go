@@ -25,8 +25,52 @@ type WebServer struct {
 
 func (s *WebServer) Service(ctx context.Context, request *grpc2.ServiceRequest) (*grpc2.ServiceResponse, error) {
 	log.Printf("Received service")
+	system := (*s.c).Value("system").(*train.System)
+	taskManager := (*s.c).Value("taskManager").(*train.TaskManager)
+	system.Lock()
+	defer system.Unlock()
+	taskManager.Lock()
+	defer taskManager.Unlock()
+	live := &train.LiveInfo{
+		ChannelId: request.UserInfo.ChannelId,
+		LiverName: "Service liver name",
+		StartTime: request.ServiceInfo.StartTime,
+		EndTime:   request.ServiceInfo.EndTime,
+	}
+	viewerWithWatchChannel := &train.ViewerWithWatchChannel{
+		Viewer: &train.Viewer{
+			Id: request.UserInfo.UserId,
+			Location: train.Location{
+				Name: "Service location",
+				Lat:  request.UserInfo.Location.Latitude,
+				Long: request.UserInfo.Location.Longitude,
+			},
+			Latency:  0,
+			LiveInfo: append(make([]*train.LiveInfo, 0), live),
+			Extra: map[string]interface{}{
+				"version":  request.UserInfo.Version,
+				"resource": request.ServiceInfo.Resource,
+				"encrypt":  request.ServiceInfo.Encrypted,
+			},
+		},
+		LiveInfo: live,
+	}
+	var task train.Task
+	task.SetTask(viewerWithWatchChannel)
+	nextState := taskManager.NextState(s.c, &task)
 	return &grpc2.ServiceResponse{
-		Base: &grpc2.Base{},
+		Base: &grpc2.Base{
+			RetCode: int64(0),
+			RetMsg:  "Success",
+			Extra: map[string]string{
+				"channelId": nextState.UserInfo.ChannelId,
+				"version":   strconv.FormatInt(nextState.UserInfo.Version, 10),
+				"E":         strconv.Itoa(train.EdgeNumber),
+				"channel":   strconv.Itoa(train.Channels),
+				"versions":  strconv.Itoa(len(train.BitRateMap)),
+			},
+		},
+		State: nextState,
 	}, nil
 }
 

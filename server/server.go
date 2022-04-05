@@ -47,7 +47,7 @@ func (g *GoServer) ResetEnv(ctx context.Context, request *grpc2.ResetEnvRequest)
 	defer taskManager.Unlock()
 	system.Lock()
 	defer system.Unlock()
-	nextState := taskManager.NextState(g.c)
+	nextState := taskManager.NextState(g.c, nil)
 	return &grpc2.ResetEnvResponse{
 		Base: &grpc2.Base{
 			RetCode: int64(0),
@@ -86,7 +86,7 @@ func (g *GoServer) TrainStep(ctx context.Context, request *grpc2.TrainStepReques
 	system.Lock()
 	defer system.Unlock()
 	reward := taskManager.TakeAction(g.c, request)
-	nextState := taskManager.NextState(g.c)
+	nextState := taskManager.NextState(g.c, nil)
 	if nextState == nil {
 		return &grpc2.TrainStepResponse{
 			Base: &grpc2.Base{

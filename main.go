@@ -1,6 +1,7 @@
 package main
 
 import (
+	rtmp "DeepCast/livego-rtmp-encrypt"
 	"DeepCast/server"
 	"DeepCast/train"
 	"context"
@@ -14,5 +15,6 @@ func main() {
 	train.Init(&ctx, c)
 	go server.StartGoServer(&ctx, c)
 	go server.StartWebServer(&ctx, make(chan os.Signal, 1))
+	go rtmp.StartRtmpServer()
 	select {}
 }

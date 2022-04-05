@@ -346,7 +346,9 @@ type ServiceRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Base *Base `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+	Base        *Base        `protobuf:"bytes,1,opt,name=Base,proto3" json:"Base,omitempty"`
+	UserInfo    *UserInfo    `protobuf:"bytes,2,opt,name=user_info,json=userInfo,proto3" json:"user_info,omitempty"`
+	ServiceInfo *ServiceInfo `protobuf:"bytes,3,opt,name=service_info,json=serviceInfo,proto3" json:"service_info,omitempty"`
 }
 
 func (x *ServiceRequest) Reset() {
@@ -384,6 +386,20 @@ func (*ServiceRequest) Descriptor() ([]byte, []int) {
 func (x *ServiceRequest) GetBase() *Base {
 	if x != nil {
 		return x.Base
+	}
+	return nil
+}
+
+func (x *ServiceRequest) GetUserInfo() *UserInfo {
+	if x != nil {
+		return x.UserInfo
+	}
+	return nil
+}
+
+func (x *ServiceRequest) GetServiceInfo() *ServiceInfo {
+	if x != nil {
+		return x.ServiceInfo
 	}
 	return nil
 }
@@ -780,10 +796,16 @@ var file_bridge_proto_rawDesc = []byte{
 	0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42, 0x61,
 	0x73, 0x65, 0x12, 0x1f, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x0b, 0x32, 0x09, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x65, 0x52, 0x05, 0x53, 0x74,
-	0x61, 0x74, 0x65, 0x22, 0x2e, 0x0a, 0x0e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04, 0x42,
-	0x61, 0x73, 0x65, 0x22, 0x50, 0x0a, 0x0f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
+	0x61, 0x74, 0x65, 0x22, 0x8d, 0x01, 0x0a, 0x0e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04,
+	0x42, 0x61, 0x73, 0x65, 0x12, 0x29, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x6e, 0x66,
+	0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x70, 0x62, 0x2e, 0x55, 0x73, 0x65,
+	0x72, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x12,
+	0x32, 0x0a, 0x0c, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x70, 0x62, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x0b, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49,
+	0x6e, 0x66, 0x6f, 0x22, 0x50, 0x0a, 0x0f, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x04, 0x42, 0x61, 0x73, 0x65, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x70, 0x62, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x52, 0x04,
 	0x42, 0x61, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20,
@@ -885,9 +907,11 @@ var file_bridge_proto_goTypes = []interface{}{
 	(*Action)(nil),                  // 15: pb.Action
 	(*State)(nil),                   // 16: pb.State
 	(*Feedback)(nil),                // 17: pb.Feedback
-	(*SystemInfo)(nil),              // 18: pb.SystemInfo
-	(*TaskManagerInfo)(nil),         // 19: pb.TaskManagerInfo
-	(*BackgroundInfo)(nil),          // 20: pb.BackgroundInfo
+	(*UserInfo)(nil),                // 18: pb.UserInfo
+	(*ServiceInfo)(nil),             // 19: pb.ServiceInfo
+	(*SystemInfo)(nil),              // 20: pb.SystemInfo
+	(*TaskManagerInfo)(nil),         // 21: pb.TaskManagerInfo
+	(*BackgroundInfo)(nil),          // 22: pb.BackgroundInfo
 }
 var file_bridge_proto_depIdxs = []int32{
 	14, // 0: pb.TrainStepRequest.Base:type_name -> pb.Base
@@ -899,36 +923,38 @@ var file_bridge_proto_depIdxs = []int32{
 	14, // 6: pb.ResetEnvResponse.Base:type_name -> pb.Base
 	16, // 7: pb.ResetEnvResponse.State:type_name -> pb.State
 	14, // 8: pb.ServiceRequest.Base:type_name -> pb.Base
-	14, // 9: pb.ServiceResponse.Base:type_name -> pb.Base
-	16, // 10: pb.ServiceResponse.State:type_name -> pb.State
-	14, // 11: pb.SystemInfoRequest.Base:type_name -> pb.Base
-	14, // 12: pb.SystemInfoResponse.Base:type_name -> pb.Base
-	18, // 13: pb.SystemInfoResponse.SystemInfo:type_name -> pb.SystemInfo
-	14, // 14: pb.TaskManagerInfoRequest.Base:type_name -> pb.Base
-	14, // 15: pb.TaskManagerInfoResponse.Base:type_name -> pb.Base
-	19, // 16: pb.TaskManagerInfoResponse.TaskManagerInfo:type_name -> pb.TaskManagerInfo
-	14, // 17: pb.BackgroundInfoRequest.Base:type_name -> pb.Base
-	14, // 18: pb.BackgroundInfoResponse.Base:type_name -> pb.Base
-	20, // 19: pb.BackgroundInfoResponse.BackgroundInfo:type_name -> pb.BackgroundInfo
-	0,  // 20: pb.TrainApi.SayHello:input_type -> pb.SayHelloRequest
-	2,  // 21: pb.TrainApi.TrainStep:input_type -> pb.TrainStepRequest
-	4,  // 22: pb.TrainApi.ResetEnv:input_type -> pb.ResetEnvRequest
-	6,  // 23: pb.ServiceApi.Service:input_type -> pb.ServiceRequest
-	8,  // 24: pb.ServiceApi.SystemInfo:input_type -> pb.SystemInfoRequest
-	10, // 25: pb.ServiceApi.TaskManagerInfo:input_type -> pb.TaskManagerInfoRequest
-	12, // 26: pb.ServiceApi.BackgroundInfo:input_type -> pb.BackgroundInfoRequest
-	1,  // 27: pb.TrainApi.SayHello:output_type -> pb.SayHelloResponse
-	3,  // 28: pb.TrainApi.TrainStep:output_type -> pb.TrainStepResponse
-	5,  // 29: pb.TrainApi.ResetEnv:output_type -> pb.ResetEnvResponse
-	7,  // 30: pb.ServiceApi.Service:output_type -> pb.ServiceResponse
-	9,  // 31: pb.ServiceApi.SystemInfo:output_type -> pb.SystemInfoResponse
-	11, // 32: pb.ServiceApi.TaskManagerInfo:output_type -> pb.TaskManagerInfoResponse
-	13, // 33: pb.ServiceApi.BackgroundInfo:output_type -> pb.BackgroundInfoResponse
-	27, // [27:34] is the sub-list for method output_type
-	20, // [20:27] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	18, // 9: pb.ServiceRequest.user_info:type_name -> pb.UserInfo
+	19, // 10: pb.ServiceRequest.service_info:type_name -> pb.ServiceInfo
+	14, // 11: pb.ServiceResponse.Base:type_name -> pb.Base
+	16, // 12: pb.ServiceResponse.State:type_name -> pb.State
+	14, // 13: pb.SystemInfoRequest.Base:type_name -> pb.Base
+	14, // 14: pb.SystemInfoResponse.Base:type_name -> pb.Base
+	20, // 15: pb.SystemInfoResponse.SystemInfo:type_name -> pb.SystemInfo
+	14, // 16: pb.TaskManagerInfoRequest.Base:type_name -> pb.Base
+	14, // 17: pb.TaskManagerInfoResponse.Base:type_name -> pb.Base
+	21, // 18: pb.TaskManagerInfoResponse.TaskManagerInfo:type_name -> pb.TaskManagerInfo
+	14, // 19: pb.BackgroundInfoRequest.Base:type_name -> pb.Base
+	14, // 20: pb.BackgroundInfoResponse.Base:type_name -> pb.Base
+	22, // 21: pb.BackgroundInfoResponse.BackgroundInfo:type_name -> pb.BackgroundInfo
+	0,  // 22: pb.TrainApi.SayHello:input_type -> pb.SayHelloRequest
+	2,  // 23: pb.TrainApi.TrainStep:input_type -> pb.TrainStepRequest
+	4,  // 24: pb.TrainApi.ResetEnv:input_type -> pb.ResetEnvRequest
+	6,  // 25: pb.ServiceApi.Service:input_type -> pb.ServiceRequest
+	8,  // 26: pb.ServiceApi.SystemInfo:input_type -> pb.SystemInfoRequest
+	10, // 27: pb.ServiceApi.TaskManagerInfo:input_type -> pb.TaskManagerInfoRequest
+	12, // 28: pb.ServiceApi.BackgroundInfo:input_type -> pb.BackgroundInfoRequest
+	1,  // 29: pb.TrainApi.SayHello:output_type -> pb.SayHelloResponse
+	3,  // 30: pb.TrainApi.TrainStep:output_type -> pb.TrainStepResponse
+	5,  // 31: pb.TrainApi.ResetEnv:output_type -> pb.ResetEnvResponse
+	7,  // 32: pb.ServiceApi.Service:output_type -> pb.ServiceResponse
+	9,  // 33: pb.ServiceApi.SystemInfo:output_type -> pb.SystemInfoResponse
+	11, // 34: pb.ServiceApi.TaskManagerInfo:output_type -> pb.TaskManagerInfoResponse
+	13, // 35: pb.ServiceApi.BackgroundInfo:output_type -> pb.BackgroundInfoResponse
+	29, // [29:36] is the sub-list for method output_type
+	22, // [22:29] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_bridge_proto_init() }

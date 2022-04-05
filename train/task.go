@@ -55,6 +55,10 @@ func (t *Task) GetTask() *ViewerWithWatchChannel {
 	return t.watchInfo
 }
 
+func (t *Task) SetTask(watchInfo *ViewerWithWatchChannel) {
+	t.watchInfo = watchInfo
+}
+
 type TaskManager struct {
 	ctx        *context.Context
 	time       int64
@@ -293,10 +297,13 @@ func (t *TaskManager) TakeAction(ctx *context.Context, req *rpc.TrainStepRequest
 	return reward
 }
 
-func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
-	task := t.GetTask()
+func (t *TaskManager) NextState(ctx *context.Context, task *Task) *rpc.State {
+	isService := true
 	if task == nil {
-		return nil
+		isService = false
+		if task = t.GetTask(); task == nil {
+			return nil
+		}
 	}
 	system := (*t.ctx).Value("system").(*System)
 	inboundUsed := make([]float64, 0)
@@ -329,7 +336,15 @@ func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
 			H2V: _v2number,
 		}
 	}
-	qoePreference := GetQoePreference(task)
+	var qoePreference []float32
+	var version int64
+	if isService {
+		qoePreference = GetResourceQoe(task)
+		version = task.watchInfo.Extra["version"].(int64)
+	} else {
+		qoePreference = GetQoePreference(task)
+		version = GetVersion(task.watchInfo.VersionBit)
+	}
 	state := rpc.State{
 		InboundBandwidthUsage: &rpc.InboundBandwidthUsage{
 			InboundBandwidthUsage: inboundUsed,
@@ -351,7 +366,7 @@ func (t *TaskManager) NextState(ctx *context.Context) *rpc.State {
 				Longitude: task.watchInfo.Location.Long,
 			},
 			ChannelId: task.watchInfo.ChannelId,
-			Version:   GetVersion(task.watchInfo.VersionBit),
+			Version:   version,
 			UserId:    task.watchInfo.Viewer.Id,
 		},
 		ViewerConnection: &viewerConnectionMap,
@@ -474,4 +489,16 @@ func GetQoePreference(task *Task) []float32 {
 	} else {
 		return []float32{1, 3, 4}
 	}
+}
+
+func GetResourceQoe(task *Task) []float32 {
+	switch task.watchInfo.Extra["resource"].(string) {
+	case "优先延时":
+		return []float32{2, 1.5, 2}
+	case "优先流畅":
+		return []float32{0.5, 6, 2}
+	case "优先清晰度":
+		return []float32{0.5, 1.5, 8}
+	}
+	return []float32{1, 3, 4}
 }

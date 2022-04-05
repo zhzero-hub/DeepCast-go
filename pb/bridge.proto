@@ -50,6 +50,8 @@ message ResetEnvResponse {
 
 message ServiceRequest {
   Base Base = 1;
+  UserInfo user_info = 2;
+  ServiceInfo service_info = 3;
 }
 
 message ServiceResponse {

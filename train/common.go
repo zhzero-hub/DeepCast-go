@@ -79,6 +79,7 @@ type Viewer struct {
 	DownThroughput float64 // bps
 	VersionBit     int64   // bps
 	AssignInfo     AssignInfo
+	Extra          map[string]interface{}
 }
 
 type LiveInfo struct {

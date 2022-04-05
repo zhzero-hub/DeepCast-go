@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\007../grpc',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"`\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x0f\n\x07user_id\x18\x04 \x01(\t\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\xc0\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x1f\n\tuser_info\x18\x05 \x01(\x0b\x32\x0c.pb.UserInfo\x12/\n\x11viewer_connection\x18\x06 \x01(\x0b\x32\x14.pb.ViewerConnection\"\x90\x01\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12)\n\x0eqoe_preference\x18\x06 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\"\x95\x01\n\rBandWidthInfo\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x01\x12 \n\x18outbound_bandwidth_usage\x18\x02 \x01(\x01\x12\x1f\n\x17inbound_bandwidth_limit\x18\x03 \x01(\x01\x12 \n\x18outbound_bandwidth_limit\x18\x04 \x01(\x01\"\xb5\x01\n\x06\x44\x65vice\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08\x63pu_core\x18\x03 \x01(\x05\x12\x1e\n\x08location\x18\x04 \x01(\x0b\x32\x0c.pb.Location\x12*\n\x0f\x62\x61nd_width_info\x18\x05 \x01(\x0b\x32\x11.pb.BandWidthInfo\x12\x18\n\x10latency_to_upper\x18\x06 \x01(\x01\x12\x19\n\x11\x63omputation_usage\x18\x07 \x01(\x01\"@\n\nSystemInfo\x12\x19\n\x05\x65\x64ges\x18\x01 \x03(\x0b\x32\n.pb.Device\x12\x17\n\x03\x63\x64n\x18\x02 \x03(\x0b\x32\n.pb.Device\"=\n\x05Solve\x12\x1f\n\tuser_info\x18\x01 \x01(\x0b\x32\x0c.pb.UserInfo\x12\x13\n\x0b\x64\x65vice_name\x18\x02 \x01(\t\"[\n\x0fTaskManagerInfo\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x1f\n\tuser_info\x18\x02 \x03(\x0b\x32\x0c.pb.UserInfo\x12\x19\n\x06solved\x18\x03 \x03(\x0b\x32\t.pb.Solve\"P\n\x0e\x42\x61\x63kgroundInfo\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x10\n\x08max_time\x18\x02 \x01(\x03\x12\x1e\n\x08location\x18\x03 \x01(\x0b\x32\x0c.pb.LocationB\tZ\x07../grpcb\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x02pb\"y\n\x04\x42\x61se\x12\x0f\n\x07RetCode\x18\x01 \x01(\x03\x12\x0e\n\x06RetMsg\x18\x02 \x01(\t\x12\"\n\x05\x45xtra\x18\x03 \x03(\x0b\x32\x13.pb.Base.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"8\n\x15InboundBandwidthUsage\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x03(\x01\":\n\x16OutboundBandwidthUsage\x12 \n\x18outbound_bandwidth_usage\x18\x01 \x03(\x01\">\n\x18\x43omputationResourceUsage\x12\"\n\x1a\x63omputation_resource_usage\x18\x01 \x03(\x01\"/\n\x08Location\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"`\n\x08UserInfo\x12\x1e\n\x08location\x18\x01 \x01(\x0b\x32\x0c.pb.Location\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x0f\n\x07user_id\x18\x04 \x01(\t\"X\n\x0bServiceInfo\x12\x12\n\nstart_time\x18\x01 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x02 \x01(\x03\x12\x11\n\tencrypted\x18\x03 \x01(\x08\x12\x10\n\x08resource\x18\x04 \x01(\t\"c\n\x08V2Number\x12(\n\x06number\x18\x01 \x03(\x0b\x32\x18.pb.V2Number.NumberEntry\x1a-\n\x0bNumberEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"^\n\x03H2V\x12\x1d\n\x03h2v\x18\x01 \x03(\x0b\x32\x10.pb.H2V.H2vEntry\x1a\x38\n\x08H2vEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x1b\n\x05value\x18\x02 \x01(\x0b\x32\x0c.pb.V2Number:\x02\x38\x01\"\xab\x01\n\x10ViewerConnection\x12P\n\x17viewer_connection_table\x18\x01 \x03(\x0b\x32/.pb.ViewerConnection.ViewerConnectionTableEntry\x1a\x45\n\x1aViewerConnectionTableEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x16\n\x05value\x18\x02 \x01(\x0b\x32\x07.pb.H2V:\x02\x38\x01\"?\n\rQoEPreference\x12\x0e\n\x06\x61lpha1\x18\x01 \x01(\x02\x12\x0e\n\x06\x61lpha2\x18\x02 \x01(\x02\x12\x0e\n\x06\x61lpha3\x18\x03 \x01(\x02\"\xc0\x02\n\x05State\x12:\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x0b\x32\x19.pb.InboundBandwidthUsage\x12<\n\x18outbound_bandwidth_usage\x18\x02 \x01(\x0b\x32\x1a.pb.OutboundBandwidthUsage\x12@\n\x1a\x63omputation_resource_usage\x18\x03 \x01(\x0b\x32\x1c.pb.ComputationResourceUsage\x12)\n\x0eqoe_preference\x18\x04 \x01(\x0b\x32\x11.pb.QoEPreference\x12\x1f\n\tuser_info\x18\x05 \x01(\x0b\x32\x0c.pb.UserInfo\x12/\n\x11viewer_connection\x18\x06 \x01(\x0b\x32\x14.pb.ViewerConnection\"\x90\x01\n\x06\x41\x63tion\x12\x11\n\tviewer_id\x18\x01 \x01(\t\x12\x12\n\nchannel_id\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\x03\x12\x13\n\x0bpossibility\x18\x04 \x03(\x01\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12)\n\x0eqoe_preference\x18\x06 \x01(\x0b\x32\x11.pb.QoEPreference\",\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x0e\n\x06reward\x18\x01 \x01(\x01\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\"\x95\x01\n\rBandWidthInfo\x12\x1f\n\x17inbound_bandwidth_usage\x18\x01 \x01(\x01\x12 \n\x18outbound_bandwidth_usage\x18\x02 \x01(\x01\x12\x1f\n\x17inbound_bandwidth_limit\x18\x03 \x01(\x01\x12 \n\x18outbound_bandwidth_limit\x18\x04 \x01(\x01\"\xb5\x01\n\x06\x44\x65vice\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08\x63pu_core\x18\x03 \x01(\x05\x12\x1e\n\x08location\x18\x04 \x01(\x0b\x32\x0c.pb.Location\x12*\n\x0f\x62\x61nd_width_info\x18\x05 \x01(\x0b\x32\x11.pb.BandWidthInfo\x12\x18\n\x10latency_to_upper\x18\x06 \x01(\x01\x12\x19\n\x11\x63omputation_usage\x18\x07 \x01(\x01\"@\n\nSystemInfo\x12\x19\n\x05\x65\x64ges\x18\x01 \x03(\x0b\x32\n.pb.Device\x12\x17\n\x03\x63\x64n\x18\x02 \x03(\x0b\x32\n.pb.Device\"=\n\x05Solve\x12\x1f\n\tuser_info\x18\x01 \x01(\x0b\x32\x0c.pb.UserInfo\x12\x13\n\x0b\x64\x65vice_name\x18\x02 \x01(\t\"[\n\x0fTaskManagerInfo\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x1f\n\tuser_info\x18\x02 \x03(\x0b\x32\x0c.pb.UserInfo\x12\x19\n\x06solved\x18\x03 \x03(\x0b\x32\t.pb.Solve\"P\n\x0e\x42\x61\x63kgroundInfo\x12\x0c\n\x04time\x18\x01 \x01(\x03\x12\x10\n\x08max_time\x18\x02 \x01(\x03\x12\x1e\n\x08location\x18\x03 \x01(\x0b\x32\x0c.pb.LocationB\tZ\x07../grpcb\x06proto3'
 )
 
 
@@ -297,6 +297,59 @@ _USERINFO = _descriptor.Descriptor(
 )
 
 
+_SERVICEINFO = _descriptor.Descriptor(
+  name='ServiceInfo',
+  full_name='pb.ServiceInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='start_time', full_name='pb.ServiceInfo.start_time', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='end_time', full_name='pb.ServiceInfo.end_time', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='encrypted', full_name='pb.ServiceInfo.encrypted', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='resource', full_name='pb.ServiceInfo.resource', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=472,
+  serialized_end=560,
+)
+
+
 _V2NUMBER_NUMBERENTRY = _descriptor.Descriptor(
   name='NumberEntry',
   full_name='pb.V2Number.NumberEntry',
@@ -331,8 +384,8 @@ _V2NUMBER_NUMBERENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=526,
-  serialized_end=571,
+  serialized_start=616,
+  serialized_end=661,
 )
 
 _V2NUMBER = _descriptor.Descriptor(
@@ -362,8 +415,8 @@ _V2NUMBER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=472,
-  serialized_end=571,
+  serialized_start=562,
+  serialized_end=661,
 )
 
 
@@ -401,8 +454,8 @@ _H2V_H2VENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=611,
-  serialized_end=667,
+  serialized_start=701,
+  serialized_end=757,
 )
 
 _H2V = _descriptor.Descriptor(
@@ -432,8 +485,8 @@ _H2V = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=573,
-  serialized_end=667,
+  serialized_start=663,
+  serialized_end=757,
 )
 
 
@@ -471,8 +524,8 @@ _VIEWERCONNECTION_VIEWERCONNECTIONTABLEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=772,
-  serialized_end=841,
+  serialized_start=862,
+  serialized_end=931,
 )
 
 _VIEWERCONNECTION = _descriptor.Descriptor(
@@ -502,8 +555,8 @@ _VIEWERCONNECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=670,
-  serialized_end=841,
+  serialized_start=760,
+  serialized_end=931,
 )
 
 
@@ -548,8 +601,8 @@ _QOEPREFERENCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=843,
-  serialized_end=906,
+  serialized_start=933,
+  serialized_end=996,
 )
 
 
@@ -615,8 +668,8 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=909,
-  serialized_end=1229,
+  serialized_start=999,
+  serialized_end=1319,
 )
 
 
@@ -682,8 +735,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1232,
-  serialized_end=1376,
+  serialized_start=1322,
+  serialized_end=1466,
 )
 
 
@@ -721,8 +774,8 @@ _FEEDBACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1378,
-  serialized_end=1422,
+  serialized_start=1468,
+  serialized_end=1512,
 )
 
 
@@ -774,8 +827,8 @@ _BANDWIDTHINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1425,
-  serialized_end=1574,
+  serialized_start=1515,
+  serialized_end=1664,
 )
 
 
@@ -848,8 +901,8 @@ _DEVICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1577,
-  serialized_end=1758,
+  serialized_start=1667,
+  serialized_end=1848,
 )
 
 
@@ -887,8 +940,8 @@ _SYSTEMINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1760,
-  serialized_end=1824,
+  serialized_start=1850,
+  serialized_end=1914,
 )
 
 
@@ -926,8 +979,8 @@ _SOLVE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1826,
-  serialized_end=1887,
+  serialized_start=1916,
+  serialized_end=1977,
 )
 
 
@@ -972,8 +1025,8 @@ _TASKMANAGERINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1889,
-  serialized_end=1980,
+  serialized_start=1979,
+  serialized_end=2070,
 )
 
 
@@ -1018,8 +1071,8 @@ _BACKGROUNDINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1982,
-  serialized_end=2062,
+  serialized_start=2072,
+  serialized_end=2152,
 )
 
 _BASE_EXTRAENTRY.containing_type = _BASE
@@ -1054,6 +1107,7 @@ DESCRIPTOR.message_types_by_name['OutboundBandwidthUsage'] = _OUTBOUNDBANDWIDTHU
 DESCRIPTOR.message_types_by_name['ComputationResourceUsage'] = _COMPUTATIONRESOURCEUSAGE
 DESCRIPTOR.message_types_by_name['Location'] = _LOCATION
 DESCRIPTOR.message_types_by_name['UserInfo'] = _USERINFO
+DESCRIPTOR.message_types_by_name['ServiceInfo'] = _SERVICEINFO
 DESCRIPTOR.message_types_by_name['V2Number'] = _V2NUMBER
 DESCRIPTOR.message_types_by_name['H2V'] = _H2V
 DESCRIPTOR.message_types_by_name['ViewerConnection'] = _VIEWERCONNECTION
@@ -1118,6 +1172,13 @@ UserInfo = _reflection.GeneratedProtocolMessageType('UserInfo', (_message.Messag
   # @@protoc_insertion_point(class_scope:pb.UserInfo)
   })
 _sym_db.RegisterMessage(UserInfo)
+
+ServiceInfo = _reflection.GeneratedProtocolMessageType('ServiceInfo', (_message.Message,), {
+  'DESCRIPTOR' : _SERVICEINFO,
+  '__module__' : 'common_pb2'
+  # @@protoc_insertion_point(class_scope:pb.ServiceInfo)
+  })
+_sym_db.RegisterMessage(ServiceInfo)
 
 V2Number = _reflection.GeneratedProtocolMessageType('V2Number', (_message.Message,), {
 
