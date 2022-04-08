@@ -2,6 +2,7 @@ package server
 
 import (
 	grpc2 "DeepCast/grpc"
+	"DeepCast/livego-rtmp-encrypt"
 	"DeepCast/train"
 	"context"
 	"google.golang.org/grpc"
@@ -9,6 +10,7 @@ import (
 	"math/rand"
 	"net"
 	"os"
+	"os/exec"
 	"strconv"
 )
 
@@ -19,8 +21,34 @@ const (
 
 type WebServer struct {
 	grpc2.ServiceApiServer
-	c  *context.Context
-	ch chan os.Signal
+	c    *context.Context
+	ch   chan os.Signal
+	live *exec.Cmd
+}
+
+func (s *WebServer) NewRtmpServer(version int64) {
+	var resolution string
+	switch version {
+	case 1440:
+		resolution = "2560x1440"
+	case 1080:
+		resolution = "1920x1080"
+	case 720:
+		resolution = "1280x720"
+	case 480:
+		resolution = "854x480"
+	case 360:
+		resolution = "640x360"
+	case 240:
+		resolution = "426x240"
+	}
+	//if s.hasLive {
+	//	*s.live <- 1
+	//}
+	if s.live != nil {
+		livego.LiveChan <- 1
+	}
+	go livego.StartFfmpeg(resolution)
 }
 
 func (s *WebServer) Service(ctx context.Context, request *grpc2.ServiceRequest) (*grpc2.ServiceResponse, error) {
@@ -58,6 +86,7 @@ func (s *WebServer) Service(ctx context.Context, request *grpc2.ServiceRequest) 
 	var task train.Task
 	task.SetTask(viewerWithWatchChannel)
 	nextState := taskManager.NextState(s.c, &task)
+	s.NewRtmpServer(request.UserInfo.Version)
 	return &grpc2.ServiceResponse{
 		Base: &grpc2.Base{
 			RetCode: int64(0),
@@ -229,8 +258,9 @@ func StartWebServer(ctx *context.Context, c chan os.Signal) {
 	grpcServer := grpc.NewServer()
 	// 在gRPC服务器注册我们的服务
 	grpc2.RegisterServiceApiServer(grpcServer, &WebServer{
-		c:  ctx,
-		ch: c,
+		c:    ctx,
+		ch:   c,
+		live: nil,
 	})
 
 	//用服务器 Serve() 方法以及我们的端口信息区实现阻塞等待，直到进程被杀死或者 Stop() 被调用

@@ -1,10 +1,13 @@
 package livego
 
 import (
+	"bytes"
 	"fmt"
 	"net"
+	"os/exec"
 	"path"
 	"runtime"
+	"syscall"
 	"time"
 
 	"DeepCast/livego-rtmp-encrypt/configure"
@@ -17,6 +20,7 @@ import (
 )
 
 var VERSION = "master"
+var LiveChan = make(chan int)
 
 func startHls() *hls.Server {
 	hlsAddr := configure.Config.GetString("hls_addr")
@@ -156,6 +160,42 @@ func StartRtmpServer() {
 		}
 
 		startRtmp(stream, hlsServer)
+	}
+}
+
+func StartFfmpeg(resolution string) {
+	//cmd := exec.Command("ffmpeg", "-i", rtmpServer, "-vcodec", "libx264", "-vprofile", "baseline", "acodec", "aac", "-strict", "-2", "-s", resolution, "-f", "flv", rtmpNginx)
+	// time.Sleep(2 * time.Second)
+	in := bytes.Buffer{}
+	outInfo := bytes.Buffer{}
+	cmd := exec.Command("bash")
+
+	cmd.Stdout = &outInfo
+	cmd.Stdin = &in
+
+	cmdString := `ffmpeg -i rtmp://localhost:1935/live/live -vcodec libx264 -vprofile baseline -acodec aac -strict -2 -s ` + resolution + ` -f flv rtmp://localhost:1936/live/live`
+
+	in.WriteString(cmdString)
+
+	log.Debugf("Start ffmpeg: %s\n", resolution)
+	err := cmd.Start()
+	if err != nil {
+		log.Warning(err.Error())
+	}
+	go func() {
+		if err = cmd.Wait(); err != nil {
+			log.Warning(err.Error())
+			return
+		} else {
+			log.Debugln(cmd.ProcessState.Pid())
+			log.Debugln(cmd.ProcessState.Sys().(syscall.WaitStatus).ExitStatus())
+			log.Debugln(outInfo.String())
+		}
+	}()
+	select {
+	case <-LiveChan:
+		cmd.Process.Kill()
+		return
 	}
 }
 
