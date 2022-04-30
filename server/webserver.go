@@ -5,13 +5,14 @@ import (
 	"DeepCast/livego-rtmp-encrypt"
 	"DeepCast/train"
 	"context"
+	"github.com/go-cmd/cmd"
 	"google.golang.org/grpc"
 	"log"
 	"math/rand"
 	"net"
 	"os"
-	"os/exec"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -23,7 +24,7 @@ type WebServer struct {
 	grpc2.ServiceApiServer
 	c    *context.Context
 	ch   chan os.Signal
-	live *exec.Cmd
+	live *cmd.Cmd
 }
 
 func (s *WebServer) NewRtmpServer(version int64) {
@@ -46,9 +47,18 @@ func (s *WebServer) NewRtmpServer(version int64) {
 	//	*s.live <- 1
 	//}
 	if s.live != nil {
-		livego.LiveChan <- 1
+		err := s.live.Stop()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		s.live = nil
 	}
-	go livego.StartFfmpeg(resolution)
+	cmdString := `ffmpeg -i rtmp://localhost:1935/live/live -vcodec libx264 -vprofile baseline -acodec aac -strict -2 -s ` + resolution + ` -f flv rtmp://localhost:1936/live/live`
+	args := strings.Split(cmdString, " ")
+	ffmpeg := cmd.NewCmd(args[0], args[1:]...)
+	go livego.StartFfmpeg(ffmpeg)
+	log.Printf("Start ffmpeg: %s\n", resolution)
+	s.live = ffmpeg
 }
 
 func (s *WebServer) Service(ctx context.Context, request *grpc2.ServiceRequest) (*grpc2.ServiceResponse, error) {

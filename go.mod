@@ -6,8 +6,7 @@ require (
 	github.com/auth0/go-jwt-middleware v0.0.0-20190805220309-36081240882b
 	github.com/chentaihan/aesCbc v0.0.0-20201028024852-1c4d1700b583
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/floostack/transcoder v1.1.1 // indirect
-	github.com/giorgisio/goav v0.1.0 // indirect
+	github.com/go-cmd/cmd v1.4.1
 	github.com/go-redis/redis/v7 v7.2.0
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/gorilla/mux v1.7.4 // indirect
