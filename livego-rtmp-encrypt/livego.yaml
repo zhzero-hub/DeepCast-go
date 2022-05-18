@@ -1,5 +1,5 @@
 # # Logger level
-level: debug
+level: info
 
 # # FLV Options
 # flv_archive: false
@@ -23,3 +23,4 @@ server:
   hls: false
   api: false
   flv: false
+  encrypt: true

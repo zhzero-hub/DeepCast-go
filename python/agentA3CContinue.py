@@ -230,7 +230,8 @@ class WorkerAgent(Thread):
             reward_batch = []
             episode_reward, done = 0, False
 
-            state = self.env.reset()
+            state, mode = self.env.reset()
+            seq_device_id = 0
 
             while not done:
                 while True:
@@ -252,9 +253,21 @@ class WorkerAgent(Thread):
 
                 print('Action: {}, Channel id: {}, Version: {}'.format(device_id, state['channel_id'], state['version']))
 
+                if mode == 1:
+                    device_id = device_id
+                elif mode == 2:
+                    device_id = 10
+                elif mode == 3:
+                    device_id = seq_device_id
+                    seq_device_id += 1
+                    if seq_device_id == 10:
+                        seq_device_id = 0
+                else:
+                    device_id = device_id
+
                 action = {'device_id': device_id, 'viewer_id': state['viewer_id'], 'channel_id': state['channel_id'],
                           'qoe': state['qoe'], 'version': state['version']}
-                next_state, reward, done, _ = self.env.step(action)
+                next_state, reward, done, mode = self.env.step(action)
 
                 # state = np.reshape(state, [1, self.state_dim])
                 action = np.reshape(device_id, [1, 1])
@@ -265,7 +278,7 @@ class WorkerAgent(Thread):
                 action_batch.append(action)
                 reward_batch.append(reward)
 
-                if len(state_batch) >= args.update_interval and next_state is not None:
+                if mode == 1 and len(state_batch) >= args.update_interval and next_state is not None:
                     # states = self.list_to_batch(state_batch)
                     states = state_batch
                     actions = self.list_to_batch(action_batch)
@@ -308,8 +321,10 @@ class WorkerAgent(Thread):
                 print('EP{} EpisodeReward={}'.format(CUR_EPISODE, episode_reward))
                 # wandb.log({'Reward': episode_reward})
                 CUR_EPISODE += 1
-            self.actor.model.save_weights('model/actor_model.h5')
-            self.critic.model.save('model/critic_model.h5')
+
+            if mode == 1:
+                self.actor.model.save_weights('model/actor_model.h5')
+                self.critic.model.save('model/critic_model.h5')
 
     def run(self):
         self.train()

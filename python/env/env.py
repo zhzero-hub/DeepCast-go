@@ -33,14 +33,13 @@ class DeepCastEnv(core.Env):
         })  # 状态空间
 
     def reset(self):
-        obs = reset_env(None)
-        return obs
+        obs, mode = reset_env(None)
+        return obs, int(mode)
 
     def step(self, action):
-        obs, reward, accuracy, done = train_step(None, action['device_id'], action['viewer_id'], action['channel_id'],
+        obs, reward, accuracy, done, mode = train_step(None, action['device_id'], action['viewer_id'], action['channel_id'],
                                                  action['version'], action['qoe'])
-        info = {}  # 用于记录训练过程中的环境信息,便于观察训练状态
-        return obs, reward, done, info
+        return obs, reward, done, int(mode)
 
     def render(self, mode='human'):
         return 0

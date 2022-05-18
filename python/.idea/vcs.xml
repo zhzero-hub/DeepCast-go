@@ -2,7 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Deep-RL-Keras" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/pytorch-A3C" vcs="Git" />
   </component>
 </project>

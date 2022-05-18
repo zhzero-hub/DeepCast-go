@@ -10,7 +10,7 @@ import numpy as np
 
 
 _HOST = '127.0.0.1'
-_PORT = '5002'
+_PORT = '5050'
 channel = grpc.insecure_channel("{0}:{1}".format(_HOST, _PORT))
 client = bridge_pb2_grpc.ServiceApiStub(channel=channel)
 

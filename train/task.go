@@ -203,7 +203,7 @@ func (t *TaskManager) GetTask() *Task {
 	}
 }
 
-func (t *TaskManager) TakeAction(ctx *context.Context, req *rpc.TrainStepRequest) float64 {
+func (t *TaskManager) TakeAction(ctx *context.Context, req *rpc.TrainStepRequest, mode int) float64 {
 	// 从req.Base.Extra拿了什么: version, deviceId
 	action := req.Action
 	system := (*t.ctx).Value("system").(*System)
@@ -292,12 +292,12 @@ func (t *TaskManager) TakeAction(ctx *context.Context, req *rpc.TrainStepRequest
 	}
 	// t.viewerList.Pop()
 
-	reward := GetReward(ctx, viewer, req)
+	reward := GetReward(ctx, viewer, req, mode)
 	log.Printf("Channel Id: %s\tDevice name: %s\tVersion: %d\tReward: %f\n", viewer.AssignInfo.ChannelId, viewer.AssignInfo.DeviceId, viewer.AssignInfo.Version, reward)
 	return reward
 }
 
-func (t *TaskManager) NextState(ctx *context.Context, task *Task) *rpc.State {
+func (t *TaskManager) NextState(ctx *context.Context, task *Task, mode int) *rpc.State {
 	isService := true
 	if task == nil {
 		isService = false
@@ -342,7 +342,7 @@ func (t *TaskManager) NextState(ctx *context.Context, task *Task) *rpc.State {
 		qoePreference = GetResourceQoe(task)
 		version = task.watchInfo.Extra["version"].(int64)
 	} else {
-		qoePreference = GetQoePreference(task)
+		qoePreference = GetQoePreference(task, mode)
 		version = GetVersion(task.watchInfo.VersionBit)
 	}
 	state := rpc.State{
@@ -389,7 +389,7 @@ func GetVersion(version int64) int64 {
 	}
 }
 
-func GetReward(ctx *context.Context, viewer *Viewer, req *rpc.TrainStepRequest) float64 {
+func GetReward(ctx *context.Context, viewer *Viewer, req *rpc.TrainStepRequest, mode int) float64 {
 	action := req.Action
 	var rewarda, rewardb float64
 	rewarda += float64(action.GetQoePreference().Alpha1) * GetStreamingDelay(ctx, viewer, viewer.AssignInfo.DeviceId)
@@ -399,6 +399,7 @@ func GetReward(ctx *context.Context, viewer *Viewer, req *rpc.TrainStepRequest) 
 
 	rewardb += GetComputationCost(ctx, viewer)
 	rewardb += GetBandwidthCost(ctx, viewer)
+	SaveCost(rewardb, mode)
 	rewardb *= Beta
 	return -1 * (rewarda + rewardb)
 }
@@ -433,7 +434,7 @@ func GetComputationCost(ctx *context.Context, viewer *Viewer) float64 {
 	if strings.Contains(viewer.AssignInfo.DeviceId, "Edge") {
 		return TransCodingCpuMap[viewer.AssignInfo.Version] * EdgeComputationPrice
 	} else {
-		return 0
+		return TransCodingCpuMap[viewer.AssignInfo.Version] * CdnComputationPrice
 	}
 }
 
@@ -475,16 +476,26 @@ func GetConnMap(solved map[*ViewerWithWatchChannel]*DeviceCommon) *map[string]*m
 	return &conn
 }
 
-func GetQoePreference(task *Task) []float32 {
+func GetQoePreference(task *Task, mode int) []float32 {
 	viewer := task.watchInfo.Viewer
 	liveInfo := task.watchInfo.LiveInfo
 	n := len(viewer.LiveInfo)
 	t := (liveInfo.EndTime - liveInfo.StartTime) * 10
-	if n <= 2 && t >= 30 {
+	if mode == 1 {
+		if n <= 2 && t >= 30 {
+			return []float32{2, 1.5, 2}
+		} else if n >= 5 && t <= 10 {
+			return []float32{0.5, 6, 2}
+		} else if n > 4 && t >= 30 {
+			return []float32{0.5, 1.5, 8}
+		} else {
+			return []float32{1, 3, 4}
+		}
+	} else if mode == 4 {
 		return []float32{2, 1.5, 2}
-	} else if n >= 5 && t <= 10 {
+	} else if mode == 5 {
 		return []float32{0.5, 6, 2}
-	} else if n > 4 && t >= 30 {
+	} else if mode == 6 {
 		return []float32{0.5, 1.5, 8}
 	} else {
 		return []float32{1, 3, 4}

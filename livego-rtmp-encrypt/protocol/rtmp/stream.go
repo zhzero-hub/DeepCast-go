@@ -22,6 +22,14 @@ type RtmpStream struct {
 	streams *sync.Map //key
 }
 
+var totalEncryptTime int64
+var totalEncryptBytes int64
+
+var maxBytes = int64(0xffffff)
+
+var totalEncryptTimeArray []int64
+var totalEncryptBytesArray []int64
+
 func NewRtmpStream() *RtmpStream {
 	ret := &RtmpStream{
 		streams: &sync.Map{},
@@ -94,6 +102,7 @@ type Stream struct {
 	r       av.ReadCloser
 	ws      *sync.Map
 	info    av.Info
+	encrypt bool
 }
 
 type PackWriterCloser struct {
@@ -331,17 +340,27 @@ func (s *Stream) TransStart() {
 			s.SendStaticPush(p)
 		}
 
-		//if len(p.Data) >= aes.BlockSize {
-		//	encrypted := make([]byte, len(p.Data))
-		//	cyper.Encrypt(encrypted, p.Data)
-		//	p.Data = encrypted
-		//	p.IsEncryptedData = true
-		//}
-
+		totalEncryptBytes += int64(len(p.Data))
+		time1 := time.Now().UnixMicro()
 		p.Data = aes.AesEncrypt([]byte("DeepCast"), []byte("123"), p.Data)
+		time2 := time.Now().UnixMicro()
+		totalEncryptTime += time2 - time1
+		if maxBytes == 0 {
+			maxBytes = 0xffff
+		}
+		if totalEncryptBytes > maxBytes {
+			//log.Debugf("Total bytes: %d\n", totalEncryptBytes)
+			//log.Debugf("Total micro time: %d\n", totalEncryptTime)
+			//log.Debugf("micro time per bytes: %.10f\n", float64(totalEncryptTime)/float64(totalEncryptBytes))
+			totalEncryptTimeArray = append(totalEncryptTimeArray, totalEncryptTime)
+			totalEncryptBytesArray = append(totalEncryptBytesArray, totalEncryptBytes)
+			log.Debugf("TotalEncryptBytes: %v\n", totalEncryptBytesArray)
+			log.Debugf("TotalEncryptTime: %v\n", totalEncryptTimeArray)
+
+			totalEncryptBytes = 0
+			totalEncryptTime = 0
+		}
 		p.IsEncryptedData = true
-		// log.Warningf("before: %d, after: %d", len(p.Data), len(encrypted))
-		// p.Data = aes.AesDecrypt([]byte("DeepCast-Rtmp-encrypt"), []byte("123456789"), p.Data)
 
 		s.cache.Write(p)
 

@@ -32,7 +32,7 @@ def reset_env(base):
         Base=base
     )
     resp = client.ResetEnv(req)
-    return convert_state(resp)
+    return convert_state(resp), resp.Base.Extra['mode']
 
 
 def train_step(base, device_id, viewer_id, channel_id, version, qoe):
@@ -63,11 +63,11 @@ def train_step(base, device_id, viewer_id, channel_id, version, qoe):
         accuracy = resp.Feedback.accuracy
         reward = resp.Feedback.reward
         next_state = convert_state(resp)
-        return next_state, reward, accuracy, False
+        return next_state, reward, accuracy, False, resp.Base.Extra['mode']
     elif resp.Base.RetCode == 1:
         accuracy = resp.Feedback.accuracy
         reward = resp.Feedback.reward
-        return None, reward, accuracy, True
+        return None, reward, accuracy, True, resp.Base.Extra['mode']
 
 
 def close():

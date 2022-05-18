@@ -7,9 +7,13 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"os"
 	"strconv"
 	"strings"
 )
+
+var TotalReward []float64
+var TotalCost []float64
 
 func ChooseEdgeLocationWithKMeans(ctx *context.Context) {
 	viewer := (*ctx).Value("viewer").(*ViewerInfo)
@@ -148,5 +152,34 @@ func (s *System) RemoveViewer(viewer *Viewer) {
 			}
 		}
 
+	}
+}
+
+func SaveReward(reward float64, mode int) {
+	TotalReward = append(TotalReward, reward)
+	if len(TotalReward) > 10000 {
+		file, err := os.OpenFile("reward"+strconv.Itoa(mode), os.O_CREATE|os.O_WRONLY, 0666)
+		if err != nil {
+			log.Fatalf("打开文件失败\n")
+		}
+		for _, v := range TotalReward {
+			file.WriteString(strconv.FormatFloat(v, 'f', 6, 64) + "\n")
+		}
+		file.Close()
+		log.Fatalf("Limit\n")
+	}
+}
+
+func SaveCost(cost float64, mode int) {
+	TotalCost = append(TotalCost, cost)
+	if len(TotalCost) > 10000 {
+		file, err := os.OpenFile("cost"+strconv.Itoa(mode), os.O_CREATE|os.O_WRONLY, 0666)
+		if err != nil {
+			log.Fatalf("打开文件失败\n")
+		}
+		for _, v := range TotalCost {
+			file.WriteString(strconv.FormatFloat(v, 'f', 6, 64) + "\n")
+		}
+		file.Close()
 	}
 }

@@ -31,6 +31,7 @@ type Application struct {
 	Flv        bool     `mapstructure:"flv"`
 	Api        bool     `mapstructure:"api"`
 	StaticPush []string `mapstructure:"static_push"`
+	Encrypt    bool     `mapstructure:"encrypt"`
 }
 
 type Applications []Application

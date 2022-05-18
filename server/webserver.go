@@ -17,7 +17,7 @@ import (
 
 const (
 	// WebAddress 监听地址
-	WebAddress string = "0.0.0.0:5002"
+	WebAddress string = "0.0.0.0:5050"
 )
 
 type WebServer struct {
@@ -95,7 +95,7 @@ func (s *WebServer) Service(ctx context.Context, request *grpc2.ServiceRequest) 
 	}
 	var task train.Task
 	task.SetTask(viewerWithWatchChannel)
-	nextState := taskManager.NextState(s.c, &task)
+	nextState := taskManager.NextState(s.c, &task, 1)
 	s.NewRtmpServer(request.UserInfo.Version)
 	return &grpc2.ServiceResponse{
 		Base: &grpc2.Base{

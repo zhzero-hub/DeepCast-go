@@ -40,7 +40,7 @@ func startHls() *hls.Server {
 	return hlsServer
 }
 
-func startRtmp(stream *rtmp.RtmpStream, hlsServer *hls.Server) {
+func startRtmp(stream *rtmp.RtmpStream, hlsServer *hls.Server, encrypt bool) {
 	rtmpAddr := configure.Config.GetString("rtmp_addr")
 
 	rtmpListen, err := net.Listen("tcp", rtmpAddr)
@@ -51,10 +51,10 @@ func startRtmp(stream *rtmp.RtmpStream, hlsServer *hls.Server) {
 	var rtmpServer *rtmp.Server
 
 	if hlsServer == nil {
-		rtmpServer = rtmp.NewRtmpServer(stream, nil)
+		rtmpServer = rtmp.NewRtmpServer(stream, nil, encrypt)
 		log.Info("HLS server disable....")
 	} else {
-		rtmpServer = rtmp.NewRtmpServer(stream, hlsServer)
+		rtmpServer = rtmp.NewRtmpServer(stream, hlsServer, encrypt)
 		log.Info("HLS server enable....")
 	}
 
@@ -126,10 +126,10 @@ func StartRtmpServer() {
 			time.Sleep(1 * time.Second)
 		}
 	}()
-
 	apps := configure.Applications{}
 	configure.Config.UnmarshalKey("server", &apps)
 	for _, app := range apps {
+		log.Info("Encryption: ", app.Encrypt)
 		stream := rtmp.NewRtmpStream()
 		if msg, err := configure.RoomKeys.GetKey("live"); err != nil {
 			log.Error("get room key error: ", err)
@@ -148,7 +148,7 @@ func StartRtmpServer() {
 			startAPI(stream)
 		}
 
-		startRtmp(stream, hlsServer)
+		startRtmp(stream, hlsServer, app.Encrypt)
 	}
 }
 

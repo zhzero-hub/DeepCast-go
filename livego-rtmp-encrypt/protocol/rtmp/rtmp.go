@@ -3,6 +3,7 @@ package rtmp
 import (
 	"fmt"
 	aes "github.com/chentaihan/aesCbc"
+	"math/rand"
 	"net"
 	"net/url"
 	"reflect"
@@ -28,6 +29,12 @@ var (
 	readTimeout  = configure.Config.GetInt("read_timeout")
 	writeTimeout = configure.Config.GetInt("write_timeout")
 )
+
+var totalDecryptTime int64
+var totalDecryptBytes int64
+
+var totalDecryptTimeArray []int64
+var totalDecryptBytesArray []int64
 
 type Client struct {
 	handler av.Handler
@@ -69,9 +76,10 @@ func (c *Client) GetHandle() av.Handler {
 type Server struct {
 	handler av.Handler
 	getter  av.GetWriter
+	encrypt bool
 }
 
-func NewRtmpServer(h av.Handler, getter av.GetWriter) *Server {
+func NewRtmpServer(h av.Handler, getter av.GetWriter, encrypt bool) *Server {
 	return &Server{
 		handler: h,
 		getter:  getter,
@@ -313,7 +321,27 @@ func (v *VirWriter) SendPacket() error {
 		p, ok := <-v.packetQueue
 		if ok {
 			if p.IsEncryptedData {
+				totalDecryptBytes += int64(len(p.Data))
+				time1 := time.Now().UnixMicro()
 				p.Data = aes.AesDecrypt([]byte("DeepCast"), []byte("123"), p.Data)
+				time2 := time.Now().UnixMicro()
+				totalDecryptTime += time2 - time1
+				if totalDecryptBytes > maxBytes {
+					//log.Debugf("Total bytes: %d\n", totalDecryptBytes)
+					//log.Debugf("Total micro time: %d\n", totalDecryptTime)
+					//log.Debugf("micro time per bytes: %.6f\n", float64(totalDecryptTime)/float64(totalDecryptBytes))
+					totalDecryptTimeArray = append(totalDecryptTimeArray, totalDecryptTime)
+					totalDecryptBytesArray = append(totalDecryptBytesArray, totalDecryptBytes)
+
+					log.Debugf("TotalDecryptBytes: %v\n", totalDecryptBytesArray)
+					log.Debugf("TotalDecryptTime: %v\n", totalDecryptTimeArray)
+					log.Debugf("Length: %d\n", len(totalDecryptTimeArray))
+
+					totalDecryptBytes = 0
+					totalDecryptTime = 0
+					maxBytes = int64(rand.Float64()*(0xffffff-0xffff) + 0xffff)
+
+				}
 			}
 			cs.Data = p.Data
 			cs.Length = uint32(len(p.Data))
